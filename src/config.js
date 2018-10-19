@@ -39,9 +39,21 @@ const config = {
   test: { },
   development: {
     mongo: {
-      uri: 'mongodb://localhost/my-sodastream-dashboard-dev',
+      uri: "mongodb://"+requireProcessEnv('MLAB_USER')+":"+requireProcessEnv('MLAB_PWD')+"@ds137003.mlab.com:37003/sodastream-dashboard-dev",
       options: {
-        debug: true
+        debug: true,
+        server: { 
+          socketOptions: { 
+            keepAlive: 300000, 
+            connectTimeoutMS: 30000 
+          } 
+        }, 
+        replset: { 
+          socketOptions: { 
+            keepAlive: 300000, 
+            connectTimeoutMS : 30000 
+          }
+        }
       }
     }
   },
