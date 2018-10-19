@@ -17,16 +17,6 @@ npm run prod # run the API in production mode
 npm run docs # generate API docs
 ```
 
-## Playing locally
-
-First, you will need to install and run [MongoDB](https://www.mongodb.com/) in another terminal instance.
-
-```bash
-$ mongod
-```
-
-Then, run the server in development mode.
-
 ```bash
 $ npm run dev
 Express server listening on http://0.0.0.0:9000, in development mode
