@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 
 class RefillsChart extends Component {
@@ -42,4 +42,4 @@ class RefillsChart extends Component {
   }
 }
 
-export default RefillsChart
+export default RefillsChart;

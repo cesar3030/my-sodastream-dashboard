@@ -30,4 +30,4 @@ class ReloadsChart extends Component {
   }
 }
 
-export default ReloadsChart
+export default ReloadsChart;
