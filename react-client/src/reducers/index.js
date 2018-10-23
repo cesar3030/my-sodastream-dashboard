@@ -1,4 +1,4 @@
-import { ADD_ARTICLE, BOX_CLICK, JUMP_TO_MOVE } from "../constants/action-types";
+import { BOX_CLICK } from "../constants/action-types";
 
 const initialState = { };
 

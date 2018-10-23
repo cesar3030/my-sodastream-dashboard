@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import RefillsChart from './RefillsChart'
-import ReloadsChart from './ReloadsChart'
+import React, { Component } from 'react';
+import RefillsChart from './RefillsChart';
+import ReloadsChart from './ReloadsChart';
 
 class Home extends Component {
   render() {
@@ -15,4 +15,4 @@ class Home extends Component {
   }
 }
 
-export default Home
+export default Home;
