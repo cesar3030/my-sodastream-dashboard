@@ -1,5 +1,7 @@
 import RPi.GPIO as GPIO
 import time
+from urllib import urlencode
+import urllib2
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
@@ -33,3 +35,4 @@ def listen_to_click_events():
           GPIO.output(18, True)
       time.sleep(0.05)
 
+listen_to_click_events()
