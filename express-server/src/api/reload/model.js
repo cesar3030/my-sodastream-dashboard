@@ -1,6 +1,10 @@
 import mongoose, { Schema } from 'mongoose'
 
-const reloadSchema = new Schema({}, { timestamps: true })
+const reloadSchema = new Schema({
+  refillCount: {type: Number, default: 0},
+  timeUsage: {type: Number, default: 0},
+  endDate: {type: Date, default: null}
+}, { timestamps: true })
 
 reloadSchema.methods = {
   view (full) {

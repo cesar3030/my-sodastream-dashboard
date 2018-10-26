@@ -1,9 +1,9 @@
 import mongoose, { Schema } from 'mongoose'
-
 const refillSchema = new Schema({
   elapsedTime: {
     type: Number
-  }
+  },
+  reload: { type: Schema.Types.ObjectId, ref: 'Reload'}
 }, {
   timestamps: true,
   toJSON: {
