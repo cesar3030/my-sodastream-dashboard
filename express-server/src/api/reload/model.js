@@ -11,12 +11,15 @@ reloadSchema.methods = {
     const view = {
       // simple view
       id: this.id,
-      createdAt: this.createdAt,
-      updatedAt: this.updatedAt
+      refillCount: this.refillCount,
+      timeUsage: this.timeUsage,
+      endDate: this.endDate,
+      createdAt: this.createdAt
     }
 
     return full ? {
-      ...view
+      ...view,
+      updatedAt: this.updatedAt
       // add properties for a full view
     } : view
   }
