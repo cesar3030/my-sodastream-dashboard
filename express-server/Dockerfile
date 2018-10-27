@@ -13,6 +13,8 @@ RUN npm install
 COPY . /usr/src/app
 
 EXPOSE 9000
+EXPOSE 8080
+EXPOSE 443
 
 RUN useradd -ms /bin/bash docker
 USER docker
