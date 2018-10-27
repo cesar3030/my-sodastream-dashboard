@@ -16,3 +16,5 @@ EXPOSE 9000
 
 RUN useradd -ms /bin/bash docker
 USER docker
+
+ENTRYPOINT ["npm", "run", "docker"]
