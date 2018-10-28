@@ -1,0 +1,114 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  annotations:
+    openshift.io/generated-by: OpenShiftWebConsole
+  creationTimestamp: '2018-10-27T05:19:20Z'
+  generation: 8
+  labels:
+    api: my-sodastream-dashboard-api
+  name: my-sodastream-dashboard
+  namespace: my-sodastream-dashboard
+  resourceVersion: '2852636133'
+  selfLink: >-
+    /apis/apps.openshift.io/v1/namespaces/my-sodastream-dashboard/deploymentconfigs/my-sodastream-dashboard
+  uid: dbad7e16-d9a7-11e8-8ecc-0ab8769191d3
+spec:
+  replicas: 1
+  selector:
+    api: my-sodastream-dashboard-api
+    deploymentconfig: my-sodastream-dashboard
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftWebConsole
+      creationTimestamp: null
+      labels:
+        api: my-sodastream-dashboard-api
+        deploymentconfig: my-sodastream-dashboard
+    spec:
+      containers:
+        - args:
+            - run
+            - prod
+          command:
+            - npm
+          env:
+            - name: MASTER_KEY
+              value: MN3AtnqwDvq6nBlk7Cm3yvc9wblYviqe
+            - name: JWT_SECRET
+              value: shnu6K7U1i7i13Kiu1t6bM2vg3YJsBjk
+            - name: MLAB_USER
+              value: dev-user
+            - name: MLAB_PWD
+              value: myPassword1
+            - name: BABEL_DISABLE_CACHE
+              value: '1'
+            - name: MONGODB_URI
+              value: >-
+                mongodb://dev-user:myPassword1@ds137003.mlab.com:37003/sodastream-dashboard-dev
+          image: >-
+            cesar3030/my-sodastream-dashboard@sha256:1aa4b64eae1a6ceeb6ec506d53587becfbc05f66b8b8e5d689c43c9aa8d62c54
+          imagePullPolicy: Always
+          name: my-sodastream-dashboard
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+          - my-sodastream-dashboard
+        from:
+          kind: ImageStreamTag
+          name: 'my-sodastream-dashboard:latest'
+          namespace: my-sodastream-dashboard
+        lastTriggeredImage: >-
+          cesar3030/my-sodastream-dashboard@sha256:1aa4b64eae1a6ceeb6ec506d53587becfbc05f66b8b8e5d689c43c9aa8d62c54
+      type: ImageChange
+    - type: ConfigChange
+status:
+  availableReplicas: 1
+  conditions:
+    - lastTransitionTime: '2018-10-27T05:27:44Z'
+      lastUpdateTime: '2018-10-27T05:27:44Z'
+      message: Deployment config has minimum availability.
+      status: 'True'
+      type: Available
+    - lastTransitionTime: '2018-10-27T06:17:39Z'
+      lastUpdateTime: '2018-10-27T06:17:42Z'
+      message: >-
+        replication controller "my-sodastream-dashboard-7" successfully rolled
+        out
+      reason: NewReplicationControllerAvailable
+      status: 'True'
+      type: Progressing
+  details:
+    causes:
+      - type: ConfigChange
+    message: config change
+  latestVersion: 7
+  observedGeneration: 8
+  readyReplicas: 1
+  replicas: 1
+  unavailableReplicas: 0
+  updatedReplicas: 1

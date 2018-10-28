@@ -57,11 +57,31 @@ const config = {
       }
     }
   },
+  docker: {
+    mongo: {
+      uri: "mongodb://"+requireProcessEnv('MLAB_USER')+":"+requireProcessEnv('MLAB_PWD')+"@ds137003.mlab.com:37003/sodastream-dashboard-dev",
+      options: {
+        debug: true,
+        server: { 
+          socketOptions: { 
+            keepAlive: 300000, 
+            connectTimeoutMS: 30000 
+          } 
+        }, 
+        replset: { 
+          socketOptions: { 
+            keepAlive: 300000, 
+            connectTimeoutMS : 30000 
+          }
+        }
+      }
+    }
+  },
   production: {
     ip: process.env.IP || undefined,
     port: process.env.PORT || 8080,
     mongo: {
-      uri: process.env.MONGODB_URI || 'mongodb://localhost/my-sodastream-dashboard'
+      uri: process.env.MONGODB_URI || "mongodb://"+requireProcessEnv('MLAB_USER')+":"+requireProcessEnv('MLAB_PWD')+"@ds137003.mlab.com:37003/sodastream-dashboard-dev"
     }
   }
 }

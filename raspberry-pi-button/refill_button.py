@@ -7,7 +7,7 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(18, GPIO.OUT)
 GPIO.setup(25, GPIO.IN)
-url = "http://0.0.0.0:9000/refills"
+url = "https://my-sodastream-dashboard.herokuapp.com/refills"
 
 
 def new_refill(elapsed_time):
