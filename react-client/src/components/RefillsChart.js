@@ -2,14 +2,7 @@ import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 
 class RefillsChart extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      labels:[],
-      data:[]
-    };
-  }
-  
+
   jsonToLabelsAndDataArrays = (json) => {
     const labels = [];
     const data = [];
@@ -22,7 +15,7 @@ class RefillsChart extends Component {
     this.setState({
       labels: labels,
       data: data
-    })
+    });
   }
 
   mockRequest = () => {
@@ -37,10 +30,6 @@ class RefillsChart extends Component {
     };
 
     setTimeout(() => this.jsonToLabelsAndDataArrays(mockResponse), 4000);
-  }
-
-  componentDidMount() {
-    this.mockRequest();
   }
 
   render = () => {
@@ -66,10 +55,10 @@ class RefillsChart extends Component {
           pointHoverBorderWidth: 2,
           pointRadius: 1,
           pointHitRadius: 10,
-          data: this.state.data //[65, 59, 80, 81, 56, 55, 40]
+          data: this.props.data
         }
       ],
-      labels: this.state.labels //['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+      labels: this.props.labels
     };
 
     return (

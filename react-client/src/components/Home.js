@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import RefillsChart from './RefillsChart';
+import CurrentWeekRefills from './CurrentWeekRefills';
 import ReloadsChart from './ReloadsChart';
 
 class Home extends Component {
@@ -7,7 +7,7 @@ class Home extends Component {
     return (
       <div>
         <div className="row">
-          <RefillsChart/>
+          <CurrentWeekRefills/>
           <ReloadsChart/>
         </div>
       </div>
