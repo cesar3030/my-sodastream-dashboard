@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
+import { fetchRefills } from '../actions/refillsActions';
 
 class RefillsChart extends Component {
 
@@ -32,6 +33,10 @@ class RefillsChart extends Component {
     setTimeout(() => this.jsonToLabelsAndDataArrays(mockResponse), 4000);
   }
 
+  componentDidMount() {
+    this.props.dispatch(fetchRefills());
+  }
+
   render = () => {
 
     const config = {
@@ -55,10 +60,10 @@ class RefillsChart extends Component {
           pointHoverBorderWidth: 2,
           pointRadius: 1,
           pointHitRadius: 10,
-          data: this.props.data
+          data: this.props.nbRifillsPerDay
         }
       ],
-      labels: this.props.labels
+      labels: this.props.days
     };
 
     return (

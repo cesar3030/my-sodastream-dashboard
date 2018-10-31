@@ -1,12 +1,42 @@
+import { apiUrl } from '../config';
+import { 
+  FETCH_REFILLS_FAILURE, 
+  FETCH_REFILLS_BEGIN, 
+  FETCH_REFILLS_SUCCESS 
+} from '../constants/refillsActionsTypes';
 
-export const fetchRefills = () => {
+export const fetchRefillsBegin = () => ({
+  type: FETCH_REFILLS_BEGIN
+});
 
-};
+export const fetchRefillsSucess = (refills) => ({
+  type: FETCH_REFILLS_SUCCESS,
+  payload: { refills }
+});
 
-export const fetchRefillsSucess = () => {
+export const fetchRefillsFailure = (error) => ({
+  type: FETCH_REFILLS_FAILURE,
+  payload: { error }
+});
 
+export function fetchRefills() {
+  return dispatch => {
+    dispatch(fetchRefillsBegin());
+    return fetch(`${apiUrl}/refills/currentWeek`)
+      .then(handleErrors)
+      .then(res => res.json())
+      .then(json => {
+        dispatch(fetchRefillsSucess(json));
+        return json;
+      })
+      .catch(error => dispatch(fetchRefillsFailure(error)));
+  };
 }
 
-export const fetchRefillsError = () => {
-  
+// Handle HTTP errors since fetch won't.
+function handleErrors(response) {
+  if (!response.ok) {
+    throw Error(response.statusText);
+  }
+  return response;
 }
