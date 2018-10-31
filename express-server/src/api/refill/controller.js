@@ -34,3 +34,15 @@ export const destroy = ({ params }, res, next) =>
     .then((refill) => refill ? refill.remove() : null)
     .then(success(res, 204))
     .catch(next)
+
+export const currentWeekRefills = ({ params }, res, next) => {
+  success(res)({
+    "Monday": 10,
+    "Tuesday": 3,
+    "Wednesday": 8,
+    "Thursday": 1,
+    "Friday": 3,
+    "Saturday": 4,
+    "Sunday":7
+  });
+};

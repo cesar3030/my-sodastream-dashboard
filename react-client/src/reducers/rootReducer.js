@@ -1,9 +1,11 @@
 import { combineReducers } from "redux";
 import currentWeekRefills from "./currentWeekRefillsReducer";
 
-export default combineReducers({
+const rootReducer = combineReducers({
   currentWeekRefills
 });
+
+export default rootReducer;
 
 
 // const initialState = {

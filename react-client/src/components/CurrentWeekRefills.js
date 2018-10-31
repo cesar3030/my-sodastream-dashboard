@@ -1,4 +1,4 @@
-import ReffillsChart from './RefillsChart';
+import RefillsChart from './RefillsChart';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
@@ -8,6 +8,6 @@ const mapStateToProps = state => ({
 
 const CurrentWeekReffils = connect(
   mapStateToProps
-)(ReffillsChart);
+)(RefillsChart);
 
 export default CurrentWeekReffils;

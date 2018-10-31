@@ -11,7 +11,7 @@ export const fetchRefillsBegin = () => ({
 
 export const fetchRefillsSucess = (refills) => ({
   type: FETCH_REFILLS_SUCCESS,
-  payload: { refills }
+  payload: refills
 });
 
 export const fetchRefillsFailure = (error) => ({
@@ -26,7 +26,7 @@ export function fetchRefills() {
       .then(handleErrors)
       .then(res => res.json())
       .then(json => {
-        dispatch(fetchRefillsSucess(json));
+        dispatch(fetchRefillsSucess(parseResponse(json)));
         return json;
       })
       .catch(error => dispatch(fetchRefillsFailure(error)));
@@ -39,4 +39,19 @@ function handleErrors(response) {
     throw Error(response.statusText);
   }
   return response;
+}
+
+const parseResponse = (json) => {
+  const labels = [];
+  const data = [];
+
+  for(let label in json) {
+    labels.push(label);
+    data.push(json[label]);
+  }
+
+  return {
+    days: labels,
+    nbRefillsPerDay: data
+  };
 }

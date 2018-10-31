@@ -60,7 +60,7 @@ class RefillsChart extends Component {
           pointHoverBorderWidth: 2,
           pointRadius: 1,
           pointHitRadius: 10,
-          data: this.props.nbRifillsPerDay
+          data: this.props.nbRefillsPerDay
         }
       ],
       labels: this.props.days

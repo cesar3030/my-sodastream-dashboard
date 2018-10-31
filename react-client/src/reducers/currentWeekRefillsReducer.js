@@ -1,4 +1,3 @@
-
 import { 
   FETCH_REFILLS_FAILURE, 
   FETCH_REFILLS_BEGIN, 
@@ -8,12 +7,12 @@ import {
 const initState = {
   loading: false,
   days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-  reffilsPerDay: [1,2,3,4,5,6,7],
+  nbRefillsPerDay: [1,2,3,4,5,6,7],
   error: null
 };
 
-export const currentWeekReffils = (
-  initState,
+const currentWeekReffils = (
+  state = initState,
   action
 ) => {
   switch (action.type) {
@@ -30,13 +29,16 @@ export const currentWeekReffils = (
         error: null
       };
     case FETCH_REFILLS_SUCCESS:
+      debugger;
       return {
         ...state,
         loading: false,
-        days: action.payload.labels,
-        refillsPerDay: action.payload.efillsPerDay
+        days: action.payload.days,
+        nbRefillsPerDay: action.payload.nbRefillsPerDay
       };
     default:
       return state
   }
 };
+
+export default currentWeekReffils;
