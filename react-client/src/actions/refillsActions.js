@@ -16,7 +16,7 @@ export const fetchRefillsSucess = (refills) => ({
 
 export const fetchRefillsFailure = (error) => ({
   type: FETCH_REFILLS_FAILURE,
-  payload: { error }
+  payload: error
 });
 
 export function fetchRefills() {

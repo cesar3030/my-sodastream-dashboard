@@ -21,6 +21,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const config = {
   all: {
+    timezone: 'America/Toronto',
     env: process.env.NODE_ENV || 'development',
     root: path.join(__dirname, '..'),
     port: process.env.PORT || 9000,
@@ -39,7 +40,7 @@ const config = {
   test: { },
   development: {
     mongo: {
-      uri: "mongodb://"+requireProcessEnv('MLAB_USER')+":"+requireProcessEnv('MLAB_PWD')+"@ds137003.mlab.com:37003/sodastream-dashboard-dev",
+      uri: "mongodb://"+requireProcessEnv('MLAB_USER_DEV')+":"+requireProcessEnv('MLAB_PWD_DEV')+"@ds137003.mlab.com:37003/sodastream-dashboard-dev",
       options: {
         debug: true,
         server: { 

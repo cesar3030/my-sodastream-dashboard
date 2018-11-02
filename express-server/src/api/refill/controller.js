@@ -1,5 +1,8 @@
-import { success, notFound } from '../../services/response/'
-import { Refill } from '.'
+import { success, notFound } from '../../services/response/';
+import { Refill } from '.';
+import RefillService from './service.js';
+import moment from 'moment-timezone';
+import { timezone } from '../../config';
 
 export const create = ({ bodymen: { body } }, res, next) =>
   Refill.create(body)
@@ -36,13 +39,26 @@ export const destroy = ({ params }, res, next) =>
     .catch(next)
 
 export const currentWeekRefills = ({ params }, res, next) => {
-  success(res)({
-    "Monday": 10,
-    "Tuesday": 3,
-    "Wednesday": 8,
-    "Thursday": 1,
-    "Friday": 3,
-    "Saturday": 4,
-    "Sunday":7
+  const refillCount = {};
+    
+  for(let i=1; i<=7; i++){
+    // weekday(i%6) because we want the dates starting from monday to sunday and sunday's index is 0.
+    const date = moment().tz(timezone).weekday(i%7).format('YYYY-MM-DD');
+    refillCount[date] = 0;
+  }
+  
+  Refill.mapReduce({
+    map: function(){ emit(this.createdAt.toISOString().substr(0,10), 1) },
+    reduce: (key, values) => values ? values.length : 0,
+    query: { createdAt: {$gte: moment().tz(timezone).weekday(1).utc()}},
+    out: { "inline": 1 }
+  }, function(err, results, stats) {
+    if(err) console.log(err);
+    results.forEach((date) =>{
+      refillCount[date._id] = date.value;
+    });
+
+    success(res)(refillCount);
   });
+  //success(res)(RefillService.getCurrentWeekRefills())
 };
