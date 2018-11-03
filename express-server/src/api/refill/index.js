@@ -1,7 +1,19 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
-import { create, index, show, update, destroy, currentWeekRefills } from './controller'
+import { 
+  create,
+  index,
+  show,
+  update,
+  destroy, 
+  currentWeekRefills,
+  currentWeekRefillsCount,
+  currentMonthRefills,
+  currentMonthRefillsCount,
+  currentYearRefills,
+  currentYearRefillsCount,
+} from './controller'
 import { schema } from './model'
 export Refill, { schema } from './model'
 
@@ -64,7 +76,7 @@ router.get('/currentWeek/count',
  * @apiError {Object} 400 Some parameters may contain invalid values.
  */
 router.get('/currentMonth',
-  currentYearRefills)
+  currentMonthRefills)
 
 /**
  * @api {get} /refills/currentMonth/count Retrieve the number of refills of the current month.
@@ -75,7 +87,7 @@ router.get('/currentMonth',
  * @apiError {Object} 400 Some parameters may contain invalid values.
  */
 router.get('/currentMonth/count',
-  currentYearRefillsCount)
+  currentMonthRefillsCount)
 
 /**
  * @api {get} /refills/currentYear Retrieve the number of refills for each day of the current year

@@ -39,8 +39,32 @@ export const destroy = ({ params }, res, next) =>
     .then(success(res, 204))
     .catch(next)
 
-export const currentWeekRefills = ({ params }, res, next) => {
+export const currentWeekRefills = ({ params }, res, next) =>
   RefillService.getCurrentWeekRefills()
     .then(success(res))
     .catch(next)
-};
+
+export const currentWeekRefillsCount = ({ params }, res, next) =>
+  RefillService.getCurrentWeekRefillsCount()
+    .then(success(res))
+    .catch(next)
+
+export const currentMonthRefills = ({ params }, res, next) =>
+  RefillService.getCurrentMonthRefills()
+    .then(success(res))
+    .catch(next)
+
+export const currentMonthRefillsCount = ({ params }, res, next) =>
+  RefillService.getCurrentMonthRefillsCount()
+    .then(success(res))
+    .catch(next)
+
+export const currentYearRefills = (res, next) =>
+  RefillService.getCurrentYearRefills()
+    .then(success(res))
+    .catch(next)
+
+export const currentYearRefillsCount = (res, next) =>
+  RefillService.getCurrentYearRefillsCount()
+    .then(success(res))
+    .catch(next)
