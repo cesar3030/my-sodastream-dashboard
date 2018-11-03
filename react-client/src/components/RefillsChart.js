@@ -1,37 +1,9 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 import { fetchRefills } from '../actions/refillsActions';
+import moment from 'moment-timezone';
 
 class RefillsChart extends Component {
-
-  jsonToLabelsAndDataArrays = (json) => {
-    const labels = [];
-    const data = [];
-
-    for(let label in json) {
-      labels.push(label);
-      data.push(json[label]);
-    }
-
-    this.setState({
-      labels: labels,
-      data: data
-    });
-  }
-
-  mockRequest = () => {
-    const mockResponse = {
-      'Monday': 1,
-      'Tuesday': 2,
-      'Wednesday': 1,
-      'Thursday': 3,
-      'Friday': 4,
-      'Saturday': 7,
-      'Sunday': 3
-    };
-
-    setTimeout(() => this.jsonToLabelsAndDataArrays(mockResponse), 4000);
-  }
 
   componentDidMount() {
     this.props.dispatch(fetchRefills());
@@ -43,6 +15,7 @@ class RefillsChart extends Component {
       datasets: [
         {
           label: 'Number of bottles refilled',
+          precision: 1,
           fill: false,
           lineTension: 0.1,
           backgroundColor: 'rgba(75,192,192,0.4)',
@@ -63,14 +36,25 @@ class RefillsChart extends Component {
           data: this.props.nbRefillsPerDay
         }
       ],
-      labels: this.props.days
+      labels: this.props.days.map((date) => moment(date).format('dddd'))
     };
 
     return (
       <div className="col s12 m6">
         <div className="card-panel">
           <h5>Refills chart</h5>
-          <Line data={config}/>
+          <Line
+            data={config}
+            option={{scales: {
+        yAxes: [{
+            ticks: {
+                max: 5,
+                min: 0,
+                stepSize: 1
+            }
+        }]
+    }}}
+          />
         </div>
       </div>
     );
