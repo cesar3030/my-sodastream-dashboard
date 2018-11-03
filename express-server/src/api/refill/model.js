@@ -1,5 +1,7 @@
 import mongoose, { Schema } from 'mongoose'
 import { Reload } from '../reload'
+import { moment } from 'moment-timezone'
+import { timezone } from '../../config'
 
 const refillSchema = new Schema({
   elapsedTime: {
@@ -30,6 +32,7 @@ refillSchema.methods = {
     } : view
   }
 }
+
 
 refillSchema.pre('save', function(next) {
   // Find the latest reload
