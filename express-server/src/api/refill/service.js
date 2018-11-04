@@ -1,97 +1,124 @@
 import { Refill } from '.';
 import moment from 'moment-timezone';
 import { timezone } from '../../config';
+import TimezoneDate from "../../services/timezone-date";
 
-export default class RefillService {
+export default class RefillsService {
   
   /**
-   * Function that returns how many reffils were done for each day of the current week
-   * @return {Object} The refills count for each day of the current week
+   * Function that returns how many refills were done for each day of the current week
+   * @return {Object} Key:value -> String:Number -> "YYYY-MM-DD":count
    */
   static getCurrentWeekRefills() {
-    const refillCount = {};
-
-    for(let i=1; i<=7; i++){
-      // weekday(i%6) because we want the dates from monday to sunday and sunday's index is 0.
-      const date = moment().tz(timezone).seconds(0).hours(0).minutes(0).weekday(i%7).format('YYYY-MM-DD');
-      refillCount[date] = 0;
-    }
-
-    return Refill.find({ createdAt: {$gte: moment().tz(timezone).seconds(0).hours(0).minutes(0).weekday(1).utc()}})
-      .then((refills) => refills.map((refill) => refill.view()))
-      .then((refillsUtc) => refillsUtc.map((refill) => ({...refill, createdAt: moment(refill.createdAt).tz(timezone).format("YYYY-MM-DD")})))
-      .then((refills) => {
-        refills.forEach((refill) => refillCount[refill.createdAt]++);
-        return refillCount;
-      })
+    const startDate = TimezoneDate.getFirstDateOfCurrentWeek();
+    const endDate = TimezoneDate.getLastDateOfCurrentWeek();
+    return RefillsService.getRefillsPerDatesBetweenDates(startDate, endDate);
   }
 
   /**
-   * Function that returns how many reffils were during the current week
+   * Function that returns how many refills were during the current week
    * @return {Number} The refills count for the current week
    */
   static getCurrentWeekRefillsCount() {
-    
+    const startDate = TimezoneDate.getFirstDateOfCurrentWeek();
+    const endDate = TimezoneDate.getLastDateOfCurrentWeek();
+    return RefillsService.getRefillsCountBetweenDates(startDate, endDate);
   }
 
   /**
-   * Function that returns how many reffils were done for each day of the current month
-   * @return {Object} The refills count for each day of the current week
+   * Function that returns how many refills were done for each day of the current month
+   * @return {Object} Key:value -> String:Number -> "YYYY-MM-DD":count
    */
   static getCurrentMonthRefills() {
-    const refillCount = {};
-
-    for(let i=1; i<=7; i++){
-      // weekday(i%6) because we want the dates from monday to sunday and sunday's index is 0.
-      const date = moment().tz(timezone).seconds(0).hours(0).minutes(0).weekday(i%7).format('YYYY-MM-DD');
-      refillCount[date] = 0;
-    }
-
-    return Refill.find({ createdAt: {$gte: moment().tz(timezone).seconds(0).hours(0).minutes(0).weekday(1).utc()}})
-      .then((refills) => refills.map((refill) => refill.view()))
-      .then((refillsUtc) => refillsUtc.map((refill) => ({...refill, createdAt: moment(refill.createdAt).tz(timezone).format("YYYY-MM-DD")})))
-      .then((refills) => {
-        refills.forEach((refill) => refillCount[refill.createdAt]++);
-        return refillCount;
-      })
+    const startDate = TimezoneDate.getFirstDateOfCurrentMonth();
+    const endDate = TimezoneDate.getLastDateOfCurrentMonth();
+    return RefillsService.getRefillsPerDatesBetweenDates(startDate, endDate);
   }
 
   /**
-   * Function that returns how many reffils were done during the current month
+   * Function that returns how many refills were done during the current month
    * @return {Number} The refills count for the current month
    */
   static getCurrentMonthRefillsCount() {
-
+    const startDate = TimezoneDate.getFirstDateOfCurrentMonth();
+    const endDate = TimezoneDate.getLastDateOfCurrentMonth();
+    return RefillsService.getRefillsCountBetweenDates(startDate, endDate);
   }
 
   /**
-   * Function that returns how many reffils were done for each day of the current year
-   * @return {Object} The refills count for each day of the current week
+   * Function that returns how many refills were done for each day of the current year
+   * @return {Object} Key:value -> String:Number -> "YYYY-MM-DD":count
    */
   static getCurrentYearRefills() {
-    const refillCount = {};
+    const startDate = TimezoneDate.getFirstDateOfCurrentYear();
+    const endDate = TimezoneDate.getLastDateOfCurrentYear();
+    return RefillsService.getRefillsPerDatesBetweenDates(startDate, endDate);
+  }
 
-    for(let i=1; i<=7; i++){
-      // weekday(i%6) because we want the dates from monday to sunday and sunday's index is 0.
-      const date = moment().tz(timezone).seconds(0).hours(0).minutes(0).weekday(i%7).format('YYYY-MM-DD');
-      refillCount[date] = 0;
+  /**
+   * Function that returns how many refills were done during the current year
+   * @return {Number} The refills count of the current year
+   */
+  static getCurrentYearRefillsCount() {
+    const startDate = TimezoneDate.getFirstDateOfCurrentYear();
+    const endDate = TimezoneDate.getLastDateOfCurrentYear();
+    return RefillsService.getRefillsCountBetweenDates(startDate, endDate);
+  } 
+
+  /**
+   * Function to genarate a date counter object to hold the number of refills per date.
+   * @param {Moment} startDate The start date of the period we want to track
+   * @param {Moment} endDate Then end date of the period we want to track
+   * @return {Object} Key:value -> String:Number -> "YYYY-MM-DD":0
+   */
+  static generateDatesCounters(startDate, endDate) {
+    const counter = {};
+    let date = moment(startDate);
+    
+    while(date.isSameOrBefore(endDate)) {
+      counter[date.format("YYYY-MM-DD")] = 0;
+      date.add(1,'days');
     }
 
-    return Refill.find({ createdAt: {$gte: moment().tz(timezone).seconds(0).hours(0).minutes(0).weekday(1).utc()}})
+    return counter;
+  }
+
+  /**
+   * Function that returns how many refills were done for each day between the two given dates.
+   * @param {moment} startDate The start date in timezone.
+   * @param {moment} endDate The end date in timezone.
+   * @return {Object} Key:value -> String:Number -> "YYYY-MM-DD":count
+   */
+  static getRefillsPerDatesBetweenDates(startDate, endDate) {
+    const refillsDateCount = RefillsService.generateDatesCounters(startDate, endDate);
+    return Refill.find({
+       createdAt: {
+         $gte: startDate.utc(),
+         $lte: endDate.utc()
+        }
+      })
       .then((refills) => refills.map((refill) => refill.view()))
       .then((refillsUtc) => refillsUtc.map((refill) => ({...refill, createdAt: moment(refill.createdAt).tz(timezone).format("YYYY-MM-DD")})))
       .then((refills) => {
-        refills.forEach((refill) => refillCount[refill.createdAt]++);
-        return refillCount;
-      })
+        refills.forEach((refill) => {
+          refillsDateCount[refill.createdAt]++;
+        });
+        return refillsDateCount;
+      });
   }
 
   /**
-   * Function that returns how many reffils were done during the current year
-   * @return {Number} The refills count for the current year
+   * Function that returns how many refills were done between the two given dates.
+   * @param {moment} startDate The start date in timezone.
+   * @param {moment} endDate The end date in timezone.
+   * @return {Number} The refill count
    */
-  static getCurrentYearRefillsCount() {
-    const firstDayOfTheYearUtc = moment().tz(timezone).month(0).day(0).seconds(0).hours(0).minutes(0).utc()
-    return Refill.count({ createdAt: { $gte: firstDayOfTheYearUtc } });
-  } 
+  static getRefillsCountBetweenDates(startDate, endDate) {
+    return Refill.count({ 
+      createdAt: {
+        $gte: startDate.utc(),
+        $lte: endDate.utc()
+       } 
+    });
+  }
 }

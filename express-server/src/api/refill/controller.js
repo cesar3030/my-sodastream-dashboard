@@ -1,6 +1,6 @@
 import { success, notFound } from '../../services/response/';
 import { Refill } from '.';
-import RefillService from './service.js';
+import RefillsService from './service.js';
 import moment from 'moment-timezone';
 import { timezone } from '../../config';
 
@@ -39,32 +39,32 @@ export const destroy = ({ params }, res, next) =>
     .then(success(res, 204))
     .catch(next)
 
-export const currentWeekRefills = ({ params }, res, next) =>
-  RefillService.getCurrentWeekRefills()
+export const currentWeekRefills = ({}, res, next) =>
+  RefillsService.getCurrentWeekRefills()
     .then(success(res))
     .catch(next)
 
-export const currentWeekRefillsCount = ({ params }, res, next) =>
-  RefillService.getCurrentWeekRefillsCount()
+export const currentWeekRefillsCount = ({}, res, next) =>
+  RefillsService.getCurrentWeekRefillsCount()
     .then(success(res))
     .catch(next)
 
-export const currentMonthRefills = ({ params }, res, next) =>
-  RefillService.getCurrentMonthRefills()
+export const currentMonthRefills = ({}, res, next) =>
+  RefillsService.getCurrentMonthRefills()
     .then(success(res))
     .catch(next)
 
-export const currentMonthRefillsCount = ({ params }, res, next) =>
-  RefillService.getCurrentMonthRefillsCount()
+export const currentMonthRefillsCount = ({}, res, next) =>
+  RefillsService.getCurrentMonthRefillsCount()
     .then(success(res))
     .catch(next)
 
-export const currentYearRefills = (res, next) =>
-  RefillService.getCurrentYearRefills()
+export const currentYearRefills = ({}, res, next) =>
+  RefillsService.getCurrentYearRefills()
     .then(success(res))
     .catch(next)
 
-export const currentYearRefillsCount = (res, next) =>
-  RefillService.getCurrentYearRefillsCount()
+export const currentYearRefillsCount = ({}, res, next) =>
+  RefillsService.getCurrentYearRefillsCount()
     .then(success(res))
     .catch(next)
