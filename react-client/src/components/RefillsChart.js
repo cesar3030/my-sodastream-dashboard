@@ -45,15 +45,17 @@ class RefillsChart extends Component {
           <h5>Refills chart</h5>
           <Line
             data={config}
-            option={{scales: {
-        yAxes: [{
-            ticks: {
-                max: 5,
-                min: 0,
-                stepSize: 1
+            options={
+              {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+              }
             }
-        }]
-    }}}
           />
         </div>
       </div>
