@@ -42,7 +42,7 @@ class RefillsChart extends Component {
     return (
       <div className="col s12 m6">
         <div className="card-panel">
-          <h5>Refills chart</h5>
+          <h5>{this.props.chartTitle}</h5>
           <Line
             data={config}
             options={
