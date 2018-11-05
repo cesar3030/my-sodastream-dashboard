@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import refills from "./refillsReducer";
+import refills from "./refills";
 
 const rootReducer = combineReducers({
   refills
