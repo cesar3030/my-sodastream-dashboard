@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { fetchCurrentWeekRefills } from '../actions/refillsActions';
 
 const mapStateToProps = state => ({
-  nbRefillsPerDay: state.currentWeekRefills.nbRefillsPerDay,
-  days: state.currentWeekRefills.days,
+  nbRefillsPerDay: state.refills.currentWeek.nbRefillsPerDay,
+  days: state.refills.currentWeek.days,
   chartTitle: "Current Week Refills"
 });
 
