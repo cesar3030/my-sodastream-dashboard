@@ -11,7 +11,7 @@ const initState = {
   error: null
 };
 
-const currentWeekReffils = (
+const currentWeek = (
   state = initState,
   action
 ) => {
@@ -41,4 +41,4 @@ const currentWeekReffils = (
   }
 };
 
-export default currentWeekReffils;
+export default currentWeek;
