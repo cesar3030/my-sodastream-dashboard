@@ -6,7 +6,7 @@
 /*
 * LOCAL Prod
 */
-export const apiUrl = "http://0.0.0.0:8080";
+export const apiUrl = process.env.API_URL || "http://0.0.0.0:8080";
 
 /*
 * LOCAL Dev

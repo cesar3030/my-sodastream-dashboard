@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CurrentWeekRefills from './CurrentWeekRefills';
+import CurrentMonthRefills from './CurrentMonthRefills';
 import ReloadsChart from './ReloadsChart';
 
 class Home extends Component {
@@ -9,6 +10,9 @@ class Home extends Component {
         <div className="row">
           <CurrentWeekRefills/>
           <ReloadsChart/>
+        </div>
+        <div className="row">
+          <CurrentMonthRefills/>
         </div>
       </div>
     );

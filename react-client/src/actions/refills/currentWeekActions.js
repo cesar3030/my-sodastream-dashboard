@@ -1,9 +1,9 @@
-import { apiUrl } from '../config';
+import { apiUrl } from '../../config';
 import { 
   FETCH_CURRENT_WEEK_REFILLS_FAILURE, 
   FETCH_CURRENT_WEEK_REFILLS_BEGIN, 
   FETCH_CURRENT_WEEK_REFILLS_SUCCESS 
-} from '../constants/refillsActionsTypes';
+} from '../../constants/refillsActionsTypes';
 
 export const fetchCurrentWeekRefillsBegin = () => ({
   type: FETCH_CURRENT_WEEK_REFILLS_BEGIN
