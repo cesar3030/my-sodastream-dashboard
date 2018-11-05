@@ -6,7 +6,7 @@ import moment from 'moment-timezone';
 class RefillsChart extends Component {
 
   componentDidMount() {
-    this.props.dispatch(fetchRefills());
+    this.props.fetchData();
   }
 
   render = () => {
@@ -40,7 +40,7 @@ class RefillsChart extends Component {
     };
 
     return (
-      <div className="col s12 m6">
+      <div className="col s12 m6 s12">
         <div className="card-panel">
           <h5>{this.props.chartTitle}</h5>
           <Line
