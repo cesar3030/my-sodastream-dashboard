@@ -1,7 +1,7 @@
 import { 
-  FETCH_REFILLS_FAILURE, 
-  FETCH_REFILLS_BEGIN, 
-  FETCH_REFILLS_SUCCESS 
+  FETCH_CURRENT_WEEK_REFILLS_FAILURE, 
+  FETCH_CURRENT_WEEK_REFILLS_BEGIN, 
+  FETCH_CURRENT_WEEK_REFILLS_SUCCESS 
 } from '../constants/refillsActionsTypes';
 
 const initState = {
@@ -16,19 +16,19 @@ const currentWeekReffils = (
   action
 ) => {
   switch (action.type) {
-    case FETCH_REFILLS_FAILURE:
+    case FETCH_CURRENT_WEEK_REFILLS_FAILURE:
       return {
         ...state,
         loading: false,
         error: action.payload.error
       };
-    case FETCH_REFILLS_BEGIN:
+    case FETCH_CURRENT_WEEK_REFILLS_BEGIN:
       return {
         ...state,
         loading: true,
         error: null
       };
-    case FETCH_REFILLS_SUCCESS:
+    case FETCH_CURRENT_WEEK_REFILLS_SUCCESS:
       debugger;
       return {
         ...state,

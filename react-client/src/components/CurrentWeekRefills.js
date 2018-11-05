@@ -1,7 +1,6 @@
-import React from 'react';
 import RefillsChart from './RefillsChart';
 import { connect } from 'react-redux';
-import { fetchRefills } from '../actions/refillsActions';
+import { fetchCurrentWeekRefills } from '../actions/refillsActions';
 
 const mapStateToProps = state => ({
   nbRefillsPerDay: state.currentWeekRefills.nbRefillsPerDay,
@@ -12,7 +11,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
   return {
     fetchData: () => {
-      dispatch(fetchRefills())
+      dispatch(fetchCurrentWeekRefills())
     }
   }
 }

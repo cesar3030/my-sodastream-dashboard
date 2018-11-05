@@ -1,35 +1,35 @@
 import { apiUrl } from '../config';
 import { 
-  FETCH_REFILLS_FAILURE, 
-  FETCH_REFILLS_BEGIN, 
-  FETCH_REFILLS_SUCCESS 
+  FETCH_CURRENT_WEEK_REFILLS_FAILURE, 
+  FETCH_CURRENT_WEEK_REFILLS_BEGIN, 
+  FETCH_CURRENT_WEEK_REFILLS_SUCCESS 
 } from '../constants/refillsActionsTypes';
 
-export const fetchRefillsBegin = () => ({
-  type: FETCH_REFILLS_BEGIN
+export const fetchCurrentWeekRefillsBegin = () => ({
+  type: FETCH_CURRENT_WEEK_REFILLS_BEGIN
 });
 
-export const fetchRefillsSucess = (refills) => ({
-  type: FETCH_REFILLS_SUCCESS,
+export const fetchCurrentWeekRefillsSucess = (refills) => ({
+  type: FETCH_CURRENT_WEEK_REFILLS_SUCCESS,
   payload: refills
 });
 
-export const fetchRefillsFailure = (error) => ({
-  type: FETCH_REFILLS_FAILURE,
+export const fetchCurrentWeekRefillsFailure = (error) => ({
+  type: FETCH_CURRENT_WEEK_REFILLS_FAILURE,
   payload: error
 });
 
-export function fetchRefills() {
+export function fetchCurrentWeekRefills() {
   return dispatch => {
-    dispatch(fetchRefillsBegin());
+    dispatch(fetchCurrentWeekRefillsBegin());
     return fetch(`${apiUrl}/refills/currentWeek`)
       .then(handleErrors)
       .then(res => res.json())
       .then(json => {
-        dispatch(fetchRefillsSucess(parseResponse(json)));
+        dispatch(fetchCurrentWeekRefillsSucess(parseResponse(json)));
         return json;
       })
-      .catch(error => dispatch(fetchRefillsFailure(error)));
+      .catch(error => dispatch(fetchCurrentWeekRefillsFailure(error)));
   };
 }
 
