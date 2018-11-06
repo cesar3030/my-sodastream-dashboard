@@ -11,7 +11,7 @@ url = "https://my-sodastream-dashboard.herokuapp.com/refills"
 
 
 def new_refill(elapsed_time):
-    print 'New Refill at ' + time.ctime(int(time.time())) + ' -> elapsed time: ' + elapsed_time
+    print 'New Refill at ' + time.ctime(int(time.time())) + ' -> elapsed time: %.5f' %  elapsed_time
     http_post(url, {"elapsedTime": elapsed_time})
     print 'Refill sucessfully added!\n\n'
     
