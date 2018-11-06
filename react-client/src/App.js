@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Home from './components/Home';
+import Main from './components/Main';
 import NavBar from './components/NavBar';
 
 class App extends Component {
@@ -9,7 +9,7 @@ class App extends Component {
         <header>
           <NavBar/>
         </header>
-        <Home/>
+        <Main/>
       </div>
     );
   }
