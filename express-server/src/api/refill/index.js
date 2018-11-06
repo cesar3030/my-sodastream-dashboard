@@ -1,7 +1,19 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
-import { create, index, show, update, destroy } from './controller'
+import { 
+  create,
+  index,
+  show,
+  update,
+  destroy, 
+  currentWeekRefills,
+  currentWeekRefillsCount,
+  currentMonthRefills,
+  currentMonthRefillsCount,
+  currentYearRefills,
+  currentYearRefillsCount,
+} from './controller'
 import { schema } from './model'
 export Refill, { schema } from './model'
 
@@ -32,6 +44,72 @@ router.post('/',
 router.get('/',
   query(),
   index)
+
+/**
+ * @api {get} /refills/currentWeek Retrieve the number of refills for each day of the current week
+ * @apiName RetrieveCurrentWeekRefills
+ * @apiGroup Refill
+ * @apiUse listParams
+ * @apiSuccess {Object} Key is the date of the week and value is the number of refills for that date.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ */
+router.get('/currentWeek',
+  currentWeekRefills)
+
+/**
+ * @api {get} /refills/currentWeek/count Retrieve the number of refills of the current week.
+ * @apiName RetrieveCurrentWeekRefillsCount
+ * @apiGroup Refill
+ * @apiUse listParams
+ * @apiSuccess {Number} The number of refills.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ */
+router.get('/currentWeek/count',
+  currentWeekRefillsCount)
+
+/**
+ * @api {get} /refills/currentMonth Retrieve the number of refills for each day of the current month.
+ * @apiName RetrieveCurrentMonthRefills
+ * @apiGroup Refill
+ * @apiUse listParams
+ * @apiSuccess {Object} Key is the date of the year and value is the number of refills for that date.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ */
+router.get('/currentMonth',
+  currentMonthRefills)
+
+/**
+ * @api {get} /refills/currentMonth/count Retrieve the number of refills of the current month.
+ * @apiName RetrieveCurrentMonthRefillsCount
+ * @apiGroup Refill
+ * @apiUse listParams
+ * @apiSuccess {Number} The number of refills from the 1st of January up to now.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ */
+router.get('/currentMonth/count',
+  currentMonthRefillsCount)
+
+/**
+ * @api {get} /refills/currentYear Retrieve the number of refills for each day of the current year
+ * @apiName RetrieveCurrentYearRefills
+ * @apiGroup Refill
+ * @apiUse listParams
+ * @apiSuccess {Object} Key is the date of the year and value is the number of refills for that date.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ */
+router.get('/currentYear',
+  currentYearRefills)
+
+/**
+ * @api {get} /refills/currentYear/count Retrieve the number of refills of the current month.
+ * @apiName RetrieveCurrentYearRefillsCount
+ * @apiGroup Refill
+ * @apiUse listParams
+ * @apiSuccess {Number} The number of refills from the 1st of January of the current year up to now.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ */
+router.get('/currentYear/count',
+  currentYearRefillsCount)
 
 /**
  * @api {get} /refills/:id Retrieve refill

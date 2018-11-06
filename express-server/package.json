@@ -13,7 +13,8 @@
     "prod": "cross-env NODE_ENV=production nodemon -i \"*.test.js\" -r dotenv-safe/config .",
     "lint": "eslint src",
     "docs": "apidoc -i src -o docs && apidoc-markdown -p docs -o DOCS.md",
-    "postdocs": "opn docs/index.html"
+    "postdocs": "opn docs/index.html",
+    "compile": "babel src --out-dir .compiled --source-maps --watch"
   },
   "jest": {
     "testEnvironment": "node",
@@ -22,6 +23,7 @@
   "devDependencies": {
     "apidoc": "^0.17.6",
     "apidoc-markdown": "^0.2.0",
+    "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.1",
     "babel-jest": "^20.0.3",
     "cross-env": "^5.0.5",
@@ -54,6 +56,8 @@
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "jsonwebtoken": "^8.1.0",
+    "moment": "^2.22.2",
+    "moment-timezone": "^0.5.23",
     "mongoose": "^4.12.4",
     "mongoose-create-unique": "^0.4.4",
     "mongoose-keywords": "^0.4.0",

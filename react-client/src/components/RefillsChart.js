@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
+import moment from 'moment-timezone';
 
 class RefillsChart extends Component {
-  render() {
 
-    const data = {
+  componentDidMount() {
+    this.props.fetchData();
+  }
+
+  render = () => {
+
+    const config = {
       datasets: [
         {
           label: 'Number of bottles refilled',
+          precision: 1,
           fill: false,
           lineTension: 0.1,
           backgroundColor: 'rgba(75,192,192,0.4)',
@@ -25,17 +32,30 @@ class RefillsChart extends Component {
           pointHoverBorderWidth: 2,
           pointRadius: 1,
           pointHitRadius: 10,
-          data: [65, 59, 80, 81, 56, 55, 40]
+          data: this.props.nbRefillsPerDay
         }
       ],
-      labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+      labels: this.props.days.map((date) => moment(date).format('dddd'))
     };
 
     return (
       <div className="col s12 m6">
         <div className="card-panel">
-          <h5>Refills chart</h5>
-          <Line data={data}/>
+          <h5>{this.props.chartTitle}</h5>
+          <Line
+            data={config}
+            options={
+              {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+              }
+            }
+          />
         </div>
       </div>
     );
