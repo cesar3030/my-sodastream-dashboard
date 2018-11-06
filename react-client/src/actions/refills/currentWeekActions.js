@@ -1,4 +1,3 @@
-import { apiUrl } from '../../config';
 import { 
   FETCH_CURRENT_WEEK_REFILLS_FAILURE, 
   FETCH_CURRENT_WEEK_REFILLS_BEGIN, 
@@ -22,7 +21,7 @@ export const fetchCurrentWeekRefillsFailure = (error) => ({
 export function fetchCurrentWeekRefills() {
   return dispatch => {
     dispatch(fetchCurrentWeekRefillsBegin());
-    return fetch(`${apiUrl}/refills/currentWeek`)
+    return fetch(`${process.env.REACT_APP_API_URL}/refills/currentWeek`)
       .then(handleErrors)
       .then(res => res.json())
       .then(json => {

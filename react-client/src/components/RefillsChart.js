@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
-import { fetchCurrentWeekRefills } from '../actions/refills/currentWeekActions';
 import moment from 'moment-timezone';
 
 class RefillsChart extends Component {

@@ -1,11 +1,8 @@
-import { apiUrl } from '../../config';
 import { 
   FETCH_CURRENT_MONTH_REFILLS_FAILURE, 
   FETCH_CURRENT_MONTH_REFILLS_BEGIN, 
   FETCH_CURRENT_MONTH_REFILLS_SUCCESS 
 } from '../../constants/refillsActionsTypes';
-
-const endpoint = `${apiUrl}/refills/currentMonth`;
 
 export const fetchCurrentMonthRefillsBegin = () => ({
   type: FETCH_CURRENT_MONTH_REFILLS_BEGIN
@@ -24,7 +21,7 @@ export const fetchCurrentMonthRefillsFailure = (error) => ({
 export function fetchCurrentMonthRefills() {
   return dispatch => {
     dispatch(fetchCurrentMonthRefillsBegin());
-    return fetch(endpoint)
+    return fetch(`${process.env.REACT_APP_API_URL}/refills/currentMonth`)
       .then(handleErrors)
       .then(res => res.json())
       .then(json => parseResponse(json)) 
