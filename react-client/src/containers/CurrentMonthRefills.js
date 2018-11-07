@@ -1,4 +1,4 @@
-import RefillsChart from './RefillsChart';
+import RefillsChart from '../components/RefillsChart';
 import { connect } from 'react-redux';
 import { fetchCurrentMonthRefills } from '../actions/refills/currentMonthActions';
 
