@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 import moment from 'moment-timezone';
+import './refills-chart.css';
+import { Col, Card, Preloader } from 'react-materialize';
 
 class RefillsChart extends Component {
 
@@ -9,7 +11,6 @@ class RefillsChart extends Component {
   }
 
   render = () => {
-
     const config = {
       datasets: [
         {
@@ -39,9 +40,13 @@ class RefillsChart extends Component {
     };
 
     return (
-      <div className="col s12 m6">
-        <div className="card-panel">
-          <h5>{this.props.chartTitle}</h5>
+      <Col s={12} m={6}>
+        <Card title={this.props.chartTitle}>
+          <Preloader 
+            className="floating-prefloader" 
+            size='big' 
+            active={this.props.loading}
+          />
           <Line
             data={config}
             options={
@@ -56,8 +61,8 @@ class RefillsChart extends Component {
               }
             }
           />
-        </div>
-      </div>
+        </Card>
+      </Col>
     );
   }
 }

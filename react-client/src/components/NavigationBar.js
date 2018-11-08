@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NavBar = (props) => {
+const NavigationBar = (props) => {
   return (
     <nav>
       <div className="nav-wrapper">
@@ -16,4 +16,4 @@ const NavBar = (props) => {
   );
 }
 
-export default NavBar;
+export default NavigationBar;

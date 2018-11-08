@@ -6,8 +6,8 @@ import {
 
 const initState = {
   loading: false,
-  days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-  nbRefillsPerDay: [1,2,3,4,5,6,7],
+  days: [],
+  nbRefillsPerDay: [],
   error: null
 };
 

@@ -5,7 +5,8 @@ import { fetchCurrentMonthRefills } from '../actions/refills/currentMonthActions
 const mapStateToProps = state => ({
   nbRefillsPerDay: state.refills.currentMonth.nbRefillsPerDay,
   days: state.refills.currentMonth.days,
-  chartTitle: "Current Month Refills"
+  chartTitle: "Current Month Refills",
+  loading: state.refills.currentMonth.loading
 });
 
 const mapDispatchToProps = dispatch => {

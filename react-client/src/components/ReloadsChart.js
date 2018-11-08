@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Bar } from 'react-chartjs-2';
-
+import { Col, Card } from 'react-materialize';
 
 class ReloadsChart extends Component {
   render() {
@@ -13,19 +13,18 @@ class ReloadsChart extends Component {
           borderWidth: 1,
           hoverBackgroundColor: 'rgba(255,99,132,0.4)',
           hoverBorderColor: 'rgba(255,99,132,1)',
-          data: [1, 2, 3, 1, 5, 2, 7, 8, 2, 6, 2, 6]
+          data: []
         }
       ],
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+      labels: []
     };
 
     return (
-      <div className="col s12 m6">
-        <div className="card-panel">
-          <h5>Reloads chart</h5>
+      <Col s={12} m={6}>
+        <Card title='Reloads chart'>
           <Bar data={data}/>
-        </div>
-      </div>
+        </Card>
+      </Col>
     );
   }
 }
