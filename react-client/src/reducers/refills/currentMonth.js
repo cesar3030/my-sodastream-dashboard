@@ -29,7 +29,6 @@ const currentMonth = (
         error: null
       };
     case FETCH_CURRENT_MONTH_REFILLS_SUCCESS:
-      debugger;
       return {
         ...state,
         loading: false,

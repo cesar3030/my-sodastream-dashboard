@@ -28,42 +28,58 @@ const currentWeek = (
   switch (action.type) {
     case FETCH_CURRENT_WEEK_REFILLS_FAILURE:
       return {
-        ...state.perDate,
-        loading: false,
-        error: action.payload.error
+        ...state,
+        perDate: {
+          ...state.perDate,
+          loading: false,
+          error: action.payload.error
+        }
       };
     case FETCH_CURRENT_WEEK_REFILLS_BEGIN:
       return {
-        ...state.perDate,
-        loading: true,
-        error: null
+        ...state,
+        perDate: {
+          ...state.perDate,
+          loading: true,
+          error: null
+        }
       };
     case FETCH_CURRENT_WEEK_REFILLS_SUCCESS:
-      debugger;
       return {
-        ...state.perDate,
-        loading: false,
-        dates: action.payload.dates,
-        nbRefillsPerDate: action.payload.nbRefillsPerDate
+        ...state,
+        perDate: {
+          ...state.perDate,
+          loading: false,
+          dates: action.payload.dates,
+          nbRefillsPerDate: action.payload.nbRefillsPerDate
+        }
       };
     case FETCH_CURRENT_WEEK_REFILLS_COUNT_FAILURE:
       return {
-        ...state.count,
-        loading: false,
-        error: action.payload.error
+        ...state,
+        count: {
+          ...state.count,
+          loading: false,
+          error: action.payload.error,
+        }
       };
     case FETCH_CURRENT_WEEK_REFILLS_COUNT_BEGIN:
       return {
-        ...state.count,
-        loading: true,
-        error: null
+        ...state,
+        count: {
+          ...state.count,
+          loading: true,
+          error: null,
+        }
       };
     case FETCH_CURRENT_WEEK_REFILLS_COUNT_SUCCESS:
-      debugger;
       return {
-        ...state.count,
-        loading: false,
-        count: action.payload
+        ...state,
+        count: {
+          ...state.count,
+          loading: false,
+          value: action.payload,
+        }
       };
     default:
       return state

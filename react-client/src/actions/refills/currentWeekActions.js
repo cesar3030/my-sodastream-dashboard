@@ -25,9 +25,9 @@ export const fetchCurrentWeekRefillsCountBegin = () => ({
   type: FETCH_CURRENT_WEEK_REFILLS_COUNT_BEGIN
 });
 
-export const fetchCurrentWeekRefillsCountSucess = (refills) => ({
+export const fetchCurrentWeekRefillsCountSucess = (count) => ({
   type: FETCH_CURRENT_WEEK_REFILLS_COUNT_SUCCESS,
-  payload: refills
+  payload: count
 });
 
 export const fetchCurrentWeekRefillsCountFailure = (error) => ({
