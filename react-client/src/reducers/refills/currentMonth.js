@@ -7,7 +7,7 @@ import {
 const initState = {
   loading: false,
   days: [],
-  nbRefillsPerDay: [],
+  nbRefillsPerDate: [],
   error: null
 };
 
@@ -34,7 +34,7 @@ const currentMonth = (
         ...state,
         loading: false,
         days: action.payload.days,
-        nbRefillsPerDay: action.payload.nbRefillsPerDay
+        nbRefillsPerDate: action.payload.nbRefillsPerDate
       };
     default:
       return state

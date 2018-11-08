@@ -33,10 +33,10 @@ class RefillsChart extends Component {
           pointHoverBorderWidth: 2,
           pointRadius: 1,
           pointHitRadius: 10,
-          data: this.props.nbRefillsPerDay
+          data: this.props.nbRefillsPerDate
         }
       ],
-      labels: this.props.days.map((date) => moment(date).format('dddd'))
+      labels: this.props.dates.map((date) => moment(date).format('dddd'))
     };
 
     return (
