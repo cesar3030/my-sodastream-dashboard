@@ -13,10 +13,10 @@ class ReloadsChart extends Component {
           borderWidth: 1,
           hoverBackgroundColor: 'rgba(255,99,132,0.4)',
           hoverBorderColor: 'rgba(255,99,132,1)',
-          data: []
+          data: [1, 2, 3, 1, 5, 2, 7, 8, 2, 6, 2, 6]
         }
       ],
-      labels: []
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     };
 
     return (
