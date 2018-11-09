@@ -5,7 +5,6 @@ import CurrentYearRefills from './CurrentYearRefills';
 import CurrentYearReffilsCount from './CurrentYearRefillsCount';
 import CurrentMonthReffilsCount from './CurrentMonthRefillsCount';
 import CurrentWeekReffilsCount from './CurrentWeekRefillsCount';
-import StatCard from '../components/StatCard';
 import { Row, Col } from 'react-materialize';
 
 class Refills extends Component {

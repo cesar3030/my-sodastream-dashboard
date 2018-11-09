@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Bar } from 'react-chartjs-2';
-import { Col, Card } from 'react-materialize';
+import { Card } from 'react-materialize';
 
 class ReloadsChart extends Component {
   render() {

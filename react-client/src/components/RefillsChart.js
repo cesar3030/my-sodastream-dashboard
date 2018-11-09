@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 import moment from 'moment-timezone';
 import './refills-chart.css';
-import { Col, Card, Preloader } from 'react-materialize';
+import { Card, Preloader } from 'react-materialize';
 
 class RefillsChart extends Component {
 
