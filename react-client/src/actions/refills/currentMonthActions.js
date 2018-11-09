@@ -1,7 +1,10 @@
 import { 
   FETCH_CURRENT_MONTH_REFILLS_FAILURE, 
   FETCH_CURRENT_MONTH_REFILLS_BEGIN, 
-  FETCH_CURRENT_MONTH_REFILLS_SUCCESS 
+  FETCH_CURRENT_MONTH_REFILLS_SUCCESS,
+  FETCH_CURRENT_MONTH_REFILLS_COUNT_FAILURE, 
+  FETCH_CURRENT_MONTH_REFILLS_COUNT_BEGIN, 
+  FETCH_CURRENT_MONTH_REFILLS_COUNT_SUCCESS
 } from '../../constants/refillsActionsTypes';
 import ApiRequest from '../../utils/api-request';
 
@@ -20,6 +23,20 @@ export const fetchCurrentMonthRefillsFailure = (error) => ({
   payload: error
 });
 
+export const fetchCurrentMonthRefillsCountBegin = () => ({
+  type: FETCH_CURRENT_MONTH_REFILLS_COUNT_BEGIN
+});
+
+export const fetchCurrentMonthRefillsCountSucess = (count) => ({
+  type: FETCH_CURRENT_MONTH_REFILLS_COUNT_SUCCESS,
+  payload: count
+});
+
+export const fetchCurrentMonthRefillsCountFailure = (error) => ({
+  type: FETCH_CURRENT_MONTH_REFILLS_COUNT_FAILURE,
+  payload: error
+});
+
 export function fetchCurrentMonthRefills() {
   return ApiRequest.fetch(
     '/refills/currentMonth',
@@ -29,12 +46,13 @@ export function fetchCurrentMonthRefills() {
   );
 }
 
-// Handle HTTP errors since fetch won't.
-function handleErrors(response) {
-  if (!response.ok) {
-    throw Error(response.statusText);
-  }
-  return response;
+export function fetchCurrentMonthRefillsCount() {
+  return ApiRequest.fetch(
+    '/refills/currentMonth/count',
+    fetchCurrentMonthRefillsCountBegin,
+    fetchCurrentMonthRefillsCountSucess,
+    fetchCurrentMonthRefillsCountFailure
+  );
 }
 
 const parseResponse = (json) => {

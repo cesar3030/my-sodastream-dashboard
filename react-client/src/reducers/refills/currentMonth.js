@@ -1,14 +1,24 @@
 import { 
   FETCH_CURRENT_MONTH_REFILLS_FAILURE, 
   FETCH_CURRENT_MONTH_REFILLS_BEGIN, 
-  FETCH_CURRENT_MONTH_REFILLS_SUCCESS 
+  FETCH_CURRENT_MONTH_REFILLS_SUCCESS,
+  FETCH_CURRENT_MONTH_REFILLS_COUNT_FAILURE, 
+  FETCH_CURRENT_MONTH_REFILLS_COUNT_BEGIN, 
+  FETCH_CURRENT_MONTH_REFILLS_COUNT_SUCCESS
 } from '../../constants/refillsActionsTypes';
 
 const initState = {
-  loading: false,
-  days: [],
-  nbRefillsPerDate: [],
-  error: null
+  perDate: {
+    loading: false,
+    days: [],
+    nbRefillsPerDate: [],
+    error: null
+  },
+  count: {
+    loading: false,
+    value: 0,
+    error: null
+  }
 };
 
 const currentMonth = (
@@ -19,21 +29,58 @@ const currentMonth = (
     case FETCH_CURRENT_MONTH_REFILLS_FAILURE:
       return {
         ...state,
-        loading: false,
-        error: action.payload.error
+        perDate: {
+          ...state.perDate,
+          loading: false,
+          error: action.payload.error
+        }
       };
     case FETCH_CURRENT_MONTH_REFILLS_BEGIN:
       return {
         ...state,
-        loading: true,
-        error: null
+        perDate: {
+          ...state.perDate,
+          loading: true,
+          error: null
+        }
       };
     case FETCH_CURRENT_MONTH_REFILLS_SUCCESS:
       return {
         ...state,
-        loading: false,
-        days: action.payload.days,
-        nbRefillsPerDate: action.payload.nbRefillsPerDate
+        perDate: {
+          ...state.perDate,
+          loading: false,
+          days: action.payload.days,
+          nbRefillsPerDate: action.payload.nbRefillsPerDate
+        }
+      };
+    case FETCH_CURRENT_MONTH_REFILLS_COUNT_FAILURE:
+      return {
+        ...state,
+        count: {
+          ...state.count,
+          loading: false,
+          error: action.payload.error
+        }
+        
+      };
+    case FETCH_CURRENT_MONTH_REFILLS_COUNT_BEGIN:
+      return {
+        ...state,
+        count: {
+          ...state.count,
+          loading: true,
+          error: null
+        }
+      };
+    case FETCH_CURRENT_MONTH_REFILLS_COUNT_SUCCESS:
+      return {
+        ...state,
+        count: {
+          ...state.count,
+          loading: false,
+          value: action.payload
+        }
       };
     default:
       return state
