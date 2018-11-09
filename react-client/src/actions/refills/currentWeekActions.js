@@ -6,6 +6,7 @@ import {
   FETCH_CURRENT_WEEK_REFILLS_COUNT_BEGIN, 
   FETCH_CURRENT_WEEK_REFILLS_COUNT_SUCCESS  
 } from '../../constants/refillsActionsTypes';
+import ApiRequest from '../../utils/api-request';
 
 export const fetchCurrentWeekRefillsPerDateBegin = () => ({
   type: FETCH_CURRENT_WEEK_REFILLS_BEGIN
@@ -36,39 +37,21 @@ export const fetchCurrentWeekRefillsCountFailure = (error) => ({
 });
 
 export function fetchCurrentWeekRefillsPerDate() {
-  return dispatch => {
-    dispatch(fetchCurrentWeekRefillsPerDateBegin());
-    return fetch(`${process.env.REACT_APP_API_URL}/refills/currentWeek`)
-      .then(handleErrors)
-      .then(res => res.json())
-      .then(json => {
-        dispatch(fetchCurrentWeekRefillsPerDateSucess(parseResponse(json)));
-        return json;
-      })
-      .catch(error => dispatch(fetchCurrentWeekRefillsPerDateFailure(error)));
-  };
+  return ApiRequest.fetch(
+    '/refills/currentWeek',
+    fetchCurrentWeekRefillsPerDateBegin,
+    (json) => fetchCurrentWeekRefillsPerDateSucess(parseResponse(json)),
+    fetchCurrentWeekRefillsPerDateFailure
+  );
 }
 
 export function fetchCurrentWeekRefillsCount() {
-  return dispatch => {
-    dispatch(fetchCurrentWeekRefillsCountBegin());
-    return fetch(`${process.env.REACT_APP_API_URL}/refills/currentWeek/count`)
-      .then(handleErrors)
-      .then(res => res.json())
-      .then(value => {
-        dispatch(fetchCurrentWeekRefillsCountSucess(value));
-        return value;
-      })
-      .catch(error => dispatch(fetchCurrentWeekRefillsCountFailure(error)));
-  };
-}
-
-// Handle HTTP errors since fetch won't.
-function handleErrors(response) {
-  if (!response.ok) {
-    throw Error(response.statusText);
-  }
-  return response;
+  return ApiRequest.fetch(
+    '/refills/currentWeek/count',
+    fetchCurrentWeekRefillsCountBegin,
+    fetchCurrentWeekRefillsCountSucess,
+    fetchCurrentWeekRefillsCountFailure
+  );
 }
 
 const parseResponse = (json) => {
