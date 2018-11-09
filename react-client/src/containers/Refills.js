@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CurrentWeekRefills from './CurrentWeekRefills';
 import CurrentMonthRefills from './CurrentMonthRefills';
+import CurrentYearReffilsCount from './CurrentYearRefillsCount';
 import CurrentMonthReffilsCount from './CurrentMonthRefillsCount';
 import CurrentWeekReffilsCount from './CurrentWeekRefillsCount';
 import StatCard from '../components/StatCard';
@@ -12,7 +13,7 @@ class Refills extends Component {
       <Row>
         <CurrentWeekReffilsCount/>
         <CurrentMonthReffilsCount/>
-        <StatCard title='This Month' value={34}/>
+        <CurrentYearReffilsCount/>
         <StatCard title='This Year' value={678}/>
         <CurrentWeekRefills/>
         <CurrentMonthRefills/>
