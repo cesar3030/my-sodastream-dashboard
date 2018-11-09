@@ -12,9 +12,8 @@ class Refills extends Component {
       <Row>
         <CurrentWeekReffilsCount/>
         <CurrentMonthReffilsCount/>
-        {/* <StatCard title='This Month' value={34}/>
+        <StatCard title='This Month' value={34}/>
         <StatCard title='This Year' value={678}/>
-        <StatCard title='Average time' value={4.67}/> */}
         <CurrentWeekRefills/>
         <CurrentMonthRefills/>
       </Row>

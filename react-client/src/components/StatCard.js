@@ -4,7 +4,11 @@ import { Col, CardPanel } from 'react-materialize';
 class StatCard extends Component {
 
   componentDidMount = () => {
-   this.props.fetchData();
+    const { fetchData } = this.props; 
+
+    if(typeof fetchData === "function") {
+      fetchData();
+    }
   }
 
   render() {

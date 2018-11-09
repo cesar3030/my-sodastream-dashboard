@@ -7,7 +7,11 @@ import { Col, Card, Preloader } from 'react-materialize';
 class RefillsChart extends Component {
 
   componentDidMount() {
-    this.props.fetchData();
+    const { fetchData } = this.props; 
+
+    if(typeof fetchData === "function") {
+      fetchData();
+    }
   }
 
   render = () => {
