@@ -44,29 +44,27 @@ class RefillsChart extends Component {
     };
 
     return (
-      <Col s={12} m={6}>
-        <Card title={this.props.chartTitle}>
-          <Preloader 
-            className="floating-prefloader" 
-            size='big' 
-            active={this.props.loading}
-          />
-          <Line
-            data={config}
-            options={
-              {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero:true
-                        }
-                    }]
-                }
+      <Card title={this.props.chartTitle}>
+        <Preloader 
+          className="floating-prefloader" 
+          size='big' 
+          active={this.props.loading}
+        />
+        <Line
+          data={config}
+          options={
+            {
+              scales: {
+                  yAxes: [{
+                      ticks: {
+                          beginAtZero:true
+                      }
+                  }]
               }
             }
-          />
-        </Card>
-      </Col>
+          }
+        />
+      </Card>
     );
   }
 }
