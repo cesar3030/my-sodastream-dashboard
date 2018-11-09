@@ -20,11 +20,9 @@ class ReloadsChart extends Component {
     };
 
     return (
-      <Col s={12} m={6}>
-        <Card title='Reloads chart'>
-          <Bar data={data}/>
-        </Card>
-      </Col>
+      <Card title='Reloads chart'>
+        <Bar data={data}/>
+      </Card>
     );
   }
 }
