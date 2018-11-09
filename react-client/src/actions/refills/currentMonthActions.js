@@ -3,6 +3,8 @@ import {
   FETCH_CURRENT_MONTH_REFILLS_BEGIN, 
   FETCH_CURRENT_MONTH_REFILLS_SUCCESS 
 } from '../../constants/refillsActionsTypes';
+import ApiRequest from '../../utils/api-request';
+
 
 export const fetchCurrentMonthRefillsBegin = () => ({
   type: FETCH_CURRENT_MONTH_REFILLS_BEGIN
@@ -19,18 +21,12 @@ export const fetchCurrentMonthRefillsFailure = (error) => ({
 });
 
 export function fetchCurrentMonthRefills() {
-  return dispatch => {
-    dispatch(fetchCurrentMonthRefillsBegin());
-    return fetch(`${process.env.REACT_APP_API_URL}/refills/currentMonth`)
-      .then(handleErrors)
-      .then(res => res.json())
-      .then(json => parseResponse(json)) 
-      .then(json => {
-        dispatch(fetchCurrentMonthRefillsSucess(json));
-        return json;
-      })
-      .catch(error => dispatch(fetchCurrentMonthRefillsFailure(error)));
-  };
+  return ApiRequest.fetch(
+    '/refills/currentMonth',
+    fetchCurrentMonthRefillsBegin,
+    (json) => fetchCurrentMonthRefillsSucess(parseResponse(json)),
+    fetchCurrentMonthRefillsFailure
+  );
 }
 
 // Handle HTTP errors since fetch won't.
