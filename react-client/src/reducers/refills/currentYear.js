@@ -1,7 +1,7 @@
 import { 
-  FETCH_CURRENT_YEAR_REFILLS_FAILURE, 
-  FETCH_CURRENT_YEAR_REFILLS_BEGIN, 
-  FETCH_CURRENT_YEAR_REFILLS_SUCCESS, 
+  FETCH_CURRENT_YEAR_REFILLS_PER_DATE_FAILURE, 
+  FETCH_CURRENT_YEAR_REFILLS_PER_DATE_BEGIN, 
+  FETCH_CURRENT_YEAR_REFILLS_PER_DATE_SUCCESS, 
   FETCH_CURRENT_YEAR_REFILLS_COUNT_FAILURE, 
   FETCH_CURRENT_YEAR_REFILLS_COUNT_BEGIN, 
   FETCH_CURRENT_YEAR_REFILLS_COUNT_SUCCESS 
@@ -26,7 +26,7 @@ const currentYear = (
   action
 ) => {
   switch (action.type) {
-    case FETCH_CURRENT_YEAR_REFILLS_FAILURE:
+    case FETCH_CURRENT_YEAR_REFILLS_PER_DATE_FAILURE:
       return {
         ...state,
         perDate: {
@@ -35,7 +35,7 @@ const currentYear = (
           error: action.payload.error
         }
       };
-    case FETCH_CURRENT_YEAR_REFILLS_BEGIN:
+    case FETCH_CURRENT_YEAR_REFILLS_PER_DATE_BEGIN:
       return {
         ...state,
         perDate: {
@@ -44,7 +44,7 @@ const currentYear = (
           error: null
         }
       };
-    case FETCH_CURRENT_YEAR_REFILLS_SUCCESS:
+    case FETCH_CURRENT_YEAR_REFILLS_PER_DATE_SUCCESS:
       return {
         ...state,
         perDate: {
