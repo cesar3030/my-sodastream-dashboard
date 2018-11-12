@@ -9,7 +9,7 @@ export default class RefillsService {
    * Function that returns how many refills were done for each day of the current week
    * @return {Object} Key:value -> String:Number -> "YYYY-MM-DD":count
    */
-  static getCurrentWeekRefills() {
+  static getCurrentWeekRefillsPerDate() {
     const startDate = TimezoneDate.getFirstDateOfCurrentWeek();
     const endDate = TimezoneDate.getLastDateOfCurrentWeek();
     return RefillsService.getRefillsPerDatesBetweenDates(startDate, endDate);
@@ -29,7 +29,7 @@ export default class RefillsService {
    * Function that returns how many refills were done for each day of the current month
    * @return {Object} Key:value -> String:Number -> "YYYY-MM-DD":count
    */
-  static getCurrentMonthRefills() {
+  static getCurrentMonthRefillsPerDate() {
     const startDate = TimezoneDate.getFirstDateOfCurrentMonth();
     const endDate = TimezoneDate.getLastDateOfCurrentMonth();
     return RefillsService.getRefillsPerDatesBetweenDates(startDate, endDate);
@@ -49,7 +49,7 @@ export default class RefillsService {
    * Function that returns how many refills were done for each day of the current year
    * @return {Object} Key:value -> String:Number -> "YYYY-MM-DD":count
    */
-  static getCurrentYearRefills() {
+  static getCurrentYearRefillsPerDate() {
     const startDate = TimezoneDate.getFirstDateOfCurrentYear();
     const endDate = TimezoneDate.getLastDateOfCurrentYear();
     return RefillsService.getRefillsPerDatesBetweenDates(startDate, endDate);

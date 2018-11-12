@@ -8,3 +8,8 @@ export const currentWeekUsagePerDate = ({}, res, next) =>
   UsageService.getCurrentWeekUsagePerDate()
     .then(success(res))
     .catch(next)
+
+export const currentWeekUsageCount = ({}, res, next) =>
+  UsageService.getCurrentWeekUsageCount()
+    .then(success(res))
+    .catch(next)

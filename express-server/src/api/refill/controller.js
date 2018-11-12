@@ -40,7 +40,7 @@ export const destroy = ({ params }, res, next) =>
     .catch(next)
 
 export const currentWeekRefills = ({}, res, next) =>
-  RefillsService.getCurrentWeekRefills()
+  RefillsService.getCurrentWeekRefillsPerDate()
     .then(success(res))
     .catch(next)
 
@@ -50,7 +50,7 @@ export const currentWeekRefillsCount = ({}, res, next) =>
     .catch(next)
 
 export const currentMonthRefills = ({}, res, next) =>
-  RefillsService.getCurrentMonthRefills()
+  RefillsService.getCurrentMonthRefillsPerDate()
     .then(success(res))
     .catch(next)
 
@@ -60,7 +60,7 @@ export const currentMonthRefillsCount = ({}, res, next) =>
     .catch(next)
 
 export const currentYearRefills = ({}, res, next) =>
-  RefillsService.getCurrentYearRefills()
+  RefillsService.getCurrentYearRefillsPerDate()
     .then(success(res))
     .catch(next)
 
