@@ -23,3 +23,13 @@ export const currentMonthUsageVolume = ({}, res, next) =>
   UsageService.getCurrentMonthUsageVolume()
     .then(success(res))
     .catch(next)
+  
+export const currentYearUsagePerDate = ({}, res, next) =>
+  UsageService.getCurrentYearUsagePerDate()
+    .then(success(res))
+    .catch(next)
+
+export const currentYearUsageVolume = ({}, res, next) =>
+  UsageService.getCurrentYearUsageVolume()
+    .then(success(res))
+    .catch(next)

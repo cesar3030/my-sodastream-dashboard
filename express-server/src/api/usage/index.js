@@ -5,14 +5,16 @@ import {
   currentWeekUsagePerDate, 
   currentWeekUsageVolume, 
   currentMonthUsagePerDate, 
-  currentMonthUsageVolume 
+  currentMonthUsageVolume, 
+  currentYearUsagePerDate, 
+  currentYearUsageVolume 
 } from './controller'
 
 const router = new Router()
 
 /**
  * @api {get} /usages Retrieve usages
- * @apiName RetrieveUsages
+ * @apiName RetrieveUsage
  * @apiGroup Usage
  * @apiUse listParams
  * @apiSuccess {Object[]} usages List of usages.
@@ -24,7 +26,7 @@ router.get('/',
 
 /**
  * @api {get} /usages/currentWeek Retrieve the volume of sparkling for each date of the current week
- * @apiName RetrieveUsagesCurrentWeekPerDate
+ * @apiName RetrieveUsageCurrentWeekPerDate
  * @apiGroup Usage
  * @apiUse listParams
  * @apiSuccess {Object} The volume of sparkling water made for each date of the current week.
@@ -36,7 +38,7 @@ router.get('/currentWeek',
 
 /**
  * @api {get} /usages/currentWeek/count Retrieve the volume of sparkling water made since the beginning of the current week.
- * @apiName RetrieveUsagesCurrentWeekVolume
+ * @apiName RetrieveUsageCurrentWeekVolume
  * @apiGroup Usage
  * @apiUse listParams
  * @apiSuccess {Number} Total Volume of sparkling water made.
@@ -47,8 +49,8 @@ query(),
 currentWeekUsageVolume)
 
 /**
- * @api {get} /usages/currentWeek Retrieve the volume of sparkling for each date of the current week
- * @apiName RetrieveUsagesCurrentMonthPerDate
+ * @api {get} /usages/currentMonth Retrieve the volume of sparkling for each date of the current week
+ * @apiName RetrieveUsageCurrentMonthPerDate
  * @apiGroup Usage
  * @apiUse listParams
  * @apiSuccess {Object} The volume of sparkling water made for each date of the current month.
@@ -60,7 +62,7 @@ router.get('/currentMonth',
 
 /**
  * @api {get} /usages/currentMonth/count Retrieve the volume of sparkling water made since the beginning of the current month.
- * @apiName RetrieveUsagesCurrentMonthVolume
+ * @apiName RetrieveUsageCurrentMonthVolume
  * @apiGroup Usage
  * @apiUse listParams
  * @apiSuccess {Number} Total Volume of sparkling water made.
@@ -69,5 +71,29 @@ router.get('/currentMonth',
 router.get('/currentMonth/volume',
   query(),
   currentMonthUsageVolume)
+
+/**
+ * @api {get} /usages/currentYear Retrieve the volume of sparkling for each date of the current year
+ * @apiName RetrieveUsageCurrentYearPerDate
+ * @apiGroup Usage
+ * @apiUse listParams
+ * @apiSuccess {Object} The volume of sparkling water made for each date of the current year.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ */
+router.get('/currentYear',
+query(),
+currentYearUsagePerDate)
+
+/**
+* @api {get} /usages/currentYear/count Retrieve the volume of sparkling water made since the beginning of the current year.
+* @apiName RetrieveUsageCurrentYearVolume
+* @apiGroup Usage
+* @apiUse listParams
+* @apiSuccess {Number} Total Volume of sparkling water made.
+* @apiError {Object} 400 Some parameters may contain invalid values.
+*/
+router.get('/currentYear/volume',
+query(),
+currentYearUsageVolume)
 
 export default router
