@@ -11,7 +11,6 @@ class Refills extends Component {
   render() {
     return (
       <Row>
-
         <Col s={12} m={4}>
           <CurrentWeekReffilsCount/>
         </Col>
