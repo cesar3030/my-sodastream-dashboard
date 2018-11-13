@@ -9,7 +9,17 @@ export const currentWeekUsagePerDate = ({}, res, next) =>
     .then(success(res))
     .catch(next)
 
-export const currentWeekUsageCount = ({}, res, next) =>
-  UsageService.getCurrentWeekUsageCount()
+export const currentWeekUsageVolume = ({}, res, next) =>
+  UsageService.getCurrentWeekUsageVolume()
+    .then(success(res))
+    .catch(next)
+
+export const currentMonthUsagePerDate = ({}, res, next) =>
+  UsageService.getCurrentMonthUsagePerDate()
+    .then(success(res))
+    .catch(next)
+
+export const currentMonthUsageVolume = ({}, res, next) =>
+  UsageService.getCurrentMonthUsageVolume()
     .then(success(res))
     .catch(next)
