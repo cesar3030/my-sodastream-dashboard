@@ -47,7 +47,7 @@ export function fetchCurrentYearUsagePerDate() {
 
 export function fetchCurrentYearUsageVolume() {
   return ApiRequest.fetch(
-    '/usage/currentYear/count',
+    '/usage/currentYear/volume',
     fetchCurrentYearUsageVolumeBegin,
     fetchCurrentYearUsageVolumeSucess,
     fetchCurrentYearUsageVolumeFailure

@@ -23,16 +23,16 @@ export const fetchCurrentMonthUsageFailure = (error) => ({
   payload: error
 });
 
-export const fetchCurrentMonthUsageCountBegin = () => ({
+export const fetchCurrentMonthUsageVolumeBegin = () => ({
   type: FETCH_CURRENT_MONTH_USAGE_VOLUME_BEGIN
 });
 
-export const fetchCurrentMonthUsageCountSucess = (volume) => ({
+export const fetchCurrentMonthUsageVolumeSucess = (volume) => ({
   type: FETCH_CURRENT_MONTH_USAGE_VOLUME_SUCCESS,
   payload: volume
 });
 
-export const fetchCurrentMonthUsageCountFailure = (error) => ({
+export const fetchCurrentMonthUsageVolumeFailure = (error) => ({
   type: FETCH_CURRENT_MONTH_USAGE_VOLUME_FAILURE,
   payload: error
 });
@@ -46,12 +46,12 @@ export function fetchCurrentMonthUsage() {
   );
 }
 
-export function fetchCurrentMonthUsageCount() {
+export function fetchCurrentMonthUsageVolume() {
   return ApiRequest.fetch(
     '/usage/currentMonth/volume',
-    fetchCurrentMonthUsageCountBegin,
-    fetchCurrentMonthUsageCountSucess,
-    fetchCurrentMonthUsageCountFailure
+    fetchCurrentMonthUsageVolumeBegin,
+    fetchCurrentMonthUsageVolumeSucess,
+    fetchCurrentMonthUsageVolumeFailure
   );
 }
 
