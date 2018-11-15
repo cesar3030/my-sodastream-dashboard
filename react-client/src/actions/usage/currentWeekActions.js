@@ -12,9 +12,9 @@ export const fetchCurrentWeekUsagePerDateBegin = () => ({
   type: FETCH_CURRENT_WEEK_USAGE_PER_DATE_BEGIN
 });
 
-export const fetchCurrentWeekUsagePerDateSucess = (refills) => ({
+export const fetchCurrentWeekUsagePerDateSucess = (usage) => ({
   type: FETCH_CURRENT_WEEK_USAGE_PER_DATE_SUCCESS,
-  payload: refills
+  payload: usage
 });
 
 export const fetchCurrentWeekUsagePerDateFailure = (error) => ({
