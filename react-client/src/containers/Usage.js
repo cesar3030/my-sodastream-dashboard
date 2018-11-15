@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col } from 'react-materialize';
 import CurrentWeekUsage from './CurrentWeekUsage';
 import CurrentMonthUsage from './CurrentMonthUsage';
+import CurrentYearUsage from './CurrentYearUsage';
 
 class Refills extends Component {
   render() {
@@ -12,6 +13,9 @@ class Refills extends Component {
         </Col>
         <Col s={12} m={6}>
           <CurrentMonthUsage/>
+        </Col>
+        <Col s={12}>
+          <CurrentYearUsage/>
         </Col>
       </Row>
     );
