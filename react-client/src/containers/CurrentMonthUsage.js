@@ -4,7 +4,7 @@ import { fetchCurrentMonthUsage } from '../actions/usage/currentMonthActions';
 
 const mapStateToProps = state => ({
   nbRefillsPerDate: state.usage.currentMonth.perDate.usagePerDate,
-  dates: state.usage.currentMonth.perDate.days,
+  dates: state.usage.currentMonth.perDate.dates,
   chartTitle: "Current Month Usage",
   loading: state.usage.currentMonth.perDate.loading
 });

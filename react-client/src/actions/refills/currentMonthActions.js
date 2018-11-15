@@ -65,7 +65,7 @@ const parseResponse = (json) => {
   }
 
   return {
-    days: labels,
-    nbRefillsPerDate: data
+    labels: labels,
+    data: data
   };
 }

@@ -10,7 +10,7 @@ import {
 const initState = {
   perDate: {
     loading: false,
-    days: [],
+    dates: [],
     nbRefillsPerDate: [],
     error: null
   },
@@ -50,8 +50,8 @@ const currentMonth = (
         perDate: {
           ...state.perDate,
           loading: false,
-          days: action.payload.days,
-          nbRefillsPerDate: action.payload.nbRefillsPerDate
+          dates: action.payload.labels,
+          nbRefillsPerDate: action.payload.data
         }
       };
     case FETCH_CURRENT_MONTH_REFILLS_COUNT_FAILURE:

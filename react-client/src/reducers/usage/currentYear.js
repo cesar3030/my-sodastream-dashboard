@@ -50,8 +50,8 @@ const currentYear = (
         perDate: {
           ...state.perDate,
           loading: false,
-          dates: action.payload.dates,
-          usagePerDate: action.payload.usagePerDate
+          dates: action.payload.labels,
+          usagePerDate: action.payload.data
         }
       };
     case FETCH_CURRENT_YEAR_USAGE_VOLUME_FAILURE:

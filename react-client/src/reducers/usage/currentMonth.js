@@ -10,7 +10,7 @@ import {
 const initState = {
   perDate: {
     loading: false,
-    days: [],
+    dates: [],
     usagePerDate: [],
     error: null
   },
@@ -50,8 +50,8 @@ const currentMonth = (
         perDate: {
           ...state.perDate,
           loading: false,
-          days: action.payload.days,
-          usagePerDate: action.payload.usagePerDate
+          dates: action.payload.labels,
+          usagePerDate: action.payload.data
         }
       };
     case FETCH_CURRENT_MONTH_USAGE_VOLUME_FAILURE:

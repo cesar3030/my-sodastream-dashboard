@@ -50,8 +50,8 @@ const currentYear = (
         perDate: {
           ...state.perDate,
           loading: false,
-          dates: action.payload.dates,
-          nbRefillsPerDate: action.payload.nbRefillsPerDate
+          dates: action.payload.labels,
+          nbRefillsPerDate: action.payload.data
         }
       };
     case FETCH_CURRENT_YEAR_REFILLS_COUNT_FAILURE:

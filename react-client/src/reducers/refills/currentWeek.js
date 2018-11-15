@@ -50,8 +50,8 @@ const currentWeek = (
         perDate: {
           ...state.perDate,
           loading: false,
-          dates: action.payload.dates,
-          nbRefillsPerDate: action.payload.nbRefillsPerDate
+          dates: action.payload.labels,
+          nbRefillsPerDate: action.payload.data
         }
       };
     case FETCH_CURRENT_WEEK_REFILLS_COUNT_FAILURE:
