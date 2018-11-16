@@ -6,7 +6,7 @@ export Reload, { schema } from './model'
 const router = new Router()
 
 /**
- * @api {post} /reloads Create reload
+ * @api {post} /reloads Create a carbonator reload
  * @apiName CreateReload
  * @apiGroup Reload
  * @apiSuccess {Object} reload Reload's data.
@@ -17,7 +17,7 @@ router.post('/',
   create)
 
 /**
- * @api {get} /reloads Retrieve reloads
+ * @api {get} /reloads Retrieve carbonator reloads
  * @apiName RetrieveReloads
  * @apiGroup Reload
  * @apiUse listParams
@@ -29,7 +29,7 @@ router.get('/',
   index)
 
 /**
- * @api {get} /reloads/:id Retrieve reload
+ * @api {get} /reloads/:id Retrieve a carbonator reload by id
  * @apiName RetrieveReload
  * @apiGroup Reload
  * @apiSuccess {Object} reload Reload's data.
@@ -40,7 +40,7 @@ router.get('/:id',
   show)
 
 /**
- * @api {put} /reloads/:id Update reload
+ * @api {put} /reloads/:id Update carbonator reload
  * @apiName UpdateReload
  * @apiGroup Reload
  * @apiSuccess {Object} reload Reload's data.
@@ -51,7 +51,7 @@ router.put('/:id',
   update)
 
 /**
- * @api {delete} /reloads/:id Delete reload
+ * @api {delete} /reloads/:id Delete a carbonator reload
  * @apiName DeleteReload
  * @apiGroup Reload
  * @apiSuccess (Success 204) 204 No Content.
