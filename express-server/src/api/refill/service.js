@@ -4,7 +4,15 @@ import { timezone } from '../../config';
 import TimezoneDate from "../../services/timezone-date";
 
 export default class RefillsService {
-  
+
+  /**
+   * Function that returns the average refill elapsed time
+   * @return {Number} Key:value -> String:Number -> "YYYY-MM-DD":count
+   */
+  static getAverageRefillElapsedTime() {
+    return Refill.aggregate([{$group:{_id: "null", elapsedTimeAvg: { $avg: "$elapsedTime"}}}])
+  }
+
   /**
    * Function that returns how many refills were done for each day of the current week
    * @return {Object} Key:value -> String:Number -> "YYYY-MM-DD":count

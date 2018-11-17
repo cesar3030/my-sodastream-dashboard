@@ -68,3 +68,8 @@ export const currentYearRefillsCount = ({}, res, next) =>
   RefillsService.getCurrentYearRefillsCount()
     .then(success(res))
     .catch(next)
+
+export const avgRefillElapsedTime = ({}, res, next) =>
+    RefillsService.getAverageRefillElapsedTime()
+      .then(success(res))
+      .catch(next)
