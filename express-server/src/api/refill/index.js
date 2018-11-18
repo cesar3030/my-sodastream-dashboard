@@ -113,6 +113,17 @@ router.get('/currentYear/count',
   currentYearRefillsCount)
 
 /**
+ * @api {get} /refills/avgElapsedTime Retrieve the average elapsed time of a refill
+ * @apiName RetrieveAverageRefillElapsedTime
+ * @apiGroup Refill
+ * @apiUse listParams
+ * @apiSuccess {Number} The average elapsed time.
+ * @apiError {Object} 400 Bad request.
+ */
+router.get('/avgElapsedTime',
+  avgRefillElapsedTime)
+
+/**
  * @api {get} /refills/:id Retrieve refill
  * @apiName RetrieveRefill
  * @apiGroup Refill
@@ -145,17 +156,5 @@ router.put('/:id',
  */
 router.delete('/:id',
   destroy)
-
-
-/**
- * @api {get} /refills/avgElapsedTime Retrieve the average elapsed time of a refill
- * @apiName RetrieveAverageRefillElapsedTime
- * @apiGroup Refill
- * @apiUse listParams
- * @apiSuccess {Number} The average elapsed time.
- * @apiError {Object} 400 Bad request.
- */
-router.get('/avgElapsedTime',
-  avgRefillElapsedTime)
 
 export default router
