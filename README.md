@@ -1,2 +1,2 @@
 # my-sodastream-dashboard
-Dashboard to monitor the use of my sodastream
+Dashboard to monitor the use of a Sodastream.
