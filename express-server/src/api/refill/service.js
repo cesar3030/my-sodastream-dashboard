@@ -7,10 +7,11 @@ export default class RefillsService {
 
   /**
    * Function that returns the average refill elapsed time
-   * @return {Number} Key:value -> String:Number -> "YYYY-MM-DD":count
+   * @return {Number} The average refill elapsed time in seconds
    */
   static getAverageRefillElapsedTime() {
     return Refill.aggregate([{$group:{_id: "null", elapsedTimeAvg: { $avg: "$elapsedTime"}}}])
+      .then((res) => res && res.length > 0 ? res[0]['elapsedTimeAvg'] : 0)
   }
 
   /**

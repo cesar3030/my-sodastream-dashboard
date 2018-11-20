@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
-import { create, index, show, update, destroy } from './controller'
+import { create, index, show, update, destroy, currentReloadState } from './controller'
 export Reload, { schema } from './model'
 
 const router = new Router()
@@ -15,6 +15,17 @@ const router = new Router()
  */
 router.post('/',
   create)
+
+/**
+ * @api {get} /reloads/current/state Retrieve current carbonator reload's state
+ * @apiName RetrieveCurrentReloadState
+ * @apiGroup Reload
+ * @apiUse listParams
+ * @apiSuccess {Object} The reload state.
+ * @apiError {Object} 400 Bad request.
+ */
+router.get('/current/state',
+  currentReloadState)
 
 /**
  * @api {get} /reloads Retrieve carbonator reloads

@@ -1,5 +1,6 @@
 import { success, notFound } from '../../services/response/'
 import { Reload } from '.'
+import ReloadService from './service'
 
 export const create = ({ body }, res, next) =>
   Reload.create(body)
@@ -33,4 +34,9 @@ export const destroy = ({ params }, res, next) =>
     .then(notFound(res))
     .then((reload) => reload ? reload.remove() : null)
     .then(success(res, 204))
+    .catch(next)
+
+export const currentReloadState = ({}, res, next) =>
+  ReloadService.getCurrentReloadState()
+    .then(success(res))
     .catch(next)
