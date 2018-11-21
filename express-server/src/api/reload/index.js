@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
-import { create, index, show, update, destroy, currentReloadState } from './controller'
+import { create, index, show, update, destroy, currentReloadStats, currentReload } from './controller'
 export Reload, { schema } from './model'
 
 const router = new Router()
@@ -17,15 +17,26 @@ router.post('/',
   create)
 
 /**
- * @api {get} /reloads/current/state Retrieve current carbonator reload's state
- * @apiName RetrieveCurrentReloadState
+ * @api {get} /reloads/current Retrieve current carbonator reload
+ * @apiName RetrieveCurrentReload
  * @apiGroup Reload
  * @apiUse listParams
- * @apiSuccess {Object} The reload state.
+ * @apiSuccess {Object} The reload.
  * @apiError {Object} 400 Bad request.
  */
-router.get('/current/state',
-  currentReloadState)
+router.get('/current',
+  currentReload)
+
+/**
+ * @api {get} /reloads/current/stats Retrieve current carbonator reload stats that includes percentage of use.
+ * @apiName RetrieveCurrentReloadStats
+ * @apiGroup Reload
+ * @apiUse listParams
+ * @apiSuccess {Object} The reload stats.
+ * @apiError {Object} 400 Bad request.
+ */
+router.get('/current/stats',
+  currentReloadStats)
 
 /**
  * @api {get} /reloads Retrieve carbonator reloads

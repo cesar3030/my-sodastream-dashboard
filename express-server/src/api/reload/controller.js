@@ -36,7 +36,12 @@ export const destroy = ({ params }, res, next) =>
     .then(success(res, 204))
     .catch(next)
 
-export const currentReloadState = ({}, res, next) =>
-  ReloadService.getCurrentReloadState()
+export const currentReloadStats = ({}, res, next) =>
+  ReloadService.getCurrentReloadStats()
+    .then(success(res))
+    .catch(next)
+
+export const currentReload = ({}, res, next) =>
+  ReloadService.getCurrentReload()
     .then(success(res))
     .catch(next)
