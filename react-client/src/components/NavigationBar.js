@@ -8,7 +8,7 @@ const NavigationBar = (props) => {
         <ul id="nav-mobile" className="left hide-on-med-and-down">
           <li><a href="/refills">Refills</a></li>
           <li><a href="/usage">Usage</a></li>
-          <li><a href="badges.html">Reloads</a></li>
+          <li><a href="/reloads cs">Reloads</a></li>
           <li><a href="badges.html">Savings</a></li>
           <li><a href="badges.html">Bottes</a></li>
         </ul>

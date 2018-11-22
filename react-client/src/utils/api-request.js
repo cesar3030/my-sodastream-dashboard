@@ -14,8 +14,6 @@ export default class ApiRequest {
     };
   }
 
-  static fetchObject
-
   static handleErrors(response) {
     if (!response.ok) {
       throw Error(response.statusText);
