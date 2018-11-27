@@ -55,11 +55,11 @@ class RefillsChart extends Component {
           options={
             {
               scales: {
-                  yAxes: [{
-                      ticks: {
-                          beginAtZero:true
-                      }
-                  }]
+                yAxes: [{
+                  ticks: {
+                    beginAtZero:true
+                  }
+                }]
               }
             }
           }
