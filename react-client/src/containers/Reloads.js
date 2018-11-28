@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
-import RelodRefillCount from './RelodRefillCount';
-import { Row, Col } from 'react-materialize';
+import CurrentReload from './CurrentReload';
 
-class Refills extends Component {
+class Reload extends Component {
   render() {
     return (
-      <Row>
-        <Col s={12} m={4}>
-          <RelodRefillCount/>
-        </Col>
-      </Row>
+      <section>
+        <CurrentReload/>
+      </section>
     );
   }
 }
 
-export default Refills;
+export default Reload;
