@@ -165,7 +165,7 @@
     padding-right: $padding-round-horizontal;
     padding-left: $padding-round-horizontal;
 
-    &.btn-simple:not(.btn-sm):not(.btn-lg){
+    &.btn-simple{
         padding: $padding-btn-vertical - 1  $padding-round-horizontal - 1;
     }
 }

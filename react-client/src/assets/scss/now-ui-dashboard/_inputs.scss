@@ -9,7 +9,7 @@
     font-size: $font-size-small;
     @include transition-input-focus-color();
     @include box-shadow(none);
-
+    height: unset;
 
 
     &:focus{
@@ -193,7 +193,7 @@
     & i{
       opacity: .5;
     }
-    
+
     @include transition-input-focus-color();
 
     .has-danger.input-group-focus &{
