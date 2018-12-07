@@ -1,7 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'materialize-css/dist/css/materialize.min.css';
-import 'materialize-css/dist/js/materialize.min.js';
+// import 'materialize-css/dist/css/materialize.min.css';
+// import './assets/css/'
+// import 'src/assets/css/now-ui-dashboard.min.css'
+// import 'src/assets/js/core/bootstrap.min.js'
+// import 'src/assets/js/core/jquery.min.js'
+// import 'src/assets/js/core/popper.min.js'
+import './assets/js/now-ui-dashboard.min.js'
+// import 'materialize-css/dist/js/materialize.min.js';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import store from './store';

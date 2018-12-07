@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import CurrentWeekRefills from './CurrentWeekRefills';
-import CurrentMonthRefills from './CurrentMonthRefills';
-import CurrentYearRefills from './CurrentYearRefills';
-import CurrentYearReffilsCount from './CurrentYearRefillsCount';
-import CurrentMonthReffilsCount from './CurrentMonthRefillsCount';
-import CurrentWeekReffilsCount from './CurrentWeekRefillsCount';
+import CurrentWeekRefills from '../containers/CurrentWeekRefills';
+import CurrentMonthRefills from '../containers/CurrentMonthRefills';
+import CurrentYearRefills from '../containers/CurrentYearRefills';
+import CurrentYearReffilsCount from '../containers/CurrentYearRefillsCount';
+import CurrentMonthReffilsCount from '../containers/CurrentMonthRefillsCount';
+import CurrentWeekReffilsCount from '../containers/CurrentWeekRefillsCount';
 import { Row, Col } from 'react-materialize';
 
 class Refills extends Component {

@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Home from './Home';
-import Refills from './Refills';
-import Usage from './Usage';
-import Reload from './Reloads';
+import Home from '../../pages/Home';
+import Refills from '../../pages/Refills';
+import Usage from '../../pages/Usage';
+import Reload from '../../pages/Reloads';
 
 export default () => {
  return (

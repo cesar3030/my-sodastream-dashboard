@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'react-materialize';
-import CurrentWeekUsage from './CurrentWeekUsage';
-import CurrentMonthUsage from './CurrentMonthUsage';
-import CurrentYearUsage from './CurrentYearUsage';
-import CurrentWeekUsageVolume from './CurrentWeekUsageVolume';
-import CurrentMonthUsageVolume from './CurrentMonthUsageVolume';
-import CurrentYearUsageVolume from './CurrentYearUsageVolume';
+import CurrentWeekUsage from '../containers/CurrentWeekUsage';
+import CurrentMonthUsage from '../containers/CurrentMonthUsage';
+import CurrentYearUsage from '../containers/CurrentYearUsage';
+import CurrentWeekUsageVolume from '../containers/CurrentWeekUsageVolume';
+import CurrentMonthUsageVolume from '../containers/CurrentMonthUsageVolume';
+import CurrentYearUsageVolume from '../containers/CurrentYearUsageVolume';
 
 class Refills extends Component {
   render() {

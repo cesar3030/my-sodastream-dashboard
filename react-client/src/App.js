@@ -1,18 +1,10 @@
-import React, { Component } from 'react';
-import Main from './containers/Main';
-import NavigationBar from './components/NavigationBar';
+import React from 'react';
+import Layout from './components/layout/Layout';
 
-class App extends Component {
-  render() {
+const App = () => {
     return (
-      <div>
-        <header>
-          <NavigationBar/>
-        </header>
-        <Main/>
-      </div>
+      <Layout/>
     );
-  }
 }
 
 export default App;
