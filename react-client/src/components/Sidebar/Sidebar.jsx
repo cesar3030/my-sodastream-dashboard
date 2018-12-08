@@ -36,17 +36,9 @@ class Sidebar extends React.Component {
         <div className="logo">
           <a
             href="https://www.creative-tim.com"
-            className="simple-text logo-mini"
+            className="simple-text logo-normal text-center"
           >
-            <div className="logo-img">
-              <img src={logo} alt="react-logo" />
-            </div>
-          </a>
-          <a
-            href="https://www.creative-tim.com"
-            className="simple-text logo-normal"
-          >
-            Creative Tim
+          Sodastream Dashboard
           </a>
         </div>
         <div className="sidebar-wrapper" ref="sidebar">

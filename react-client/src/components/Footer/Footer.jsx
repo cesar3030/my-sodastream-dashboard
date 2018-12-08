@@ -13,31 +13,18 @@ class Footer extends React.Component {
           <nav>
             <ul>
               <li>
-                <a href="https://www.creative-tim.com">Creative Tim</a>
-              </li>
-              <li>
-                <a href="https://presentation.creative-tim.com">About Us</a>
-              </li>
-              <li>
-                <a href="https://blog.creative-tim.com">Blog</a>
+                <a href="https://github.com/cesar3030/my-sodastream-dashboard" target="_blank">GitHub project</a>
               </li>
             </ul>
           </nav>
           <div className="copyright">
-            &copy; {1900 + new Date().getYear()}, Designed by{" "}
+            &copy; {1900 + new Date().getYear()}, Coded by{" "}
             <a
-              href="https://www.invisionapp.com"
+              href="http://www.cesarjeanroy.com/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Invision
-            </a>. Coded by{" "}
-            <a
-              href="https://www.creative-tim.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Creative Tim
+              Cesar Jeanroy
             </a>.
           </div>
         </Container>
