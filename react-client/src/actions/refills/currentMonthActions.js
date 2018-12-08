@@ -37,7 +37,7 @@ export const fetchCurrentMonthRefillsCountFailure = (error) => ({
   payload: error
 });
 
-export function fetchCurrentMonthRefills() {
+export function fetchCurrentMonthRefillsPerDate() {
   return ApiRequest.fetch(
     '/refills/currentMonth',
     fetchCurrentMonthRefillsBegin,

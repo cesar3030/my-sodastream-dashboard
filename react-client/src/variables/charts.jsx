@@ -386,9 +386,86 @@ const dashboard24HoursPerformanceChart = {
   }
 };
 
+const barChart = {
+  generate: (data, labels) => {
+    return ({
+      data: (canvas) => {
+        var ctx = canvas.getContext("2d");
+        var gradientFill = ctx.createLinearGradient(0, 170, 0, 50);
+        gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
+        gradientFill.addColorStop(1, hexToRGB("#2CA8FF", 0.6));
+        
+        return {
+          labels: labels,
+          datasets: [
+            {
+              label: "Active Countries",
+              backgroundColor: gradientFill,
+              borderColor: "#2CA8FF",
+              pointBorderColor: "#FFF",
+              pointBackgroundColor: "#2CA8FF",
+              pointBorderWidth: 2,
+              pointHoverRadius: 4,
+              pointHoverBorderWidth: 1,
+              pointRadius: 4,
+              fill: true,
+              borderWidth: 1,
+              data: data
+            }
+          ]
+        };
+      },
+      options: {
+        maintainAspectRatio: false,
+        legend: {
+          display: false
+        },
+        tooltips: {
+          bodySpacing: 4,
+          mode: "nearest",
+          intersect: 0,
+          position: "nearest",
+          xPadding: 10,
+          yPadding: 10,
+          caretPadding: 10
+        },
+        responsive: 1,
+        scales: {
+          yAxes: [
+            {
+              gridLines: {
+                zeroLineColor: "transparent",
+                drawBorder: false
+              }
+            }
+          ],
+          xAxes: [
+            {
+              display: 0,
+              ticks: {
+                display: false
+              },
+              gridLines: {
+                zeroLineColor: "transparent",
+                drawTicks: false,
+                display: false,
+                drawBorder: false
+              }
+            }
+          ]
+        },
+        layout: {
+          padding: { left: 0, right: 0, top: 15, bottom: 15 }
+        }
+      }
+    });
+  }
+}
+
 module.exports = {
   dashboardPanelChart, // Chart for Dashboard view - Will be rendered in panel
   dashboardShippedProductsChart, // Chart for Dashboard view - Shipped Products Card
   dashboardAllProductsChart, // Chart for Dashboard view - All products Card
-  dashboard24HoursPerformanceChart // Chart for Dashboard view - 24 Hours Performance Card
+  dashboard24HoursPerformanceChart, // Chart for Dashboard view - 24 Hours Performance Card
+  barChart
 };

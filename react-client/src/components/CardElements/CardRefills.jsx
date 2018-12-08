@@ -10,12 +10,13 @@ import {
 } from "reactstrap";
 import { Bar } from "react-chartjs-2";
 import {
-  dashboard24HoursPerformanceChart
+  barChart,
 } from "variables/charts.jsx";
 import { Stats, CardCategory } from "components";
 
 class CardRefills extends Component {
   render() {
+    const chart = barChart.generate(this.props.data, this.props.labels);
     return (
       <Card>
         <CardHeader>
@@ -37,8 +38,8 @@ class CardRefills extends Component {
             <Col xs={8}>
               <div className="chart-area">
                 <Bar
-                  data={dashboard24HoursPerformanceChart.data}
-                  options={dashboard24HoursPerformanceChart.options}
+                  data={chart.data}
+                  options={chart.options}
                 />
               </div>
             </Col>

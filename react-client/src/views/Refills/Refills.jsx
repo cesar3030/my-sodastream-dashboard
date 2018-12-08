@@ -1,6 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchCurrentWeekRefillsPerDate } from '../../actions/refills/currentWeekActions'
+import { fetchCurrentWeekRefillsPerDate, fetchCurrentWeekRefillsCount } from '../../actions/refills/currentWeekActions'
+import { fetchCurrentMonthRefillsPerDate, fetchCurrentMonthRefillsCount } from '../../actions/refills/currentMonthActions'
+import { fetchCurrentYearRefillsPerDate, fetchCurrentYearRefillsCount } from '../../actions/refills/currentYearActions'
+
 import {
   Card,
   CardHeader,
@@ -13,7 +16,6 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  Table
 } from "reactstrap";
 // react plugin used to create charts
 import { Line, Bar } from "react-chartjs-2";
@@ -33,13 +35,33 @@ const mapStateToProps = state => ({
   nbRefillsPerDate: state.refills.currentWeek.perDate.nbRefillsPerDate,
   dates: state.refills.currentWeek.perDate.dates,
   chartTitle: "Current Week Refills",
-  loading: state.refills.currentWeek.perDate.loading
+  loading: state.refills.currentWeek.perDate.loading,
+  currentWeek: {
+    count: state.refills.currentWeek.count.value,
+    labels: state.refills.currentWeek.perDate.dates,
+    data: state.refills.currentWeek.perDate.nbRefillsPerDate
+  },
+  currentMonth: {
+    count: state.refills.currentMonth.count.value,
+    labels: state.refills.currentMonth.perDate.dates,
+    data: state.refills.currentMonth.perDate.nbRefillsPerDate
+  },
+  currentYear: {
+    count: state.refills.currentYear.count.value,
+    labels: state.refills.currentYear.perDate.dates,
+    data: state.refills.currentYear.perDate.nbRefillsPerDate
+  },
 });
 
 const mapDispatchToProps = dispatch => {
   return {
     fetchData: () => {
-      dispatch(fetchCurrentWeekRefillsPerDate())
+      dispatch(fetchCurrentWeekRefillsPerDate());
+      dispatch(fetchCurrentWeekRefillsCount());
+      dispatch(fetchCurrentMonthRefillsPerDate());
+      dispatch(fetchCurrentMonthRefillsCount());
+      dispatch(fetchCurrentYearRefillsPerDate());
+      dispatch(fetchCurrentYearRefillsCount());
     }
   }
 };
@@ -180,104 +202,32 @@ class Refills extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <Card className="card-tasks">
-                <CardHeader>
-                  <CardCategory>Period</CardCategory>
-                  <CardTitle tag="h4">Current Week</CardTitle>
-                </CardHeader>
-                <CardBody>
-                  <Row>
-                    <Col xs={4} className="font-icon-list">
-                      <Card className="card-tasks">
-                        <CardHeader>
-                          <CardCategory>Total refills</CardCategory>
-                        </CardHeader>
-                        <CardBody>
-                          <h3 class="text-center">65</h3>
-                        </CardBody>
-                        </Card>
-                    </Col>
-                    <Col xs={8}>
-                      <div className="chart-area">
-                        <Bar
-                          data={dashboard24HoursPerformanceChart.data}
-                          options={dashboard24HoursPerformanceChart.options}
-                        />
-                      </div>
-                    </Col>
-                  </Row>
-                </CardBody>
-                <CardFooter>
-                  <hr />
-                  <Stats>
-                    {[
-                      {
-                        i: "now-ui-icons loader_refresh spin",
-                        t: "Updated 3 minutes ago"
-                      }
-                    ]}
-                  </Stats>
-                </CardFooter>
-              </Card>
-            </Col>
-            </Row>
-            <Row>
-            <Col xs={12}>
-              <Card>
-                <CardHeader>
-                  <CardCategory>All Persons List</CardCategory>
-                  <CardTitle tag="h4">Employees Stats</CardTitle>
-                </CardHeader>
-                <CardBody>
-                  <Table responsive>
-                    <thead className=" text-primary">
-                      <tr>
-                        <th>Name</th>
-                        <th>Country</th>
-                        <th>City</th>
-                        <th className="text-right">Salary</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Dakota Rice</td>
-                        <td>Niger</td>
-                        <td>Oud-Turnhout</td>
-                        <td className="text-right">$36,738</td>
-                      </tr>
-                      <tr>
-                        <td>Minerva Hooper</td>
-                        <td>Curaçao</td>
-                        <td>Sinaai-Waas</td>
-                        <td className="text-right">$23,789</td>
-                      </tr>
-                      <tr>
-                        <td>Sage Rodriguez</td>
-                        <td>Netherlands</td>
-                        <td>Baileux</td>
-                        <td className="text-right">$56,142</td>
-                      </tr>
-                      <tr>
-                        <td>Doris Greene</td>
-                        <td>Malawi</td>
-                        <td>Feldkirchen in Kärnten</td>
-                        <td className="text-right">$63,542</td>
-                      </tr>
-                      <tr>
-                        <td>Mason Porter</td>
-                        <td>Chile</td>
-                        <td>Gloucester</td>
-                        <td className="text-right">$78,615</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </CardBody>
-              </Card>
+              <CardRefills 
+                title="Current Week"
+                nbRefills={this.props.currentWeek.count}
+                labels={this.props.currentWeek.labels}
+                data={this.props.currentWeek.data}
+              />
             </Col>
           </Row>
           <Row>
             <Col xs={12}>
-              <CardRefills title="Current Year" nbRefills={3456}/>
+              <CardRefills 
+                title="Current Month"
+                nbRefills={this.props.currentMonth.count}
+                labels={this.props.currentMonth.labels}
+                data={this.props.currentMonth.data}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <CardRefills 
+                title="Current Year"
+                nbRefills={this.props.currentYear.count}
+                labels={this.props.currentYear.labels}
+                data={this.props.currentYear.data}
+              />
             </Col>
           </Row>
         </div>
