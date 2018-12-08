@@ -2,6 +2,7 @@ import CardAuthor from './CardElements/CardAuthor';
 import CardCategory from './CardElements/CardCategory';
 import CardSocials from './CardElements/CardSocials';
 import CardRefills from './CardElements/CardRefills';
+import CardBorderlessChart from './CardElements/CardBorderlessChart';
 
 import Button from './CustomButton/CustomButton';
 
@@ -29,6 +30,7 @@ export {
     CardCategory,
     CardSocials,
     CardRefills,
+    CardBorderlessChart,
     // CustomButton
     Button,
     // CustomCheckbox

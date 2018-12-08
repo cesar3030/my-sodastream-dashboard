@@ -29,6 +29,7 @@ import {
   dashboardAllProductsChart,
   dashboard24HoursPerformanceChart
 } from "variables/charts.jsx";
+import { CardBorderlessChart } from "../../components";
 
 
 const mapStateToProps = state => ({
@@ -79,7 +80,7 @@ class Refills extends React.Component {
   
   render() {
 
-    const chartData = dashboardPanelChart.data(this.props.nbRefillsPerDate, this.props.dates);
+    const chartData = dashboardPanelChart.data(this.props.currentYear.data, this.props.currentYear.labels);
 
     return (
       <div>
@@ -94,110 +95,19 @@ class Refills extends React.Component {
         />
         <div className="content">
           <Row>
-            <Col xs={12} md={4}>
-              <Card className="card-chart">
-                <CardHeader>
-                  <CardCategory>Global Sales</CardCategory>
-                  <CardTitle tag="h4">Shipped Products</CardTitle>
-                  <UncontrolledDropdown>
-                    <DropdownToggle
-                      className="btn-round btn-simple btn-icon"
-                      color="default"
-                    >
-                      <i className="now-ui-icons loader_gear" />
-                    </DropdownToggle>
-                    <DropdownMenu right>
-                      <DropdownItem>Action</DropdownItem>
-                      <DropdownItem>Another Action</DropdownItem>
-                      <DropdownItem>Something else here</DropdownItem>
-                      <DropdownItem className="text-danger">
-                        Remove data
-                      </DropdownItem>
-                    </DropdownMenu>
-                  </UncontrolledDropdown>
-                </CardHeader>
-                <CardBody>
-                  <div className="chart-area">
-                    <Line
-                      data={dashboardShippedProductsChart.data}
-                      options={dashboardShippedProductsChart.options}
-                    />
-                  </div>
-                </CardBody>
-                <CardFooter>
-                  <Stats>
-                    {[
-                      {
-                        i: "now-ui-icons arrows-1_refresh-69",
-                        t: "Just Updated"
-                      }
-                    ]}
-                  </Stats>
-                </CardFooter>
-              </Card>
+            <Col xs={12} md={6}>
+              <CardBorderlessChart 
+                title="Current Week" 
+                labels={this.props.currentWeek.labels}
+                data={this.props.currentWeek.data}
+              />
             </Col>
-            <Col xs={12} md={4}>
-              <Card className="card-chart">
-                <CardHeader>
-                  <CardCategory>2018 Sales</CardCategory>
-                  <CardTitle tag="h4">All products</CardTitle>
-                  <UncontrolledDropdown>
-                    <DropdownToggle
-                      className="btn-round btn-simple btn-icon"
-                      color="default"
-                    >
-                      <i className="now-ui-icons loader_gear" />
-                    </DropdownToggle>
-                    <DropdownMenu right>
-                      <DropdownItem>Action</DropdownItem>
-                      <DropdownItem>Another Action</DropdownItem>
-                      <DropdownItem>Something else here</DropdownItem>
-                      <DropdownItem className="text-danger">
-                        Remove data
-                      </DropdownItem>
-                    </DropdownMenu>
-                  </UncontrolledDropdown>
-                </CardHeader>
-                <CardBody>
-                  <div className="chart-area">
-                    <Line
-                      data={dashboardAllProductsChart.data}
-                      options={dashboardAllProductsChart.options}
-                    />
-                  </div>
-                </CardBody>
-                <CardFooter>
-                  <Stats>
-                    {[
-                      {
-                        i: "now-ui-icons arrows-1_refresh-69",
-                        t: "Just Updated"
-                      }
-                    ]}
-                  </Stats>
-                </CardFooter>
-              </Card>
-            </Col>
-            <Col xs={12} md={4}>
-              <Card className="card-chart">
-                <CardHeader>
-                  <CardCategory>Email Statistics</CardCategory>
-                  <CardTitle tag="h4">24 Hours Performance</CardTitle>
-                </CardHeader>
-                <CardBody>
-                  <div className="chart-area">
-                    <Bar
-                      data={dashboard24HoursPerformanceChart.data}
-                      options={dashboard24HoursPerformanceChart.options}
-                    />
-                  </div>
-                </CardBody>
-                <CardFooter>
-                  <Stats>
-                    {[{ i: "now-ui-icons ui-2_time-alarm", t: "Last 7 days" }]}
-                  </Stats>
-                </CardFooter>
-              </Card>
+            <Col xs={12} md={6}>
+              <CardBorderlessChart 
+                title="Current Month" 
+                labels={this.props.currentMonth.labels}
+                data={this.props.currentMonth.data}
+              />
             </Col>
           </Row>
           <Row>
