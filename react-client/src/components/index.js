@@ -1,6 +1,7 @@
 import CardAuthor from './CardElements/CardAuthor';
 import CardCategory from './CardElements/CardCategory';
 import CardSocials from './CardElements/CardSocials';
+import CardRefills from './CardElements/CardRefills';
 
 import Button from './CustomButton/CustomButton';
 
@@ -27,6 +28,7 @@ export {
     CardAuthor,
     CardCategory,
     CardSocials,
+    CardRefills,
     // CustomButton
     Button,
     // CustomCheckbox

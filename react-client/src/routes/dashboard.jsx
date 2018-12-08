@@ -7,6 +7,7 @@ import Maps from "views/Maps/Maps.jsx";
 import Upgrade from "views/Upgrade/Upgrade.jsx";
 import UserPage from "views/UserPage/UserPage.jsx";
 import Overview from "../views/Overview/Overview";
+import Refills from "../views/Refills/Refills";
 
 var dashRoutes = [
   {
@@ -20,6 +21,12 @@ var dashRoutes = [
     name: "Overview",
     icon: "design_app",
     component: Overview
+  },
+  {
+    path: "/Refills",
+    name: "Refills",
+    icon: "design_app",
+    component: Refills
   },
   { path: "/icons", name: "Icons", icon: "design_image", component: Icons },
   { path: "/maps", name: "Maps", icon: "location_map-big", component: Maps },
