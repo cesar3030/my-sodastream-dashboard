@@ -38,7 +38,7 @@ class Sidebar extends React.Component {
             href="https://www.creative-tim.com"
             className="simple-text logo-normal text-center"
           >
-          Sodastream Dashboard
+          My Sodastream Dashboard
           </a>
         </div>
         <div className="sidebar-wrapper" ref="sidebar">
