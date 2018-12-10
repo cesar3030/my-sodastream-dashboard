@@ -73,3 +73,18 @@ export const avgRefillElapsedTime = ({}, res, next) =>
     RefillsService.getAverageRefillElapsedTime()
       .then(success(res))
       .catch(next)
+
+export const periodRefills = (req, res, next) => {
+  if(req.query.start && req.query.end) {
+    let start = moment(req.query.start).hours(0).minutes(0).seconds(0).milliseconds(0);
+    let end = moment(req.query.end).hours(0).minutes(0).seconds(0).milliseconds(0);
+    
+    if(start.isBefore(end)) {
+      return RefillsService.getRefillsPerDatesBetweenDates(start, end)
+        .then(success(res))
+        .catch(next)
+    }
+  }
+  next();
+}
+  

@@ -13,13 +13,20 @@ import {
   currentMonthRefillsCount,
   currentYearRefills,
   currentYearRefillsCount,
-  avgRefillElapsedTime
+  avgRefillElapsedTime,
+  periodRefills,
 } from './controller'
 import { schema } from './model'
 export Refill, { schema } from './model'
 
 const router = new Router()
 const { elapsedTime } = schema.tree
+let start, end;
+
+
+// router.get('/period',
+//   query(),
+//   periodRefills)
 
 /**
  * @api {post} /refills Create refill
@@ -56,7 +63,8 @@ router.get('/',
  */
 router.get('/currentWeek',
   currentWeekRefills)
-
+router.get('/period',
+  periodRefills)
 /**
  * @api {get} /refills/currentWeek/count Retrieve the number of refills of the current week.
  * @apiName RetrieveCurrentWeekRefillsCount

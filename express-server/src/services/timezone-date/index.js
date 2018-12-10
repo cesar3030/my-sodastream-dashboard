@@ -9,7 +9,7 @@ export default class TimezoneDate {
    * Function to return the first day of the current week in timezone
    */
   static getFirstDateOfCurrentWeek() {
-    const currentDate = moment().tz(timezone).hours(0).minutes(0).seconds(0)
+    const currentDate = moment().tz(timezone).hours(0).minutes(0).seconds(0).milliseconds(0);
     
     /*
     * We want weeks to start from Mondays but moment.js week start on Sundays.
