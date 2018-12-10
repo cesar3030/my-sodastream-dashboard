@@ -1,6 +1,6 @@
 import RefillsService from '../refill/service';
 
-const bottleVolume = 840; // Sodastream volume size in ml
+const bottleVolume = 0.84; // Sodastream volume size in liters
 
 export default class UsageService {
   

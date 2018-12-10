@@ -4,10 +4,10 @@ import Icons from "views/Icons/Icons.jsx";
 import Typography from "views/Typography/Typography.jsx";
 import TableList from "views/TableList/TableList.jsx";
 import Maps from "views/Maps/Maps.jsx";
-import Upgrade from "views/Upgrade/Upgrade.jsx";
 import UserPage from "views/UserPage/UserPage.jsx";
 import Overview from "../views/Overview/Overview";
 import Refills from "../views/Refills/Refills";
+import Usage from "../views/Usage/Usage";
 
 var dashRoutes = [
   {
@@ -23,10 +23,16 @@ var dashRoutes = [
     component: Overview
   },
   {
-    path: "/Refills",
+    path: "/refills",
     name: "Refills",
     icon: "design_app",
     component: Refills
+  },
+  {
+    path: "/usage",
+    name: "Usage",
+    icon: "design_app",
+    component: Usage
   },
   { path: "/icons", name: "Icons", icon: "design_image", component: Icons },
   { path: "/maps", name: "Maps", icon: "location_map-big", component: Maps },

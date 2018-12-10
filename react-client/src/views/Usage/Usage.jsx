@@ -1,74 +1,62 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchCurrentWeekRefillsPerDate, fetchCurrentWeekRefillsCount } from '../../actions/refills/currentWeekActions'
-import { fetchCurrentMonthRefillsPerDate, fetchCurrentMonthRefillsCount } from '../../actions/refills/currentMonthActions'
-import { fetchCurrentYearRefillsPerDate, fetchCurrentYearRefillsCount } from '../../actions/refills/currentYearActions'
+import { fetchCurrentWeekUsagePerDate, fetchCurrentWeekUsageVolume } from '../../actions/usage/currentWeekActions'
+import { fetchCurrentMonthUsagePerDate, fetchCurrentMonthUsageVolume } from '../../actions/usage/currentMonthActions'
+import { fetchCurrentYearUsagePerDate, fetchCurrentYearUsageVolume } from '../../actions/usage/currentYearActions'
 
 import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  CardTitle,
   Row,
   Col,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
 } from "reactstrap";
 // react plugin used to create charts
-import { Line, Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 // function that returns a color based on an interval of numbers
 
-import { PanelHeader, Stats, CardCategory, CardStatChart } from "components";
+import { PanelHeader, CardStatChart } from "components";
 
 import {
-  dashboardPanelChart,
-  dashboardShippedProductsChart,
-  dashboardAllProductsChart,
-  dashboard24HoursPerformanceChart
+  dashboardPanelChart
 } from "variables/charts.jsx";
 import { CardBorderlessChart } from "../../components";
 
 
 const mapStateToProps = state => ({
-  nbRefillsPerDate: state.refills.currentWeek.perDate.nbRefillsPerDate,
-  dates: state.refills.currentWeek.perDate.dates,
+  usagePerDate: state.usage.currentWeek.perDate.usagePerDate,
+  dates: state.usage.currentWeek.perDate.dates,
   chartTitle: "Current Week Refills",
-  loading: state.refills.currentWeek.perDate.loading,
+  loading: state.usage.currentWeek.perDate.loading,
   currentWeek: {
-    count: state.refills.currentWeek.count.value,
-    labels: state.refills.currentWeek.perDate.dates,
-    data: state.refills.currentWeek.perDate.nbRefillsPerDate
+    count: state.usage.currentWeek.volume.value,
+    labels: state.usage.currentWeek.perDate.dates,
+    data: state.usage.currentWeek.perDate.usagePerDate
   },
   currentMonth: {
-    count: state.refills.currentMonth.count.value,
-    labels: state.refills.currentMonth.perDate.dates,
-    data: state.refills.currentMonth.perDate.nbRefillsPerDate
+    count: state.usage.currentMonth.volume.value,
+    labels: state.usage.currentMonth.perDate.dates,
+    data: state.usage.currentMonth.perDate.usagePerDate
   },
   currentYear: {
-    count: state.refills.currentYear.count.value,
-    labels: state.refills.currentYear.perDate.dates,
-    data: state.refills.currentYear.perDate.nbRefillsPerDate
+    count: state.usage.currentYear.volume.value,
+    labels: state.usage.currentYear.perDate.dates,
+    data: state.usage.currentYear.perDate.usagePerDate
   },
 });
 
 const mapDispatchToProps = dispatch => {
   return {
     fetchData: () => {
-      dispatch(fetchCurrentWeekRefillsPerDate());
-      dispatch(fetchCurrentWeekRefillsCount());
-      dispatch(fetchCurrentMonthRefillsPerDate());
-      dispatch(fetchCurrentMonthRefillsCount());
-      dispatch(fetchCurrentYearRefillsPerDate());
-      dispatch(fetchCurrentYearRefillsCount());
+      dispatch(fetchCurrentWeekUsagePerDate());
+      dispatch(fetchCurrentWeekUsageVolume());
+      dispatch(fetchCurrentMonthUsagePerDate());
+      dispatch(fetchCurrentMonthUsageVolume());
+      dispatch(fetchCurrentYearUsagePerDate());
+      dispatch(fetchCurrentYearUsageVolume());
     }
   }
 };
 
 
-class Refills extends React.Component {
+class Usage extends React.Component {
   
   componentDidMount() {
     const { fetchData } = this.props; 
@@ -84,15 +72,7 @@ class Refills extends React.Component {
 
     return (
       <div>
-        <PanelHeader
-          size="lg"
-          content={
-            <Line
-              data={chartData}
-              options={dashboardPanelChart.options}
-            />
-          }
-        />
+        <PanelHeader size="sm"/>
         <div className="content">
           <Row>
             <Col xs={12} md={6}>
@@ -114,7 +94,7 @@ class Refills extends React.Component {
             <Col xs={12}>
               <CardStatChart 
                 cardTitle="Current Week"
-                statTitle="Total Refills"
+                statTitle="Total Volumne (in Liters)"
                 statValue={this.props.currentWeek.count}
                 chartLabels={this.props.currentWeek.labels}
                 chartData={this.props.currentWeek.data}
@@ -125,7 +105,7 @@ class Refills extends React.Component {
             <Col xs={12}>
               <CardStatChart 
                 cardTitle="Current Month"
-                statTitle="Total Refills"
+                statTitle="Total Volumne (in Liters)"
                 statValue={this.props.currentMonth.count}
                 chartLabels={this.props.currentMonth.labels}
                 chartData={this.props.currentMonth.data}
@@ -136,7 +116,7 @@ class Refills extends React.Component {
             <Col xs={12}>
               <CardStatChart 
                 cardTitle="Current Year"
-                statTitle="Total Refills"
+                statTitle="Total Volumne (in Liters)"
                 statValue={this.props.currentYear.count}
                 chartLabels={this.props.currentYear.labels}
                 chartData={this.props.currentYear.data}
@@ -149,4 +129,4 @@ class Refills extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Refills);
+export default connect(mapStateToProps, mapDispatchToProps)(Usage);

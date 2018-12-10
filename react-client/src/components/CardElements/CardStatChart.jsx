@@ -14,24 +14,24 @@ import {
 } from "variables/charts.jsx";
 import { Stats, CardCategory } from "components";
 
-class CardRefills extends Component {
+class CardStatChart extends Component {
   render() {
-    const chart = barChart.generate(this.props.data, this.props.labels);
+    const chart = barChart.generate(this.props.chartData, this.props.chartLabels);
     return (
       <Card>
         <CardHeader>
           <CardCategory>Period</CardCategory>
-          <CardTitle tag="h4">{this.props.title}</CardTitle>
+          <CardTitle tag="h4">{this.props.cardTitle}</CardTitle>
         </CardHeader>
         <CardBody>
           <Row>
             <Col xs={4} className="font-icon-list">
               <Card className="card-tasks">
                 <CardHeader>
-                  <CardCategory>Total refills</CardCategory>
+                  <CardCategory>{this.props.statTitle}</CardCategory>
                 </CardHeader>
                 <CardBody>
-                  <h3 class="text-center">{this.props.nbRefills}</h3>
+                  <h3 class="text-center">{this.props.statValue}</h3>
                 </CardBody>
                 </Card>
             </Col>
@@ -61,4 +61,4 @@ class CardRefills extends Component {
   }
 }
 
-export default CardRefills;
+export default CardStatChart;

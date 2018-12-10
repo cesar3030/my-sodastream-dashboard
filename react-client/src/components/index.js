@@ -1,7 +1,7 @@
 import CardAuthor from './CardElements/CardAuthor';
 import CardCategory from './CardElements/CardCategory';
 import CardSocials from './CardElements/CardSocials';
-import CardRefills from './CardElements/CardRefills';
+import CardStatChart from './CardElements/CardStatChart';
 import CardBorderlessChart from './CardElements/CardBorderlessChart';
 
 import Button from './CustomButton/CustomButton';
@@ -29,7 +29,7 @@ export {
     CardAuthor,
     CardCategory,
     CardSocials,
-    CardRefills,
+    CardStatChart,
     CardBorderlessChart,
     // CustomButton
     Button,
