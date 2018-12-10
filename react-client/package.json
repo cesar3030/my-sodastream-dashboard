@@ -1,8 +1,7 @@
 {
   "name": "my-sodastream-dashboard",
-  "version": "0.9.0",
-  "main": "dist/index.js",
-  "homepage": "https://creativetimofficial.github.io/now-ui-dashboard-react/#/dashboard",
+  "version": "0.2.0",
+  "private": true,
   "dependencies": {
     "@types/googlemaps": "3.30.12",
     "@types/markerclustererplus": "2.1.33",
