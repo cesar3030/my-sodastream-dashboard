@@ -85,6 +85,6 @@ export const periodRefills = (req, res, next) => {
         .catch(next)
     }
   }
-  next();
+  res.status(400).end()
 }
   

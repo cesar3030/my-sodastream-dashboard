@@ -21,12 +21,6 @@ export Refill, { schema } from './model'
 
 const router = new Router()
 const { elapsedTime } = schema.tree
-let start, end;
-
-
-// router.get('/period',
-//   query(),
-//   periodRefills)
 
 /**
  * @api {post} /refills Create refill
@@ -54,6 +48,19 @@ router.get('/',
   index)
 
 /**
+ * @api {get} /refills/period Retrieve the number of refills for each day of the requested period
+ * @apiName RetrievePeriodRefills
+ * @apiGroup Refill
+ * @apiUse listParams
+ * @apiParam start Period start date
+ * @apiParam end Period end date
+ * @apiSuccess {Object} Key is the date of a day of the period and value is the number of refills for that date.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ */
+router.get('/period',
+  periodRefills)
+
+/**
  * @api {get} /refills/currentWeek Retrieve the number of refills for each day of the current week
  * @apiName RetrieveCurrentWeekRefills
  * @apiGroup Refill
@@ -63,8 +70,7 @@ router.get('/',
  */
 router.get('/currentWeek',
   currentWeekRefills)
-router.get('/period',
-  periodRefills)
+
 /**
  * @api {get} /refills/currentWeek/count Retrieve the number of refills of the current week.
  * @apiName RetrieveCurrentWeekRefillsCount
@@ -146,7 +152,7 @@ router.get('/:id',
  * @api {put} /refills/:id Update refill
  * @apiName UpdateRefill
  * @apiGroup Refill
- * @apiParam elapsedTime Refill's elapsedTime.
+c
  * @apiSuccess {Object} refill Refill's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Refill not found.
