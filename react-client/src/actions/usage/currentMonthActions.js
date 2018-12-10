@@ -37,7 +37,7 @@ export const fetchCurrentMonthUsageVolumeFailure = (error) => ({
   payload: error
 });
 
-export function fetchCurrentMonthUsage() {
+export function fetchCurrentMonthUsagePerDate() {
   return ApiRequest.fetch(
     '/usage/currentMonth',
     fetchCurrentMonthUsageBegin,

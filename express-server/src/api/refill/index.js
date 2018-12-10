@@ -13,7 +13,8 @@ import {
   currentMonthRefillsCount,
   currentYearRefills,
   currentYearRefillsCount,
-  avgRefillElapsedTime
+  avgRefillElapsedTime,
+  periodRefills,
 } from './controller'
 import { schema } from './model'
 export Refill, { schema } from './model'
@@ -45,6 +46,19 @@ router.post('/',
 router.get('/',
   query(),
   index)
+
+/**
+ * @api {get} /refills/period Retrieve the number of refills for each day of the requested period
+ * @apiName RetrievePeriodRefills
+ * @apiGroup Refill
+ * @apiUse listParams
+ * @apiParam start Period start date
+ * @apiParam end Period end date
+ * @apiSuccess {Object} Key is the date of a day of the period and value is the number of refills for that date.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ */
+router.get('/period',
+  periodRefills)
 
 /**
  * @api {get} /refills/currentWeek Retrieve the number of refills for each day of the current week
@@ -138,7 +152,7 @@ router.get('/:id',
  * @api {put} /refills/:id Update refill
  * @apiName UpdateRefill
  * @apiGroup Refill
- * @apiParam elapsedTime Refill's elapsedTime.
+c
  * @apiSuccess {Object} refill Refill's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Refill not found.
