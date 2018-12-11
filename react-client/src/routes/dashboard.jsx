@@ -5,9 +5,10 @@ import Typography from "views/Typography/Typography.jsx";
 import TableList from "views/TableList/TableList.jsx";
 import Maps from "views/Maps/Maps.jsx";
 import UserPage from "views/UserPage/UserPage.jsx";
-import Overview from "../views/Overview/Overview";
-import Refills from "../views/Refills/Refills";
-import Usage from "../views/Usage/Usage";
+import Overview from "../views/Overview/Overview.jsx";
+import Refills from "../views/Refills/Refills.jsx";
+import Usage from "../views/Usage/Usage.jsx";
+import Reloads from "../views/Reloads/Reloads.jsx";
 
 var dashRoutes = [
   {
@@ -15,6 +16,12 @@ var dashRoutes = [
     name: "Dashboard",
     icon: "design_app",
     component: Dashboard
+  },
+  {
+    path: "/reloads",
+    name: "Reloads",
+    icon: "design_app",
+    component: Reloads
   },
   {
     path: "/overview",

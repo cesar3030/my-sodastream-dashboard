@@ -3,6 +3,7 @@ import CardCategory from './CardElements/CardCategory';
 import CardSocials from './CardElements/CardSocials';
 import CardStatChart from './CardElements/CardStatChart';
 import CardBorderlessChart from './CardElements/CardBorderlessChart';
+import CardStat from './CardElements/CardStat';
 
 import Button from './CustomButton/CustomButton';
 
@@ -31,6 +32,7 @@ export {
     CardSocials,
     CardStatChart,
     CardBorderlessChart,
+    CardStat,
     // CustomButton
     Button,
     // CustomCheckbox

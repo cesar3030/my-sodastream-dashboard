@@ -12,7 +12,7 @@ import { Bar } from "react-chartjs-2";
 import {
   barChart,
 } from "variables/charts.jsx";
-import { Stats, CardCategory } from "components";
+import { Stats, CardCategory, CardStat } from "components";
 
 class CardStatChart extends Component {
   render() {
@@ -26,14 +26,10 @@ class CardStatChart extends Component {
         <CardBody>
           <Row>
             <Col xs={4} className="font-icon-list">
-              <Card className="card-tasks">
-                <CardHeader>
-                  <CardCategory>{this.props.statTitle}</CardCategory>
-                </CardHeader>
-                <CardBody>
-                  <h3 class="text-center">{this.props.statValue}</h3>
-                </CardBody>
-                </Card>
+              <CardStat 
+                title={this.props.statTitle}
+                value={this.props.statValue}
+              />
             </Col>
             <Col xs={8}>
               <div className="chart-area">

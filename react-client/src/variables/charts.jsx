@@ -498,6 +498,25 @@ const borderlessLineChart = {
   }
 };
 
+const doughnutChart = (data, labels) => {
+ return (
+   { 
+      labels: labels,
+      datasets: [{
+        data: data,
+        backgroundColor: [
+          '#FF6384',
+          '#36A2EB'
+        ],
+        hoverBackgroundColor: [
+          '#FF6384',
+          '#36A2EB'
+        ]
+      }]
+    }
+ );
+};
+
 
 module.exports = {
   dashboardPanelChart, // Chart for Dashboard view - Will be rendered in panel
@@ -506,4 +525,5 @@ module.exports = {
   dashboard24HoursPerformanceChart, // Chart for Dashboard view - 24 Hours Performance Card
   barChart,
   borderlessLineChart,
+  doughnutChart,
 };
