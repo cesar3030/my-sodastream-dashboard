@@ -49,3 +49,9 @@
 @import "now-ui-dashboard/cards/card-map";
 
 @import "now-ui-dashboard/responsive";
+
+.sidebar,
+.main-panel,
+.sidebar-wrapper{
+  -webkit-overflow-scrolling: touch;
+}

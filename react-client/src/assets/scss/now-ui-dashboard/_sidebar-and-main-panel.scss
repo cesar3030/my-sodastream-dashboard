@@ -421,3 +421,10 @@
 .panel-header-lg{
   height: 380px
 }
+
+
+.sidebar,
+.main-panel,
+.sidebar-wrapper {
+  -webkit-overflow-scrolling: touch;
+}
