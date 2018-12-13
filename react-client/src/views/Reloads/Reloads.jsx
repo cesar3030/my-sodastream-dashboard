@@ -1,6 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchCurrentReload } from '../../actions/reload/currentReloadActions'
+import { fetchCurrentReload } from '../../actions/reload/currentReloadActions';
+import { fetchAllReloads } from '../../actions/reload/allReloadsActions';
+import DateFormat from '../../utils/date-format';
+import moment from 'moment-timezone';
 
 import {
   Row,
@@ -22,12 +25,14 @@ import { doughnutChart } from "variables/charts.jsx";
 
 const mapStateToProps = state => ({
   current: state.reloads.current,
+  allReloads: state.reloads.all.list
 });
 
 const mapDispatchToProps = dispatch => {
   return {
     fetchData: () => {
       dispatch(fetchCurrentReload());
+      dispatch(fetchAllReloads());
     }
   }
 };
@@ -42,6 +47,15 @@ class Reload extends React.Component {
       fetchData();
     }
   }
+
+  getNbReloadThisYear() {
+    const currentyear = moment().tz(process.env.REACT_APP_TIMEZONE).year;
+    return this.props.allReloads
+      .filter((reload) => {
+      return currentyear === DateFormat.stringDateToMomentTimezone(reload.createdAt).year
+      })
+      .length;
+  }
   
   render() {
     const { refillCount, timeUsage, overAllUsagePercentage } = this.props.current;
@@ -49,27 +63,29 @@ class Reload extends React.Component {
     const remainingRefills = refillCountAvg - refillCount;
     const remainingTimeUsage = timeUsageAvg - timeUsage;
     const remainingOverAllUsagePercentage = 100 - overAllUsagePercentage;
+    const nbReloadThisYear = this.getNbReloadThisYear();
     return (
       <div>
         <PanelHeader size="sm"/>
         <div className="content">
           <Row>
-            <Col xs={12} md={3}>
+            <Col xs={12} md={4}>
               <CardStat
                title='Overall CO2 bottles'
-               value='89'
+               value={this.props.allReloads.length}
               />
             </Col>
-            <Col xs={12} md={3}>
+            <Col xs={12} md={4}>
               <CardStat
                title='This year CO2 bottles'
-               value='36'
+               value={nbReloadThisYear}
               />
             </Col>
-            <Col xs={12} md={3}>
+            <Col xs={12} md={4}>
               <CardStat
                title='Next change in'
-               value='9 Days'
+               value='9'
+               unit='Days'
               />
             </Col>
           </Row>
@@ -114,8 +130,8 @@ class Reload extends React.Component {
                     </Col>
                     <Col xs={12} md={5}>
                       <Doughnut data={doughnutChart(
-                        [overAllUsagePercentage,remainingOverAllUsagePercentage],
-                        ['Used CO2', 'Remaining CO2']
+                          [overAllUsagePercentage,remainingOverAllUsagePercentage],
+                          ['Used CO2', 'Remaining CO2']
                         )}>
                       </Doughnut>
                     </Col>
@@ -135,49 +151,29 @@ class Reload extends React.Component {
                   <Table responsive>
                     <thead className=" text-primary">
                       <tr>
-                        <th>Start Date</th>
-                        <th>End Date</th>
+                        <th>Reload Number</th>
+                        <th>Number of days</th>
                         <th>Number of refills</th>
                         <th>CO2 Time</th>
-                        <th>Number of days</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Dakota Rice</td>
-                        <td>Niger</td>
-                        <td>Oud-Turnhout</td>
-                        <td>$36,738</td>
-                        <td>23</td>
-                      </tr>
-                      <tr>
-                        <td>Minerva Hooper</td>
-                        <td>Curaçao</td>
-                        <td>Sinaai-Waas</td>
-                        <td>$23,789</td>
-                        <td>23</td>
-                      </tr>
-                      <tr>
-                        <td>Sage Rodriguez</td>
-                        <td>Netherlands</td>
-                        <td>Baileux</td>
-                        <td>$56,142</td>
-                        <td>23</td>
-                      </tr>
-                      <tr>
-                        <td>Doris Greene</td>
-                        <td>Malawi</td>
-                        <td>Feldkirchen in Kärnten</td>
-                        <td>$63,542</td>
-                        <td>23</td>
-                      </tr>
-                      <tr>
-                        <td>Mason Porter</td>
-                        <td>Chile</td>
-                        <td>Gloucester</td>
-                        <td>$78,615</td>
-                        <td>23</td>
-                      </tr>
+                      { 
+                        this.props.allReloads.map((reload, index) => {
+                          return (
+                            <tr>
+                              <td>{this.props.allReloads.length - index}</td>
+                              <td>{reload.endDate ? `${DateFormat.getDateDifference(reload.createdAt, reload.endDate)} Days` : "- - - -"}</td>
+                              <td>{reload.refillCount}</td>
+                              <td>{reload.timeUsage}</td>
+                              <td>{DateFormat.getMonthDateOrdinal(reload.createdAt)}</td>
+                              <td>{reload.endDate ? DateFormat.getMonthDateOrdinal(reload.endDate) : "- - - -"}</td>
+                            </tr>
+                          )
+                        })
+                      }
                     </tbody>
                   </Table>
                 </CardBody>

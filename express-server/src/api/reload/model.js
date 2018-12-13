@@ -12,7 +12,7 @@ reloadSchema.methods = {
       // simple view
       id: this.id,
       refillCount: this.refillCount,
-      timeUsage: this.timeUsage,
+      timeUsage: this.timeUsage.toFixed(2),
       endDate: this.endDate,
       createdAt: this.createdAt
     }
