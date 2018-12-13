@@ -143,11 +143,12 @@ const dashboardPanelChart = {
             pointBorderWidth: 1,
             pointHoverRadius: 7,
             pointHoverBorderWidth: 2,
-            pointRadius: 5,
+            pointRadius: 0,
             fill: true,
             backgroundColor: gradientFill,
             borderWidth: 2,
-            data: data
+            data: data,
+            radius: 0
           }
         ]
       };
@@ -205,7 +206,8 @@ const dashboardPanelChart = {
           ticks: {
             padding: 10,
             fontColor: "rgba(255,255,255,0.4)",
-            fontStyle: "bold"
+            fontStyle: "bold",
+            display: false
           }
         }
       ]
@@ -442,14 +444,19 @@ const barChart = {
           xAxes: [
             {
               display: 0,
-              ticks: {
-                display: false
-              },
+              // ticks: {
+              //   display: true
+              // },
               gridLines: {
                 zeroLineColor: "transparent",
                 drawTicks: false,
                 display: false,
                 drawBorder: false
+              },
+              ticks: {
+                fontColor: "rgba(255,255,255,1)",
+                fontStyle: "bold",
+                display: true
               }
             }
           ]

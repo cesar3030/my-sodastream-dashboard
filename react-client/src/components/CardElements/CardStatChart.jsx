@@ -9,9 +9,7 @@ import {
   Col
 } from "reactstrap";
 import { Bar } from "react-chartjs-2";
-import {
-  barChart,
-} from "variables/charts.jsx";
+import { barChart } from "variables/charts.jsx";
 import { Stats, CardCategory, CardStat } from "components";
 
 class CardStatChart extends Component {

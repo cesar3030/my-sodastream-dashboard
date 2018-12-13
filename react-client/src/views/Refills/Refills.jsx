@@ -3,32 +3,10 @@ import { connect } from "react-redux";
 import { fetchCurrentWeekRefillsPerDate, fetchCurrentWeekRefillsCount } from '../../actions/refills/currentWeekActions'
 import { fetchCurrentMonthRefillsPerDate, fetchCurrentMonthRefillsCount } from '../../actions/refills/currentMonthActions'
 import { fetchCurrentYearRefillsPerDate, fetchCurrentYearRefillsCount } from '../../actions/refills/currentYearActions'
-
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  CardTitle,
-  Row,
-  Col,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-} from "reactstrap";
-// react plugin used to create charts
-import { Line, Bar } from "react-chartjs-2";
-// function that returns a color based on an interval of numbers
-
-import { PanelHeader, Stats, CardCategory, CardStatChart } from "components";
-
-import {
-  dashboardPanelChart,
-  dashboardShippedProductsChart,
-  dashboardAllProductsChart,
-  dashboard24HoursPerformanceChart
-} from "variables/charts.jsx";
+import { Row, Col } from "reactstrap";
+import { Line } from "react-chartjs-2";
+import { PanelHeader, CardStatChart } from "components";
+import { dashboardPanelChart } from "variables/charts";
 import { CardBorderlessChart } from "../../components";
 
 
