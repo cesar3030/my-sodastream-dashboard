@@ -14,7 +14,7 @@ import { Stats, CardCategory, CardStat } from "components";
 
 class CardStatChart extends Component {
   render() {
-    const chart = barChart.generate(this.props.chartData, this.props.chartLabels);
+    const chart = barChart.generate(this.props.chartData, this.props.chartLabels, this.props.chartTooltipLabel);
     return (
       <Card>
         <CardHeader>

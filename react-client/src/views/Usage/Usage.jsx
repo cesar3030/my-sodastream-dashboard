@@ -67,9 +67,6 @@ class Usage extends React.Component {
   }
   
   render() {
-
-    const chartData = dashboardPanelChart.data(this.props.currentYear.data, this.props.currentYear.labels);
-
     return (
       <div>
         <PanelHeader size="sm"/>
@@ -80,6 +77,7 @@ class Usage extends React.Component {
                 cardTitle="Current Week"
                 chartLabels={this.props.currentWeek.labels}
                 chartData={this.props.currentWeek.data}
+                chartTooltipLabel="Volume (Liters)"
               />
             </Col>
             <Col xs={12} md={6}>
@@ -87,6 +85,7 @@ class Usage extends React.Component {
                 cardTitle="Current Month"
                 chartLabels={this.props.currentMonth.labels}
                 chartData={this.props.currentMonth.data}
+                chartTooltipLabel="Volume (Liters)"
               />
             </Col>
           </Row>
@@ -98,6 +97,7 @@ class Usage extends React.Component {
                 statValue={this.props.currentWeek.count}
                 chartLabels={this.props.currentWeek.labels}
                 chartData={this.props.currentWeek.data}
+                chartTooltipLabel="Volume (Liters)"
               />
             </Col>
           </Row>
@@ -109,6 +109,7 @@ class Usage extends React.Component {
                 statValue={this.props.currentMonth.count}
                 chartLabels={this.props.currentMonth.labels}
                 chartData={this.props.currentMonth.data}
+                chartTooltipLabel="Volume (Liters)"
               />
             </Col>
           </Row>
@@ -120,6 +121,7 @@ class Usage extends React.Component {
                 statValue={this.props.currentYear.count}
                 chartLabels={this.props.currentYear.labels}
                 chartData={this.props.currentYear.data}
+                chartTooltipLabel="Volume (Liters)"
               />
             </Col>
           </Row>

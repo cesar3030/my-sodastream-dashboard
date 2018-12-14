@@ -119,7 +119,7 @@ var gradientChartOptionsConfigurationWithNumbersAndGrid = {
 // #############################
 
 const dashboardPanelChart = {
-  data: (data, labels) =>
+  data: (data, labels, tooltipLabel) =>
     canvas => {
       const ctx = canvas.getContext("2d");
       var chartColor = "#FFFFFF";
@@ -134,7 +134,7 @@ const dashboardPanelChart = {
         labels: labels,
         datasets: [
           {
-            label: "Data",
+            label: tooltipLabel,
             borderColor: chartColor,
             pointBorderColor: chartColor,
             pointBackgroundColor: "#2c2c2c",
@@ -389,7 +389,7 @@ const dashboard24HoursPerformanceChart = {
 };
 
 const barChart = {
-  generate: (data, labels) => {
+  generate: (data, labels, tooltipLabel) => {
     return ({
       data: (canvas) => {
         var ctx = canvas.getContext("2d");
@@ -401,7 +401,7 @@ const barChart = {
           labels: labels,
           datasets: [
             {
-              label: "Active Countries",
+              label: tooltipLabel,
               backgroundColor: gradientFill,
               borderColor: "#2CA8FF",
               pointBorderColor: "#FFF",
@@ -470,7 +470,7 @@ const barChart = {
 }
 
 const borderlessLineChart = {
-  generate: (data, labels) => {
+  generate: (data, labels, tooltipLabel) => {
     return ({
       data: canvas => {
         var ctx = canvas.getContext("2d");
@@ -484,7 +484,7 @@ const borderlessLineChart = {
           labels: labels,
           datasets: [
             {
-              label: "Active Users",
+              label: tooltipLabel,
               borderColor: "#f96332",
               pointBorderColor: "#FFF",
               pointBackgroundColor: "#f96332",

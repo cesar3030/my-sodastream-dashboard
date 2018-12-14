@@ -48,7 +48,7 @@ class Overview extends React.Component {
   
   render() {
 
-    const chartData = dashboardPanelChart.data(this.props.nbRefillsPerDate, this.props.dates);
+    const chartData = dashboardPanelChart.data(this.props.nbRefillsPerDate, this.props.dates, "Nb Refills");
     // chartData.datasets[0].data = this.props.nbRefillsPerDate;
     // chartData.labels = this.props.dates;
 

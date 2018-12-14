@@ -13,7 +13,7 @@ import { Stats, CardCategory } from "components";
 
 class CardBorderlessChart extends Component {
   render() {
-    const chart = borderlessLineChart.generate(this.props.chartData, this.props.chartLabels);
+    const chart = borderlessLineChart.generate(this.props.chartData, this.props.chartLabels, this.props.chartTooltipLabel);
     
     return (
       <Card className="card-chart">
