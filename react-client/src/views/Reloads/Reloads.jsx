@@ -64,6 +64,7 @@ class Reload extends React.Component {
     const remainingTimeUsage = timeUsageAvg - timeUsage;
     const remainingOverAllUsagePercentage = 100 - overAllUsagePercentage;
     const nbReloadThisYear = this.getNbReloadThisYear();
+    
     return (
       <div>
         <PanelHeader size="sm"/>

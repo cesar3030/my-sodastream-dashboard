@@ -35,7 +35,7 @@ class Sidebar extends React.Component {
       <div className="sidebar" data-color="blue">
         <div className="logo">
           <a
-            href="https://www.creative-tim.com"
+            href="/overview"
             className="simple-text logo-normal text-center"
           >
           My Sodastream Dashboard
