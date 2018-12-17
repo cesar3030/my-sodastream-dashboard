@@ -1,6 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchCurrentWeekRefillsPerDate } from '../../actions/refills/currentWeekActions'
+import { fetchCurrentWeekRefillsPerDate, fetchCurrentWeekRefillsCount } from '../../actions/refills/currentWeekActions'
+import { fetchCurrentWeekUsageVolume } from '../../actions/usage/currentWeekActions'
+import { fetchCurrentReload } from '../../actions/reload/currentReloadActions';
+
 import {
   Row,
   Col,
@@ -23,14 +26,19 @@ import {
 const mapStateToProps = state => ({
   nbRefillsPerDate: state.refills.currentWeek.perDate.nbRefillsPerDate,
   dates: state.refills.currentWeek.perDate.dates,
-  chartTitle: "Current Week Refills",
-  loading: state.refills.currentWeek.perDate.loading
+  loading: state.refills.currentWeek.perDate.loading,
+  refillsCount: state.refills.currentWeek.count.value,
+  usageVolume: state.usage.currentWeek.volume.value,
+  reload: state.reloads.current,
 });
 
 const mapDispatchToProps = dispatch => {
   return {
     fetchData: () => {
       dispatch(fetchCurrentWeekRefillsPerDate())
+      dispatch(fetchCurrentWeekRefillsCount())
+      dispatch(fetchCurrentWeekUsageVolume())
+      dispatch(fetchCurrentReload());
     }
   }
 };
@@ -47,11 +55,9 @@ class Overview extends React.Component {
   }
   
   render() {
-
     const chartData = dashboardPanelChart.data(this.props.nbRefillsPerDate, this.props.dates, "Nb Refills");
-    // chartData.datasets[0].data = this.props.nbRefillsPerDate;
-    // chartData.labels = this.props.dates;
-
+    const { overAllUsagePercentage } = this.props.reload;
+    const remainingOverAllUsagePercentage = 100 - overAllUsagePercentage;
     return (
       <div>
         <PanelHeader
@@ -69,14 +75,16 @@ class Overview extends React.Component {
               <Row>
                 <Col xs={12} md={6}>
                   <CardStat
-                  title='Refill this week'
-                  value='3'
+                  title='Refills this week'
+                  value={this.props.refillsCount}
+                  unit='Refills'
                   />
                 </Col>
                 <Col xs={12} md={6}>
                   <CardStat
                   title='Usage this week'
-                  value='45'
+                  value={this.props.usageVolume}
+                  unit='Liters'
                   />
                 </Col>
                 <Col xs={12} md={6}>
@@ -101,7 +109,7 @@ class Overview extends React.Component {
                 </CardHeader>
                 <CardBody>
                   <Doughnut data={doughnutChart(
-                      [67,27],
+                      [overAllUsagePercentage,remainingOverAllUsagePercentage],
                       ['Used CO2', 'Remaining CO2']
                     )}>
                   </Doughnut>
