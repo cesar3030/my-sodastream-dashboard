@@ -30,6 +30,7 @@ export default class ApiRequest {
         .then(ApiRequest.handleErrors)
         .then(res => res.json())
         .then(value => {
+          console.log(value)
           dispatch(sucessfunction(value));
           return value;
         })

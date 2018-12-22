@@ -9,9 +9,9 @@ export const createReloadsBegin = () => ({
   type: CREATE_RELOAD_BEGIN
 });
 
-export const createReloadsSuccess = (reloads) => ({
+export const createReloadsSuccess = (reload) => ({
   type: CREATE_RELOAD_SUCCESS,
-  payload: reloads
+  payload: reload
 });
 
 export const createReloadsFailure = (error) => ({

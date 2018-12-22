@@ -1,7 +1,8 @@
 import { 
   FETCH_ALL_RELOADS_FAILURE, 
   FETCH_ALL_RELOADS_BEGIN, 
-  FETCH_ALL_RELOADS_SUCCESS
+  FETCH_ALL_RELOADS_SUCCESS,
+  CREATE_RELOAD_SUCCESS
 } from '../../constants/reloadActionsTypes';
 
 const initState = {
@@ -15,6 +16,11 @@ const all = (
   action
 ) => {
   switch (action.type) {
+    case CREATE_RELOAD_SUCCESS:
+     return {
+       ...state,
+       list: [...state.list, action.payload]
+     }
     case FETCH_ALL_RELOADS_FAILURE:
       return {
         ...state,
