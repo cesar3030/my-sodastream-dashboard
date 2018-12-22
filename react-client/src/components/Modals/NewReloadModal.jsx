@@ -36,6 +36,22 @@ class NewReloadModal extends React.Component {
     });
   }
 
+  notify(type, message) {
+    var options = {};
+    options = {
+      place: 'tr',
+      message: (
+        <div>
+          <div>{message}</div>
+        </div>
+      ),
+      type: type,
+      icon: "now-ui-icons ui-1_bell-53",
+      autoDismiss: 7
+    };
+    this.refs.notificationAlert.notificationAlert(options);
+  }
+
   handleOnChange = (event) => {
     this.setState({reloadPrice: event.target.value});
   }
@@ -48,9 +64,12 @@ class NewReloadModal extends React.Component {
   }
 
   handleOnSubmit = (event) => {
-    this.props.createReload(this.state.reloadPrice);
     event.preventDefault();
-    
+    const r = global.confirm("Confirm you really want to process the Bottle change?");
+    if (r === true) {
+      this.props.createReload(this.state.reloadPrice)
+      this.toggle();
+    }
   }
 
   render() {
