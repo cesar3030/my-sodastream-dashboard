@@ -4,13 +4,25 @@ import ReloadService from './service'
 
 export const create = ({ body }, res, next) =>
   Reload.create(body)
-    .then((reload) => reload.view(true))
+    .then((newReload) => newReload.view(true))
+    .then((newReload) => {
+      ReloadService.endPreviousReload(newReload)
+      return newReload;
+    })
     .then(success(res, 201))
     .catch(next)
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Reload.find(query, select, cursor)
     .then((reloads) => reloads.map((reload) => reload.view()))
+    .then(success(res))
+    .catch(next)
+
+export const toEnd = ({ querymen: { query, select, cursor } }, res, next) =>
+  Reload.findOne({endDate : undefined})
+    .sort({ field: 'asc', _id: 1 })
+    .limit(1)
+    .then((reload) => reload.view())
     .then(success(res))
     .catch(next)
 

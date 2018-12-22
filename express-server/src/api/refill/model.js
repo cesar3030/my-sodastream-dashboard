@@ -1,7 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
 import { Reload } from '../reload'
-import { moment } from 'moment-timezone'
-import { timezone } from '../../config'
 
 const refillSchema = new Schema({
   elapsedTime: {

@@ -56,4 +56,23 @@ export default class ReloadService {
       })
       .then((res) => res && res.length > 0 ? res[0] : {})
   }
+
+  /**
+   * Function to set the Reload of the reload before used before the new reload was added
+   * @param newReload The new reload
+   * @return {Object} Reload
+   */
+  static endPreviousReload(newReload) {
+    Reload.findOne({endDate : undefined})
+      .sort({ field: 'asc', _id: 1 })
+      .limit(1)
+      .then((reload) => {
+        if(reload) {
+          reload.endDate = newReload.createdAt;
+          reload.save()
+          return reload;
+        }
+      })
+      .then((reload) => reload ? reload.view() : null)
+  }
 }

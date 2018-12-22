@@ -1,9 +1,11 @@
 import mongoose, { Schema } from 'mongoose'
+import Reload from '.'
 
 const reloadSchema = new Schema({
   refillCount: {type: Number, default: 0},
   timeUsage: {type: Number, default: 0},
-  endDate: {type: Date, default: null}
+  endDate: {type: Date, default: null},
+  price: {type: Number, default: 0}
 }, { timestamps: true })
 
 reloadSchema.methods = {
@@ -14,7 +16,8 @@ reloadSchema.methods = {
       refillCount: this.refillCount,
       timeUsage: this.timeUsage.toFixed(2),
       endDate: this.endDate,
-      createdAt: this.createdAt
+      createdAt: this.createdAt,
+      price: this.price
     }
 
     return full ? {

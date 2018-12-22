@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
-import { create, index, show, update, destroy, currentReloadStats, currentReload } from './controller'
+import { create, index, show, update, destroy, currentReloadStats, currentReload, toEnd } from './controller'
 export Reload, { schema } from './model'
 
 const router = new Router()
@@ -49,6 +49,18 @@ router.get('/current/stats',
 router.get('/',
   query(),
   index)
+
+/**
+ * @api {get} /reloads Retrieve carbonator reloads
+ * @apiName RetrieveReloads
+ * @apiGroup Reload
+ * @apiUse listParams
+ * @apiSuccess {Object[]} reloads List of reloads.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ */
+router.get('/toEnd',
+  query(),
+  toEnd)
 
 /**
  * @api {get} /reloads/:id Retrieve a carbonator reload by id
