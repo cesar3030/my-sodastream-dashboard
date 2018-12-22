@@ -12,7 +12,7 @@ export const fetchCurrentWeekUsagePerDateBegin = () => ({
   type: FETCH_CURRENT_WEEK_USAGE_PER_DATE_BEGIN
 });
 
-export const fetchCurrentWeekUsagePerDateSucess = (usage) => ({
+export const fetchCurrentWeekUsagePerDateSuccess = (usage) => ({
   type: FETCH_CURRENT_WEEK_USAGE_PER_DATE_SUCCESS,
   payload: usage
 });
@@ -26,7 +26,7 @@ export const fetchCurrentWeekUsageVolumeBegin = () => ({
   type: FETCH_CURRENT_WEEK_USAGE_VOLUME_BEGIN
 });
 
-export const fetchCurrentWeekUsageVolumeSucess = (count) => ({
+export const fetchCurrentWeekUsageVolumeSuccess = (count) => ({
   type: FETCH_CURRENT_WEEK_USAGE_VOLUME_SUCCESS,
   payload: count
 });
@@ -40,7 +40,7 @@ export function fetchCurrentWeekUsagePerDate() {
   return ApiRequest.fetch(
     '/usage/currentWeek',
     fetchCurrentWeekUsagePerDateBegin,
-    (json) => fetchCurrentWeekUsagePerDateSucess(parseResponse(json)),
+    (json) => fetchCurrentWeekUsagePerDateSuccess(parseResponse(json)),
     fetchCurrentWeekUsagePerDateFailure
   );
 }
@@ -49,7 +49,7 @@ export function fetchCurrentWeekUsageVolume() {
   return ApiRequest.fetch(
     '/usage/currentWeek/volume',
     fetchCurrentWeekUsageVolumeBegin,
-    fetchCurrentWeekUsageVolumeSucess,
+    fetchCurrentWeekUsageVolumeSuccess,
     fetchCurrentWeekUsageVolumeFailure
   );
 }

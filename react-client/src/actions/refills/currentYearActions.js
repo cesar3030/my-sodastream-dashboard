@@ -12,7 +12,7 @@ export const fetchCurrentYearRefillsPerDateBegin = () => ({
   type: FETCH_CURRENT_YEAR_REFILLS_PER_DATE_BEGIN
 });
 
-export const fetchCurrentYearRefillsPerDateSucess = (refills) => ({
+export const fetchCurrentYearRefillsPerDateSuccess = (refills) => ({
   type: FETCH_CURRENT_YEAR_REFILLS_PER_DATE_SUCCESS,
   payload: refills
 });
@@ -26,7 +26,7 @@ export const fetchCurrentYearRefillsCountBegin = () => ({
   type: FETCH_CURRENT_YEAR_REFILLS_COUNT_BEGIN
 });
 
-export const fetchCurrentYearRefillsCountSucess = (count) => ({
+export const fetchCurrentYearRefillsCountSuccess = (count) => ({
   type: FETCH_CURRENT_YEAR_REFILLS_COUNT_SUCCESS,
   payload: count
 });
@@ -40,7 +40,7 @@ export function fetchCurrentYearRefillsPerDate() {
   return ApiRequest.fetch(
     '/refills/currentYear',
     fetchCurrentYearRefillsPerDateBegin,
-    (json) => fetchCurrentYearRefillsPerDateSucess(parseResponse(json)),
+    (json) => fetchCurrentYearRefillsPerDateSuccess(parseResponse(json)),
     fetchCurrentYearRefillsPerDateFailure
   );
 }
@@ -49,7 +49,7 @@ export function fetchCurrentYearRefillsCount() {
   return ApiRequest.fetch(
     '/refills/currentYear/count',
     fetchCurrentYearRefillsCountBegin,
-    fetchCurrentYearRefillsCountSucess,
+    fetchCurrentYearRefillsCountSuccess,
     fetchCurrentYearRefillsCountFailure
   );
 }

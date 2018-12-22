@@ -12,7 +12,7 @@ export const fetchCurrentWeekRefillsPerDateBegin = () => ({
   type: FETCH_CURRENT_WEEK_REFILLS_PER_DATE_BEGIN
 });
 
-export const fetchCurrentWeekRefillsPerDateSucess = (refills) => ({
+export const fetchCurrentWeekRefillsPerDateSuccess = (refills) => ({
   type: FETCH_CURRENT_WEEK_REFILLS_PER_DATE_SUCCESS,
   payload: refills
 });
@@ -26,7 +26,7 @@ export const fetchCurrentWeekRefillsCountBegin = () => ({
   type: FETCH_CURRENT_WEEK_REFILLS_COUNT_BEGIN
 });
 
-export const fetchCurrentWeekRefillsCountSucess = (count) => ({
+export const fetchCurrentWeekRefillsCountSuccess = (count) => ({
   type: FETCH_CURRENT_WEEK_REFILLS_COUNT_SUCCESS,
   payload: count
 });
@@ -40,7 +40,7 @@ export function fetchCurrentWeekRefillsPerDate() {
   return ApiRequest.fetch(
     '/refills/currentWeek',
     fetchCurrentWeekRefillsPerDateBegin,
-    (json) => fetchCurrentWeekRefillsPerDateSucess(parseResponse(json)),
+    (json) => fetchCurrentWeekRefillsPerDateSuccess(parseResponse(json)),
     fetchCurrentWeekRefillsPerDateFailure
   );
 }
@@ -49,7 +49,7 @@ export function fetchCurrentWeekRefillsCount() {
   return ApiRequest.fetch(
     '/refills/currentWeek/count',
     fetchCurrentWeekRefillsCountBegin,
-    fetchCurrentWeekRefillsCountSucess,
+    fetchCurrentWeekRefillsCountSuccess,
     fetchCurrentWeekRefillsCountFailure
   );
 }

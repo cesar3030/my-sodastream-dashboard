@@ -13,7 +13,7 @@ export const fetchCurrentMonthRefillsBegin = () => ({
   type: FETCH_CURRENT_MONTH_REFILLS_PER_DATE_BEGIN
 });
 
-export const fetchCurrentMonthRefillsSucess = (refills) => ({
+export const fetchCurrentMonthRefillsSuccess = (refills) => ({
   type: FETCH_CURRENT_MONTH_REFILLS_PER_DATE_SUCCESS,
   payload: refills
 });
@@ -27,7 +27,7 @@ export const fetchCurrentMonthRefillsCountBegin = () => ({
   type: FETCH_CURRENT_MONTH_REFILLS_COUNT_BEGIN
 });
 
-export const fetchCurrentMonthRefillsCountSucess = (count) => ({
+export const fetchCurrentMonthRefillsCountSuccess = (count) => ({
   type: FETCH_CURRENT_MONTH_REFILLS_COUNT_SUCCESS,
   payload: count
 });
@@ -41,7 +41,7 @@ export function fetchCurrentMonthRefillsPerDate() {
   return ApiRequest.fetch(
     '/refills/currentMonth',
     fetchCurrentMonthRefillsBegin,
-    (json) => fetchCurrentMonthRefillsSucess(parseResponse(json)),
+    (json) => fetchCurrentMonthRefillsSuccess(parseResponse(json)),
     fetchCurrentMonthRefillsFailure
   );
 }
@@ -50,7 +50,7 @@ export function fetchCurrentMonthRefillsCount() {
   return ApiRequest.fetch(
     '/refills/currentMonth/count',
     fetchCurrentMonthRefillsCountBegin,
-    fetchCurrentMonthRefillsCountSucess,
+    fetchCurrentMonthRefillsCountSuccess,
     fetchCurrentMonthRefillsCountFailure
   );
 }

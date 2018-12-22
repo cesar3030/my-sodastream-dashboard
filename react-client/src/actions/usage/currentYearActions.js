@@ -12,7 +12,7 @@ export const fetchCurrentYearUsagePerDateBegin = () => ({
   type: FETCH_CURRENT_YEAR_USAGE_PER_DATE_BEGIN
 });
 
-export const fetchCurrentYearUsagePerDateSucess = (refills) => ({
+export const fetchCurrentYearUsagePerDateSuccess = (refills) => ({
   type: FETCH_CURRENT_YEAR_USAGE_PER_DATE_SUCCESS,
   payload: refills
 });
@@ -26,7 +26,7 @@ export const fetchCurrentYearUsageVolumeBegin = () => ({
   type: FETCH_CURRENT_YEAR_USAGE_VOLUME_BEGIN
 });
 
-export const fetchCurrentYearUsageVolumeSucess = (count) => ({
+export const fetchCurrentYearUsageVolumeSuccess = (count) => ({
   type: FETCH_CURRENT_YEAR_USAGE_VOLUME_SUCCESS,
   payload: count
 });
@@ -40,7 +40,7 @@ export function fetchCurrentYearUsagePerDate() {
   return ApiRequest.fetch(
     '/usage/currentYear',
     fetchCurrentYearUsagePerDateBegin,
-    (json) => fetchCurrentYearUsagePerDateSucess(parseResponse(json)),
+    (json) => fetchCurrentYearUsagePerDateSuccess(parseResponse(json)),
     fetchCurrentYearUsagePerDateFailure
   );
 }
@@ -49,7 +49,7 @@ export function fetchCurrentYearUsageVolume() {
   return ApiRequest.fetch(
     '/usage/currentYear/volume',
     fetchCurrentYearUsageVolumeBegin,
-    fetchCurrentYearUsageVolumeSucess,
+    fetchCurrentYearUsageVolumeSuccess,
     fetchCurrentYearUsageVolumeFailure
   );
 }

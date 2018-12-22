@@ -10,7 +10,7 @@ export const fetchAllReloadsBegin = () => ({
   type: FETCH_ALL_RELOADS_BEGIN
 });
 
-export const fetchAllReloadsSucess = (reloads) => ({
+export const fetchAllReloadsSuccess = (reloads) => ({
   type: FETCH_ALL_RELOADS_SUCCESS,
   payload: reloads
 });
@@ -24,11 +24,16 @@ export function fetchAllReloads() {
   return ApiRequest.fetch(
     '/reloads',
     fetchAllReloadsBegin,
-    fetchAllReloadsSucess,
+    fetchAllReloadsSuccess,
     fetchAllReloadsFailure
   );
 }
 
 export function createReload(price) {
-
+  return ApiRequest.fetch(
+    '/reloads',
+    createReloadsBegin,
+    crueateReloadsSuccess,
+    fetchAllReloadsFailure
+  );
 }

@@ -10,7 +10,7 @@ export const fetchCurrentReloadBegin = () => ({
   type: FETCH_CURRENT_RELOAD_BEGIN
 });
 
-export const fetchCurrentReloadSucess = (reload) => ({
+export const fetchCurrentReloadSuccess = (reload) => ({
   type: FETCH_CURRENT_RELOAD_SUCCESS,
   payload: reload
 });
@@ -24,7 +24,7 @@ export function fetchCurrentReload() {
   return ApiRequest.fetch(
     '/reloads/current/stats',
     fetchCurrentReloadBegin,
-    fetchCurrentReloadSucess,
+    fetchCurrentReloadSuccess,
     fetchCurrentReloadFailure
   );
 }
