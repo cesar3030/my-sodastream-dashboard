@@ -12,13 +12,15 @@ import {
   CardHeader,
   CardTitle,
   CardBody,
-  Table
+  Table,
+  UncontrolledDropdown,
+  DropdownToggle
 } from "reactstrap";
 // react plugin used to create charts
 import { Doughnut } from "react-chartjs-2";
 // function that returns a color based on an interval of numbers
 
-import { PanelHeader, CardStat, CardCategory } from "components";
+import { PanelHeader, CardStat, CardCategory, NewReloadModal } from "components";
 
 import { doughnutChart } from "variables/charts.jsx";
 
@@ -143,10 +145,11 @@ class Reload extends React.Component {
           </Row>
           <Row>
           <Col xs={12}>
-              <Card>
+              <Card className="card-chart">
                 <CardHeader>
                   <CardCategory>Details</CardCategory>
                   <CardTitle tag="h4">Reload list</CardTitle>
+                    <NewReloadModal buttonLabel={<i class="now-ui-icons ui-1_simple-add"></i>} />
                 </CardHeader>
                 <CardBody>
                   <Table responsive>

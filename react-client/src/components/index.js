@@ -25,6 +25,8 @@ import Stats from './Stats/Stats';
 
 import Tasks from './Tasks/Tasks';
 
+import NewReloadModal from './Modals/NewReloadModal'
+
 export {
     // CardElements
     CardAuthor,
@@ -53,4 +55,6 @@ export {
     Stats,
     // Tasks
     Tasks,
+    // Modals
+    NewReloadModal,
 };
