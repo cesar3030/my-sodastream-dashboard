@@ -1,7 +1,7 @@
 import { 
   FETCH_ALL_RELOADS_FAILURE, 
   FETCH_ALL_RELOADS_BEGIN, 
-  FETCH_ALL_RELOADS_SUCCESS
+  FETCH_ALL_RELOADS_SUCCESS,
 } from '../../constants/reloadActionsTypes';
 import ApiRequest from '../../utils/api-request';
 
@@ -25,15 +25,6 @@ export function fetchAllReloads() {
     '/reloads',
     fetchAllReloadsBegin,
     fetchAllReloadsSuccess,
-    fetchAllReloadsFailure
-  );
-}
-
-export function createReload(price) {
-  return ApiRequest.fetch(
-    '/reloads',
-    createReloadsBegin,
-    crueateReloadsSuccess,
     fetchAllReloadsFailure
   );
 }

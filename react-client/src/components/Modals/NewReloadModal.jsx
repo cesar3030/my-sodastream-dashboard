@@ -1,5 +1,22 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { createReload } from '../../actions/reload/createReloadActions';
+import { connect } from 'react-redux'
+
+const mapStateToProps = state => ({
+  reloadCreation : {
+    loading: state.reloads.create.loading,
+    error: state.reloads.create.error,
+  }
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    createReload: (price) => {
+      dispatch(createReload(price));
+    }
+  }
+};
 
 class NewReloadModal extends React.Component {
   constructor(props) {
@@ -31,8 +48,9 @@ class NewReloadModal extends React.Component {
   }
 
   handleOnSubmit = (event) => {
-    alert('Selected Price: ' + this.state.reloadPrice );
+    this.props.createReload(this.state.reloadPrice);
     event.preventDefault();
+    
   }
 
   render() {
@@ -74,4 +92,4 @@ class NewReloadModal extends React.Component {
   }
 }
 
-export default NewReloadModal;
+export default connect(mapStateToProps, mapDispatchToProps)(NewReloadModal);

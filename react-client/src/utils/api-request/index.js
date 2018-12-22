@@ -17,10 +17,15 @@ export default class ApiRequest {
   static post(url, payload, beginFunction, sucessfunction, errorFunction){
     return dispatch => {
       dispatch(beginFunction());
-      var form = new FormData(payload);
+      
+      const searchParams = new URLSearchParams();
+      for (const prop in payload) {
+        searchParams.set(prop, payload[prop]);
+      }
+
       return fetch(`${process.env.REACT_APP_API_URL}${url}`,{
           method: "POST",
-          body: form
+          body: searchParams
         })
         .then(ApiRequest.handleErrors)
         .then(res => res.json())
