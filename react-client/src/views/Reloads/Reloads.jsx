@@ -149,7 +149,7 @@ class Reload extends React.Component {
                 <CardHeader>
                   <CardCategory>Details</CardCategory>
                   <CardTitle tag="h4">Reload list</CardTitle>
-                    <NewReloadModal buttonLabel={<i class="now-ui-icons ui-1_simple-add"></i>} />
+                    <NewReloadModal buttonLabel={<i className="now-ui-icons ui-1_simple-add"></i>} />
                 </CardHeader>
                 <CardBody>
                   <Table responsive>
@@ -167,7 +167,7 @@ class Reload extends React.Component {
                       { 
                         this.props.allReloads.map((reload, index) => {
                           return (
-                            <tr>
+                            <tr key={index}>
                               <td>{this.props.allReloads.length - index}</td>
                               <td>{reload.endDate ? `${DateFormat.getDateDifference(reload.createdAt, reload.endDate)} Days` : "- - - -"}</td>
                               <td>{reload.refillCount}</td>

@@ -102,7 +102,7 @@ class NewReloadModal extends React.Component {
             </form>
           </ModalBody>
           <ModalFooter>
-            <Button type='submit' form="newReloadForm" color="primary">Do Something</Button>{' '}
+            <Button type='submit' form="newReloadForm" color="primary">Add Bottle</Button>{' '}
             <Button color="secondary" onClick={this.toggle}>Cancel</Button>
           </ModalFooter>
         </Modal>
