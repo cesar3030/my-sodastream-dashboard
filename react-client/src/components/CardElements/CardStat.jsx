@@ -13,7 +13,7 @@ const CardStat = (props) => {
         <CardCategory>{props.title}</CardCategory>
       </CardHeader>
       <CardBody>
-        <h3 class="text-center">{parseFloat(Number(props.value).toFixed(2))} {props.unit}</h3>
+        <h3 className="text-center">{parseFloat(Number(props.value).toFixed(2))} {props.unit}</h3>
       </CardBody>
     </Card>
   );
