@@ -41,7 +41,7 @@ var dashRoutes = [
     icon: "objects_spaceship",
     component: Reloads
   },
-  { path: "/icons", name: "Icons", icon: "design_image", component: Icons },
+  // { path: "/icons", name: "Icons", icon: "design_image", component: Icons },
   // { path: "/maps", name: "Maps", icon: "location_map-big", component: Maps },
   // {
   //   path: "/notifications",
