@@ -1,4 +1,4 @@
-import moment from 'moment-timezone';
+import moment from "moment-timezone";
 
 export default class DateFormat {
   static getMonthDateOrdinal(strDate) {
@@ -8,10 +8,12 @@ export default class DateFormat {
   static getDateDifference(strStartDate, strEndDate) {
     var start = DateFormat.stringDateToMomentTimezone(strStartDate);
     var end = DateFormat.stringDateToMomentTimezone(strEndDate);
-    return Math.abs(start.diff(end, 'days'))
+    return Math.abs(start.diff(end, "days"));
   }
 
   static stringDateToMomentTimezone(strDate) {
-    return moment(strDate,'YYYY-MM-DD HH:mm:ssZZ').tz(process.env.REACT_APP_TIMEZONE);
+    return moment(strDate, "YYYY-MM-DD HH:mm:ssZZ").tz(
+      process.env.REACT_APP_TIMEZONE
+    );
   }
 }

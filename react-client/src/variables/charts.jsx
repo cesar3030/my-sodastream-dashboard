@@ -119,39 +119,38 @@ var gradientChartOptionsConfigurationWithNumbersAndGrid = {
 // #############################
 
 const dashboardPanelChart = {
-  data: (data, labels, tooltipLabel) =>
-    canvas => {
-      const ctx = canvas.getContext("2d");
-      var chartColor = "#FFFFFF";
-      var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
-      gradientStroke.addColorStop(0, "#80b6f4");
-      gradientStroke.addColorStop(1, chartColor);
-      var gradientFill = ctx.createLinearGradient(0, 200, 0, 50);
-      gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
-      gradientFill.addColorStop(1, "rgba(255, 255, 255, 0.14)");
+  data: (data, labels, tooltipLabel) => canvas => {
+    const ctx = canvas.getContext("2d");
+    var chartColor = "#FFFFFF";
+    var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
+    gradientStroke.addColorStop(0, "#80b6f4");
+    gradientStroke.addColorStop(1, chartColor);
+    var gradientFill = ctx.createLinearGradient(0, 200, 0, 50);
+    gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
+    gradientFill.addColorStop(1, "rgba(255, 255, 255, 0.14)");
 
-      return {
-        labels: labels,
-        datasets: [
-          {
-            label: tooltipLabel,
-            borderColor: chartColor,
-            pointBorderColor: chartColor,
-            pointBackgroundColor: "#2c2c2c",
-            pointHoverBackgroundColor: "#2c2c2c",
-            pointHoverBorderColor: chartColor,
-            pointBorderWidth: 1,
-            pointHoverRadius: 7,
-            pointHoverBorderWidth: 2,
-            pointRadius: 0,
-            fill: true,
-            backgroundColor: gradientFill,
-            borderWidth: 2,
-            data: data,
-            radius: 0
-          }
-        ]
-      };
+    return {
+      labels: labels,
+      datasets: [
+        {
+          label: tooltipLabel,
+          borderColor: chartColor,
+          pointBorderColor: chartColor,
+          pointBackgroundColor: "#2c2c2c",
+          pointHoverBackgroundColor: "#2c2c2c",
+          pointHoverBorderColor: chartColor,
+          pointBorderWidth: 1,
+          pointHoverRadius: 7,
+          pointHoverBorderWidth: 2,
+          pointRadius: 0,
+          fill: true,
+          backgroundColor: gradientFill,
+          borderWidth: 2,
+          data: data,
+          radius: 0
+        }
+      ]
+    };
   },
   options: {
     layout: {
@@ -390,13 +389,13 @@ const dashboard24HoursPerformanceChart = {
 
 const barChart = {
   generate: (data, labels, tooltipLabel) => {
-    return ({
-      data: (canvas) => {
+    return {
+      data: canvas => {
         var ctx = canvas.getContext("2d");
         var gradientFill = ctx.createLinearGradient(0, 170, 0, 50);
         gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
         gradientFill.addColorStop(1, hexToRGB("#2CA8FF", 0.6));
-        
+
         return {
           labels: labels,
           datasets: [
@@ -465,13 +464,13 @@ const barChart = {
           padding: { left: 0, right: 0, top: 15, bottom: 15 }
         }
       }
-    });
+    };
   }
-}
+};
 
 const borderlessLineChart = {
   generate: (data, labels, tooltipLabel) => {
-    return ({
+    return {
       data: canvas => {
         var ctx = canvas.getContext("2d");
         var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
@@ -501,29 +500,22 @@ const borderlessLineChart = {
         };
       },
       options: gradientChartOptionsConfiguration
-    });
+    };
   }
 };
 
 const doughnutChart = (data, labels) => {
- return (
-   { 
-      labels: labels,
-      datasets: [{
+  return {
+    labels: labels,
+    datasets: [
+      {
         data: data,
-        backgroundColor: [
-          '#FF6384',
-          '#36A2EB'
-        ],
-        hoverBackgroundColor: [
-          '#FF6384',
-          '#36A2EB'
-        ]
-      }]
-    }
- );
+        backgroundColor: ["#FF6384", "#36A2EB"],
+        hoverBackgroundColor: ["#FF6384", "#36A2EB"]
+      }
+    ]
+  };
 };
-
 
 module.exports = {
   dashboardPanelChart, // Chart for Dashboard view - Will be rendered in panel
@@ -532,5 +524,5 @@ module.exports = {
   dashboard24HoursPerformanceChart, // Chart for Dashboard view - 24 Hours Performance Card
   barChart,
   borderlessLineChart,
-  doughnutChart,
+  doughnutChart
 };

@@ -1,8 +1,8 @@
-import { 
-  CREATE_RELOAD_FAILURE, 
-  CREATE_RELOAD_BEGIN, 
+import {
+  CREATE_RELOAD_FAILURE,
+  CREATE_RELOAD_BEGIN,
   CREATE_RELOAD_SUCCESS
-} from '../../constants/reloadActionsTypes';
+} from "../../constants/reloadActionsTypes";
 
 const initState = {
   newReload: null,
@@ -10,10 +10,7 @@ const initState = {
   error: null
 };
 
-const create = (
-  state = initState,
-  action
-) => {
+const create = (state = initState, action) => {
   switch (action.type) {
     case CREATE_RELOAD_FAILURE:
       return {
@@ -34,7 +31,7 @@ const create = (
         newReload: action.payload
       };
     default:
-      return state
+      return state;
   }
 };
 

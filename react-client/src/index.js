@@ -8,8 +8,8 @@ import "assets/scss/now-ui-dashboard.css";
 import "assets/css/demo.css";
 
 import indexRoutes from "routes/index.jsx";
-import store from './store';
-import { Provider } from 'react-redux';
+import store from "./store";
+import { Provider } from "react-redux";
 
 const hist = createBrowserHistory();
 
@@ -18,7 +18,9 @@ ReactDOM.render(
     <Router history={hist}>
       <Switch>
         {indexRoutes.map((prop, key) => {
-          return <Route path={prop.path} key={key} component={prop.component} />;
+          return (
+            <Route path={prop.path} key={key} component={prop.component} />
+          );
         })}
       </Switch>
     </Router>
