@@ -1,26 +1,23 @@
-import { 
-  FETCH_ALL_RELOADS_FAILURE, 
-  FETCH_ALL_RELOADS_BEGIN, 
+import {
+  FETCH_ALL_RELOADS_FAILURE,
+  FETCH_ALL_RELOADS_BEGIN,
   FETCH_ALL_RELOADS_SUCCESS,
   CREATE_RELOAD_SUCCESS
-} from '../../constants/reloadActionsTypes';
+} from "../../constants/reloadActionsTypes";
 
 const initState = {
-  list:[],
+  list: [],
   loading: false,
   error: null
 };
 
-const all = (
-  state = initState,
-  action
-) => {
+const all = (state = initState, action) => {
   switch (action.type) {
     case CREATE_RELOAD_SUCCESS:
-     return {
-       ...state,
-       list: [...state.list, action.payload]
-     }
+      return {
+        ...state,
+        list: [...state.list, action.payload]
+      };
     case FETCH_ALL_RELOADS_FAILURE:
       return {
         ...state,
@@ -40,7 +37,7 @@ const all = (
         list: action.payload
       };
     default:
-      return state
+      return state;
   }
 };
 

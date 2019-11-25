@@ -164,8 +164,8 @@ class Dashboard extends React.Component {
                   <Stats>
                     {[
                       {
-                        i: "now-ui-icons loader_refresh spin",
-                        t: "Updated 3 minutes ago"
+                        i: "now-ui-icons arrows-1_refresh-69",
+                        t: "Just Updated"
                       }
                     ]}
                   </Stats>

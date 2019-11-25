@@ -1,14 +1,22 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchCurrentWeekRefillsPerDate, fetchCurrentWeekRefillsCount } from '../../actions/refills/currentWeekActions'
-import { fetchCurrentMonthRefillsPerDate, fetchCurrentMonthRefillsCount } from '../../actions/refills/currentMonthActions'
-import { fetchCurrentYearRefillsPerDate, fetchCurrentYearRefillsCount } from '../../actions/refills/currentYearActions'
+import {
+  fetchCurrentWeekRefillsPerDate,
+  fetchCurrentWeekRefillsCount
+} from "../../actions/refills/currentWeekActions";
+import {
+  fetchCurrentMonthRefillsPerDate,
+  fetchCurrentMonthRefillsCount
+} from "../../actions/refills/currentMonthActions";
+import {
+  fetchCurrentYearRefillsPerDate,
+  fetchCurrentYearRefillsCount
+} from "../../actions/refills/currentYearActions";
 import { Row, Col } from "reactstrap";
 import { Line } from "react-chartjs-2";
 import { PanelHeader, CardStatChart } from "components";
 import { dashboardPanelChart } from "variables/charts";
 import { CardBorderlessChart } from "../../components";
-
 
 const mapStateToProps = state => ({
   nbRefillsPerDate: state.refills.currentWeek.perDate.nbRefillsPerDate,
@@ -29,7 +37,7 @@ const mapStateToProps = state => ({
     count: state.refills.currentYear.count.value,
     labels: state.refills.currentYear.perDate.dates,
     data: state.refills.currentYear.perDate.nbRefillsPerDate
-  },
+  }
 });
 
 const mapDispatchToProps = dispatch => {
@@ -42,39 +50,37 @@ const mapDispatchToProps = dispatch => {
       dispatch(fetchCurrentYearRefillsPerDate());
       dispatch(fetchCurrentYearRefillsCount());
     }
-  }
+  };
 };
 
-
 class Refills extends React.Component {
-  
   componentDidMount() {
-    const { fetchData } = this.props; 
+    const { fetchData } = this.props;
 
-    if(typeof fetchData === "function") {
+    if (typeof fetchData === "function") {
       fetchData();
     }
   }
-  
-  render() {
 
-    const chartData = dashboardPanelChart.data(this.props.currentYear.data, this.props.currentYear.labels, "Nb refills");
+  render() {
+    const chartData = dashboardPanelChart.data(
+      this.props.currentYear.data,
+      this.props.currentYear.labels,
+      "Nb refills"
+    );
 
     return (
       <div>
         <PanelHeader
           size="lg"
           content={
-            <Line
-              data={chartData}
-              options={dashboardPanelChart.options}
-            />
+            <Line data={chartData} options={dashboardPanelChart.options} />
           }
         />
         <div className="content">
           <Row>
             <Col xs={12} md={6}>
-              <CardBorderlessChart 
+              <CardBorderlessChart
                 cardTitle="Current Week"
                 chartLabels={this.props.currentWeek.labels}
                 chartData={this.props.currentWeek.data}
@@ -82,7 +88,7 @@ class Refills extends React.Component {
               />
             </Col>
             <Col xs={12} md={6}>
-              <CardBorderlessChart 
+              <CardBorderlessChart
                 cardTitle="Current Month"
                 chartLabels={this.props.currentMonth.labels}
                 chartData={this.props.currentMonth.data}
@@ -92,7 +98,7 @@ class Refills extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <CardStatChart 
+              <CardStatChart
                 cardTitle="Current Week"
                 statTitle="Total Refills"
                 statValue={this.props.currentWeek.count}
@@ -104,7 +110,7 @@ class Refills extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <CardStatChart 
+              <CardStatChart
                 cardTitle="Current Month"
                 statTitle="Total Refills"
                 statValue={this.props.currentMonth.count}
@@ -116,7 +122,7 @@ class Refills extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <CardStatChart 
+              <CardStatChart
                 cardTitle="Current Year"
                 statTitle="Total Refills"
                 statValue={this.props.currentYear.count}
@@ -132,4 +138,7 @@ class Refills extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Refills);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Refills);

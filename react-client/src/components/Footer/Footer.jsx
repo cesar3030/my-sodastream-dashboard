@@ -13,7 +13,12 @@ class Footer extends React.Component {
           <nav>
             <ul>
               <li>
-                <a href="https://github.com/cesar3030/my-sodastream-dashboard" target="_blank">GitHub project</a>
+                <a
+                  href="https://github.com/cesar3030/my-sodastream-dashboard"
+                  target="_blank"
+                >
+                  GitHub project
+                </a>
               </li>
             </ul>
           </nav>
@@ -25,7 +30,8 @@ class Footer extends React.Component {
               rel="noopener noreferrer"
             >
               Cesar Jeanroy
-            </a>.
+            </a>
+            .
           </div>
         </Container>
       </footer>
