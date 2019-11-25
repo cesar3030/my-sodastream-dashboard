@@ -14,7 +14,11 @@ import { Stats, CardCategory, CardStat } from "components";
 
 class CardStatChart extends Component {
   render() {
-    const chart = barChart.generate(this.props.chartData, this.props.chartLabels, this.props.chartTooltipLabel);
+    const chart = barChart.generate(
+      this.props.chartData,
+      this.props.chartLabels,
+      this.props.chartTooltipLabel
+    );
     return (
       <Card>
         <CardHeader>
@@ -24,17 +28,14 @@ class CardStatChart extends Component {
         <CardBody>
           <Row>
             <Col xs={4} className="font-icon-list">
-              <CardStat 
+              <CardStat
                 title={this.props.statTitle}
                 value={this.props.statValue}
               />
             </Col>
             <Col xs={8}>
               <div className="chart-area">
-                <Bar
-                  data={chart.data}
-                  options={chart.options}
-                />
+                <Bar data={chart.data} options={chart.options} />
               </div>
             </Col>
           </Row>
@@ -44,8 +45,8 @@ class CardStatChart extends Component {
           <Stats>
             {[
               {
-                i: "now-ui-icons loader_refresh spin",
-                t: "Updated 3 minutes ago"
+                i: "now-ui-icons arrows-1_refresh-69",
+                t: "Just updated"
               }
             ]}
           </Stats>

@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchCurrentReload } from '../../actions/reload/currentReloadActions';
-import { fetchAllReloads } from '../../actions/reload/allReloadsActions';
-import DateFormat from '../../utils/date-format';
-import moment from 'moment-timezone';
+import { fetchCurrentReload } from "../../actions/reload/currentReloadActions";
+import { fetchAllReloads } from "../../actions/reload/allReloadsActions";
+import DateFormat from "../../utils/date-format";
+import moment from "moment-timezone";
 
 import {
   Row,
@@ -20,10 +20,14 @@ import {
 import { Doughnut } from "react-chartjs-2";
 // function that returns a color based on an interval of numbers
 
-import { PanelHeader, CardStat, CardCategory, NewReloadModal } from "components";
+import {
+  PanelHeader,
+  CardStat,
+  CardCategory,
+  NewReloadModal
+} from "components";
 
 import { doughnutChart } from "variables/charts.jsx";
-
 
 const mapStateToProps = state => ({
   current: state.reloads.current,
@@ -36,60 +40,59 @@ const mapDispatchToProps = dispatch => {
       dispatch(fetchCurrentReload());
       dispatch(fetchAllReloads());
     }
-  }
+  };
 };
 
-
 class Reload extends React.Component {
-  
   componentDidMount() {
-    const { fetchData } = this.props; 
+    const { fetchData } = this.props;
 
-    if(typeof fetchData === "function") {
+    if (typeof fetchData === "function") {
       fetchData();
     }
   }
 
   getNbReloadThisYear() {
     const currentyear = moment().tz(process.env.REACT_APP_TIMEZONE).year;
-    return this.props.allReloads
-      .filter((reload) => {
-      return currentyear === DateFormat.stringDateToMomentTimezone(reload.createdAt).year
-      })
-      .length;
+    return this.props.allReloads.filter(reload => {
+      return (
+        currentyear ===
+        DateFormat.stringDateToMomentTimezone(reload.createdAt).year
+      );
+    }).length;
   }
-  
+
   render() {
-    const { refillCount, timeUsage, overAllUsagePercentage } = this.props.current;
+    const {
+      refillCount,
+      timeUsage,
+      overAllUsagePercentage
+    } = this.props.current;
     const { refillCountAvg, timeUsageAvg } = this.props.current.stats;
-    const remainingRefills = refillCountAvg - refillCount;
+    const remainingRefills = Math.floor(refillCountAvg - refillCount);
     const remainingTimeUsage = timeUsageAvg - timeUsage;
     const remainingOverAllUsagePercentage = 100 - overAllUsagePercentage;
     const nbReloadThisYear = this.getNbReloadThisYear();
-    
+
     return (
       <div>
-        <PanelHeader size="sm"/>
+        <PanelHeader size="sm" />
         <div className="content">
           <Row>
             <Col xs={12} md={4}>
               <CardStat
-               title='Overall CO2 bottles'
-               value={this.props.allReloads.length}
+                title="Overall CO2 bottles"
+                value={this.props.allReloads.length}
               />
             </Col>
             <Col xs={12} md={4}>
               <CardStat
-               title='This year CO2 bottles'
-               value={nbReloadThisYear}
+                title="This year CO2 bottles"
+                value={nbReloadThisYear}
               />
             </Col>
             <Col xs={12} md={4}>
-              <CardStat
-               title='Next change in'
-               value='9'
-               unit='Days'
-              />
+              <CardStat title="Next change in" value="9" unit="Days" />
             </Col>
           </Row>
           <Row>
@@ -100,18 +103,18 @@ class Reload extends React.Component {
                   <CardTitle tag="h4">{this.props.cardTitle}</CardTitle>
                 </CardHeader>
                 <CardBody>
-                  <Row className='align-items-center'>
+                  <Row className="align-items-center">
                     <Col xs={12} md={7}>
                       <Row>
                         <Col xs={12} md={6}>
                           <CardStat
-                            title='Refills to date'
+                            title="Refills to date"
                             value={refillCount}
                           />
                         </Col>
                         <Col xs={12} md={6}>
                           <CardStat
-                            title='Remaing Refills'
+                            title="Remaing Refills"
                             value={remainingRefills}
                           />
                         </Col>
@@ -119,24 +122,28 @@ class Reload extends React.Component {
                       <Row>
                         <Col xs={12} md={6}>
                           <CardStat
-                            title='CO2 Used (in seconds)'
+                            title="CO2 Used (in seconds)"
                             value={timeUsage}
                           />
                         </Col>
                         <Col xs={12} md={6}>
                           <CardStat
-                            title='CO2 Remaining (in seconds)'
+                            title="CO2 Remaining (in seconds)"
                             value={remainingTimeUsage}
                           />
                         </Col>
                       </Row>
                     </Col>
                     <Col xs={12} md={5}>
-                      <Doughnut data={doughnutChart(
-                          [overAllUsagePercentage,remainingOverAllUsagePercentage],
-                          ['Used CO2', 'Remaining CO2']
-                        )}>
-                      </Doughnut>
+                      <Doughnut
+                        data={doughnutChart(
+                          [
+                            overAllUsagePercentage,
+                            remainingOverAllUsagePercentage
+                          ],
+                          ["Used CO2", "Remaining CO2"]
+                        )}
+                      />
                     </Col>
                   </Row>
                 </CardBody>
@@ -144,12 +151,14 @@ class Reload extends React.Component {
             </Col>
           </Row>
           <Row>
-          <Col xs={12}>
+            <Col xs={12}>
               <Card className="card-chart">
                 <CardHeader>
                   <CardCategory>Details</CardCategory>
                   <CardTitle tag="h4">Reload list</CardTitle>
-                    <NewReloadModal buttonLabel={<i className="now-ui-icons ui-1_simple-add"></i>} />
+                  <NewReloadModal
+                    buttonLabel={<i className="now-ui-icons ui-1_simple-add" />}
+                  />
                 </CardHeader>
                 <CardBody>
                   <Table responsive>
@@ -164,32 +173,45 @@ class Reload extends React.Component {
                       </tr>
                     </thead>
                     <tbody>
-                      { 
-                        this.props.allReloads.map((reload, index) => {
-                          return (
-                            <tr key={index}>
-                              <td>{this.props.allReloads.length - index}</td>
-                              <td>{reload.endDate ? `${DateFormat.getDateDifference(reload.createdAt, reload.endDate)} Days` : "- - - -"}</td>
-                              <td>{reload.refillCount}</td>
-                              <td>{reload.timeUsage}</td>
-                              <td>{DateFormat.getMonthDateOrdinal(reload.createdAt)}</td>
-                              <td>{reload.endDate ? DateFormat.getMonthDateOrdinal(reload.endDate) : "- - - -"}</td>
-                            </tr>
-                          )
-                        })
-                      }
+                      {this.props.allReloads.map((reload, index) => {
+                        return (
+                          <tr key={index}>
+                            <td>{this.props.allReloads.length - index}</td>
+                            <td>
+                              {reload.endDate
+                                ? `${DateFormat.getDateDifference(
+                                    reload.createdAt,
+                                    reload.endDate
+                                  )} Days`
+                                : "- - - -"}
+                            </td>
+                            <td>{reload.refillCount}</td>
+                            <td>{reload.timeUsage}</td>
+                            <td>
+                              {DateFormat.getMonthDateOrdinal(reload.createdAt)}
+                            </td>
+                            <td>
+                              {reload.endDate
+                                ? DateFormat.getMonthDateOrdinal(reload.endDate)
+                                : "- - - -"}
+                            </td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </Table>
                 </CardBody>
               </Card>
             </Col>
           </Row>
-          <Row>
-          </Row>
+          <Row />
         </div>
       </div>
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Reload);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Reload);
