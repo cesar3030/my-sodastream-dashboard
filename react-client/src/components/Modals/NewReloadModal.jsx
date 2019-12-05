@@ -1,21 +1,21 @@
-import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { createReload } from '../../actions/reload/createReloadActions';
-import { connect } from 'react-redux'
+import React from "react";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { createReload } from "../../actions/reload/createReloadActions";
+import { connect } from "react-redux";
 
 const mapStateToProps = state => ({
-  reloadCreation : {
+  reloadCreation: {
     loading: state.reloads.create.loading,
-    error: state.reloads.create.error,
+    error: state.reloads.create.error
   }
 });
 
 const mapDispatchToProps = dispatch => {
   return {
-    createReload: (price) => {
+    createReload: price => {
       dispatch(createReload(price));
     }
-  }
+  };
 };
 
 class NewReloadModal extends React.Component {
@@ -24,7 +24,7 @@ class NewReloadModal extends React.Component {
     this.state = {
       modal: false,
       reloadPrice: Number(process.env.REACT_APP_RELOAD_RECHARDED_BOTTLE_PRICE),
-      customPrice: 0,
+      customPrice: 0
     };
 
     this.toggle = this.toggle.bind(this);
@@ -39,7 +39,7 @@ class NewReloadModal extends React.Component {
   notify(type, message) {
     var options = {};
     options = {
-      place: 'tr',
+      place: "tr",
       message: (
         <div>
           <div>{message}</div>
@@ -52,58 +52,109 @@ class NewReloadModal extends React.Component {
     this.refs.notificationAlert.notificationAlert(options);
   }
 
-  handleOnChange = (event) => {
-    this.setState({reloadPrice: event.target.value});
-  }
+  handleOnChange = event => {
+    this.setState({ reloadPrice: event.target.value });
+  };
 
-  handleCustomPrice = (event) => {
+  handleCustomPrice = event => {
     this.setState({
       reloadPrice: event.target.value,
-      customPrice: event.target.value,
+      customPrice: event.target.value
     });
-  }
+  };
 
-  handleOnSubmit = (event) => {
+  handleOnSubmit = event => {
     event.preventDefault();
-    const r = global.confirm("Confirm you really want to process the Bottle change?");
+    const r = global.confirm(
+      "Confirm you really want to process the Bottle change?"
+    );
     if (r === true) {
-      this.props.createReload(this.state.reloadPrice)
+      this.props.createReload(this.state.reloadPrice);
       this.toggle();
     }
-  }
+  };
 
   render() {
-      const closeBtn = <button className="close" onClick={this.toggle}>&times;</button>;
-      const newBottlePrice = process.env.REACT_APP_RELOAD_NEW_BOTTLE_PRICE;
-      const reloadedBottlePrice = process.env.REACT_APP_RELOAD_RECHARDED_BOTTLE_PRICE;
+    const closeBtn = (
+      <button className="close" onClick={this.toggle}>
+        &times;
+      </button>
+    );
+    const newBottlePrice = process.env.REACT_APP_RELOAD_NEW_BOTTLE_PRICE;
+    const reloadedBottlePrice =
+      process.env.REACT_APP_RELOAD_RECHARDED_BOTTLE_PRICE;
 
-      return (
+    return (
       <div className="dropdown show">
-        <Button color="default" onClick={this.toggle} className="btn-round btn-simple btn-icon btn btn-default">{this.props.buttonLabel}</Button>
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle} close={closeBtn}>New CO2 Bottle Changement</ModalHeader>
+        <Button
+          color="default"
+          onClick={this.toggle}
+          className="btn-round btn-simple btn-icon btn btn-default"
+        >
+          {this.props.buttonLabel}
+        </Button>
+        <Modal
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+          className={this.props.className}
+        >
+          <ModalHeader toggle={this.toggle} close={closeBtn}>
+            New CO2 Bottle Changement
+          </ModalHeader>
           <ModalBody>
             <form id="newReloadForm" onSubmit={this.handleOnSubmit}>
               <div className="form-check">
                 <label className="form-check-label">
-                  <input type="radio" defaultChecked={true} onChange={this.handleOnChange} value={reloadedBottlePrice} className="form-check-input" name="bottle" />Recharged Bottle (${reloadedBottlePrice})
+                  <input
+                    type="radio"
+                    defaultChecked={true}
+                    onChange={this.handleOnChange}
+                    value={reloadedBottlePrice}
+                    className="form-check-input"
+                    name="bottle"
+                  />
+                  Recharged Bottle (${reloadedBottlePrice})
                 </label>
               </div>
               <div className="form-check">
                 <label className="form-check-label">
-                  <input type="radio" value={newBottlePrice} onChange={this.handleOnChange} className="form-check-input" name="bottle"/>Brand New Bottle (${newBottlePrice})
+                  <input
+                    type="radio"
+                    value={newBottlePrice}
+                    onChange={this.handleOnChange}
+                    className="form-check-input"
+                    name="bottle"
+                  />
+                  Brand New Bottle (${newBottlePrice})
                 </label>
               </div>
               <div className="form-check">
                 <label className="form-check-label">
-                  <input type="radio" value ={this.state.customPrice} onChange={this.handleOnChange} className="form-check-input" name="bottle"/>Custom price: <input name="customPrice" value={this.state.customPrice} onChange={this.handleCustomPrice} type="number" />
+                  <input
+                    type="radio"
+                    value={this.state.customPrice}
+                    onChange={this.handleOnChange}
+                    className="form-check-input"
+                    name="bottle"
+                  />
+                  Custom price:{" "}
+                  <input
+                    name="customPrice"
+                    value={this.state.customPrice}
+                    onChange={this.handleCustomPrice}
+                    type="number"
+                  />
                 </label>
               </div>
             </form>
           </ModalBody>
           <ModalFooter>
-            <Button type='submit' form="newReloadForm" color="primary">Add Bottle</Button>{' '}
-            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+            <Button type="submit" form="newReloadForm" color="primary">
+              Add Bottle
+            </Button>{" "}
+            <Button color="secondary" onClick={this.toggle}>
+              Cancel
+            </Button>
           </ModalFooter>
         </Modal>
       </div>
@@ -111,4 +162,7 @@ class NewReloadModal extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewReloadModal);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NewReloadModal);

@@ -1,30 +1,27 @@
-import { 
-  FETCH_CURRENT_WEEK_USAGE_PER_DATE_FAILURE, 
-  FETCH_CURRENT_WEEK_USAGE_PER_DATE_BEGIN, 
-  FETCH_CURRENT_WEEK_USAGE_PER_DATE_SUCCESS, 
-  FETCH_CURRENT_WEEK_USAGE_VOLUME_FAILURE, 
-  FETCH_CURRENT_WEEK_USAGE_VOLUME_BEGIN, 
-  FETCH_CURRENT_WEEK_USAGE_VOLUME_SUCCESS 
-} from '../../constants/usageActionsTypes';
+import {
+  FETCH_CURRENT_WEEK_USAGE_PER_DATE_FAILURE,
+  FETCH_CURRENT_WEEK_USAGE_PER_DATE_BEGIN,
+  FETCH_CURRENT_WEEK_USAGE_PER_DATE_SUCCESS,
+  FETCH_CURRENT_WEEK_USAGE_VOLUME_FAILURE,
+  FETCH_CURRENT_WEEK_USAGE_VOLUME_BEGIN,
+  FETCH_CURRENT_WEEK_USAGE_VOLUME_SUCCESS
+} from "../../constants/usageActionsTypes";
 
 const initState = {
-  perDate : {
+  perDate: {
     loading: false,
     dates: [],
     usagePerDate: [],
     error: null
   },
-  volume : {
+  volume: {
     loading: false,
     value: 0,
     error: null
   }
 };
 
-const currentWeek = (
-  state = initState,
-  action
-) => {
+const currentWeek = (state = initState, action) => {
   switch (action.type) {
     case FETCH_CURRENT_WEEK_USAGE_PER_DATE_FAILURE:
       return {
@@ -58,31 +55,31 @@ const currentWeek = (
       return {
         ...state,
         volume: {
-          ...state.count,
+          ...state.volume,
           loading: false,
-          error: action.payload.error,
+          error: action.payload.error
         }
       };
     case FETCH_CURRENT_WEEK_USAGE_VOLUME_BEGIN:
       return {
         ...state,
         volume: {
-          ...state.count,
+          ...state.volume,
           loading: true,
-          error: null,
+          error: null
         }
       };
     case FETCH_CURRENT_WEEK_USAGE_VOLUME_SUCCESS:
       return {
         ...state,
         volume: {
-          ...state.count,
+          ...state.volume,
           loading: false,
-          value: action.payload,
+          value: action.payload
         }
       };
     default:
-      return state
+      return state;
   }
 };
 

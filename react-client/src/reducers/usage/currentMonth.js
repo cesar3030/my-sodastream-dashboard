@@ -1,11 +1,11 @@
-import { 
-  FETCH_CURRENT_MONTH_USAGE_PER_DATE_FAILURE, 
-  FETCH_CURRENT_MONTH_USAGE_PER_DATE_BEGIN, 
+import {
+  FETCH_CURRENT_MONTH_USAGE_PER_DATE_FAILURE,
+  FETCH_CURRENT_MONTH_USAGE_PER_DATE_BEGIN,
   FETCH_CURRENT_MONTH_USAGE_PER_DATE_SUCCESS,
-  FETCH_CURRENT_MONTH_USAGE_VOLUME_FAILURE, 
-  FETCH_CURRENT_MONTH_USAGE_VOLUME_BEGIN, 
+  FETCH_CURRENT_MONTH_USAGE_VOLUME_FAILURE,
+  FETCH_CURRENT_MONTH_USAGE_VOLUME_BEGIN,
   FETCH_CURRENT_MONTH_USAGE_VOLUME_SUCCESS
-} from '../../constants/usageActionsTypes';
+} from "../../constants/usageActionsTypes";
 
 const initState = {
   perDate: {
@@ -21,10 +21,7 @@ const initState = {
   }
 };
 
-const currentMonth = (
-  state = initState,
-  action
-) => {
+const currentMonth = (state = initState, action) => {
   switch (action.type) {
     case FETCH_CURRENT_MONTH_USAGE_PER_DATE_FAILURE:
       return {
@@ -62,7 +59,6 @@ const currentMonth = (
           loading: false,
           error: action.payload.error
         }
-        
       };
     case FETCH_CURRENT_MONTH_USAGE_VOLUME_BEGIN:
       return {
@@ -83,7 +79,7 @@ const currentMonth = (
         }
       };
     default:
-      return state
+      return state;
   }
 };
 

@@ -1,24 +1,27 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchCurrentWeekUsagePerDate, fetchCurrentWeekUsageVolume } from '../../actions/usage/currentWeekActions'
-import { fetchCurrentMonthUsagePerDate, fetchCurrentMonthUsageVolume } from '../../actions/usage/currentMonthActions'
-import { fetchCurrentYearUsagePerDate, fetchCurrentYearUsageVolume } from '../../actions/usage/currentYearActions'
-
 import {
-  Row,
-  Col,
-} from "reactstrap";
+  fetchCurrentWeekUsagePerDate,
+  fetchCurrentWeekUsageVolume
+} from "../../actions/usage/currentWeekActions";
+import {
+  fetchCurrentMonthUsagePerDate,
+  fetchCurrentMonthUsageVolume
+} from "../../actions/usage/currentMonthActions";
+import {
+  fetchCurrentYearUsagePerDate,
+  fetchCurrentYearUsageVolume
+} from "../../actions/usage/currentYearActions";
+
+import { Row, Col } from "reactstrap";
 // react plugin used to create charts
 import { Line } from "react-chartjs-2";
 // function that returns a color based on an interval of numbers
 
 import { PanelHeader, CardStatChart } from "components";
 
-import {
-  dashboardPanelChart
-} from "variables/charts.jsx";
+import { dashboardPanelChart } from "variables/charts.jsx";
 import { CardBorderlessChart } from "../../components";
-
 
 const mapStateToProps = state => ({
   usagePerDate: state.usage.currentWeek.perDate.usagePerDate,
@@ -39,7 +42,7 @@ const mapStateToProps = state => ({
     count: state.usage.currentYear.volume.value,
     labels: state.usage.currentYear.perDate.dates,
     data: state.usage.currentYear.perDate.usagePerDate
-  },
+  }
 });
 
 const mapDispatchToProps = dispatch => {
@@ -52,28 +55,26 @@ const mapDispatchToProps = dispatch => {
       dispatch(fetchCurrentYearUsagePerDate());
       dispatch(fetchCurrentYearUsageVolume());
     }
-  }
+  };
 };
 
-
 class Usage extends React.Component {
-  
   componentDidMount() {
-    const { fetchData } = this.props; 
+    const { fetchData } = this.props;
 
-    if(typeof fetchData === "function") {
+    if (typeof fetchData === "function") {
       fetchData();
     }
   }
-  
+
   render() {
     return (
       <div>
-        <PanelHeader size="sm"/>
+        <PanelHeader size="sm" />
         <div className="content">
           <Row>
             <Col xs={12} md={6}>
-              <CardBorderlessChart 
+              <CardBorderlessChart
                 cardTitle="Current Week"
                 chartLabels={this.props.currentWeek.labels}
                 chartData={this.props.currentWeek.data}
@@ -81,7 +82,7 @@ class Usage extends React.Component {
               />
             </Col>
             <Col xs={12} md={6}>
-              <CardBorderlessChart 
+              <CardBorderlessChart
                 cardTitle="Current Month"
                 chartLabels={this.props.currentMonth.labels}
                 chartData={this.props.currentMonth.data}
@@ -91,7 +92,7 @@ class Usage extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <CardStatChart 
+              <CardStatChart
                 cardTitle="Current Week"
                 statTitle="Total Volumne (in Liters)"
                 statValue={this.props.currentWeek.count}
@@ -103,7 +104,7 @@ class Usage extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <CardStatChart 
+              <CardStatChart
                 cardTitle="Current Month"
                 statTitle="Total Volumne (in Liters)"
                 statValue={this.props.currentMonth.count}
@@ -115,7 +116,7 @@ class Usage extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <CardStatChart 
+              <CardStatChart
                 cardTitle="Current Year"
                 statTitle="Total Volumne (in Liters)"
                 statValue={this.props.currentYear.count}
@@ -131,4 +132,7 @@ class Usage extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Usage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Usage);

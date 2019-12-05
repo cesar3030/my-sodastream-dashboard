@@ -1,8 +1,8 @@
-import { 
-  FETCH_CURRENT_RELOAD_FAILURE, 
-  FETCH_CURRENT_RELOAD_BEGIN, 
+import {
+  FETCH_CURRENT_RELOAD_FAILURE,
+  FETCH_CURRENT_RELOAD_BEGIN,
   FETCH_CURRENT_RELOAD_SUCCESS
-} from '../../constants/reloadActionsTypes';
+} from "../../constants/reloadActionsTypes";
 
 const initState = {
   id: null,
@@ -21,10 +21,7 @@ const initState = {
   loading: false
 };
 
-const current = (
-  state = initState,
-  action
-) => {
+const current = (state = initState, action) => {
   switch (action.type) {
     case FETCH_CURRENT_RELOAD_FAILURE:
       return {
@@ -45,7 +42,7 @@ const current = (
         ...action.payload
       };
     default:
-      return state
+      return state;
   }
 };
 

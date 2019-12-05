@@ -146,8 +146,7 @@ class Header extends React.Component {
             isOpen={this.state.isOpen}
             navbar
             className="justify-content-end"
-          >
-          </Collapse>
+          />
         </Container>
       </Navbar>
     );

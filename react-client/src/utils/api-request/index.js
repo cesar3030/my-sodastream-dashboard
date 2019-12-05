@@ -1,6 +1,5 @@
 export default class ApiRequest {
-  
-  static fetch(url, beginFunction, sucessfunction, errorFunction){
+  static fetch(url, beginFunction, sucessfunction, errorFunction) {
     return dispatch => {
       dispatch(beginFunction());
       return fetch(`${process.env.REACT_APP_API_URL}${url}`)
@@ -14,23 +13,23 @@ export default class ApiRequest {
     };
   }
 
-  static post(url, payload, beginFunction, sucessfunction, errorFunction){
+  static post(url, payload, beginFunction, sucessfunction, errorFunction) {
     return dispatch => {
       dispatch(beginFunction());
-      
+
       const searchParams = new URLSearchParams();
       for (const prop in payload) {
         searchParams.set(prop, payload[prop]);
       }
 
-      return fetch(`${process.env.REACT_APP_API_URL}${url}`,{
-          method: "POST",
-          body: searchParams
-        })
+      return fetch(`${process.env.REACT_APP_API_URL}${url}`, {
+        method: "POST",
+        body: searchParams
+      })
         .then(ApiRequest.handleErrors)
         .then(res => res.json())
         .then(value => {
-          console.log(value)
+          // console.log(value);
           dispatch(sucessfunction(value));
           return value;
         })
@@ -44,4 +43,4 @@ export default class ApiRequest {
     }
     return response;
   }
-} 
+}

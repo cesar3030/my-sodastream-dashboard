@@ -1,30 +1,27 @@
-import { 
-  FETCH_CURRENT_YEAR_REFILLS_PER_DATE_FAILURE, 
-  FETCH_CURRENT_YEAR_REFILLS_PER_DATE_BEGIN, 
-  FETCH_CURRENT_YEAR_REFILLS_PER_DATE_SUCCESS, 
-  FETCH_CURRENT_YEAR_REFILLS_COUNT_FAILURE, 
-  FETCH_CURRENT_YEAR_REFILLS_COUNT_BEGIN, 
-  FETCH_CURRENT_YEAR_REFILLS_COUNT_SUCCESS 
-} from '../../constants/refillsActionsTypes';
+import {
+  FETCH_CURRENT_YEAR_REFILLS_PER_DATE_FAILURE,
+  FETCH_CURRENT_YEAR_REFILLS_PER_DATE_BEGIN,
+  FETCH_CURRENT_YEAR_REFILLS_PER_DATE_SUCCESS,
+  FETCH_CURRENT_YEAR_REFILLS_COUNT_FAILURE,
+  FETCH_CURRENT_YEAR_REFILLS_COUNT_BEGIN,
+  FETCH_CURRENT_YEAR_REFILLS_COUNT_SUCCESS
+} from "../../constants/refillsActionsTypes";
 
 const initState = {
-  perDate : {
+  perDate: {
     loading: false,
     dates: [],
     nbRefillsPerDate: [],
     error: null
   },
-  count : {
+  count: {
     loading: false,
     value: 0,
     error: null
   }
 };
 
-const currentYear = (
-  state = initState,
-  action
-) => {
+const currentYear = (state = initState, action) => {
   switch (action.type) {
     case FETCH_CURRENT_YEAR_REFILLS_PER_DATE_FAILURE:
       return {
@@ -60,7 +57,7 @@ const currentYear = (
         count: {
           ...state.count,
           loading: false,
-          error: action.payload.error,
+          error: action.payload.error
         }
       };
     case FETCH_CURRENT_YEAR_REFILLS_COUNT_BEGIN:
@@ -69,7 +66,7 @@ const currentYear = (
         count: {
           ...state.count,
           loading: true,
-          error: null,
+          error: null
         }
       };
     case FETCH_CURRENT_YEAR_REFILLS_COUNT_SUCCESS:
@@ -78,11 +75,11 @@ const currentYear = (
         count: {
           ...state.count,
           loading: false,
-          value: action.payload,
+          value: action.payload
         }
       };
     default:
-      return state
+      return state;
   }
 };
 
