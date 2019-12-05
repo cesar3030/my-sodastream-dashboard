@@ -55,7 +55,7 @@ const currentWeek = (state = initState, action) => {
       return {
         ...state,
         volume: {
-          ...state.count,
+          ...state.volume,
           loading: false,
           error: action.payload.error
         }
@@ -64,7 +64,7 @@ const currentWeek = (state = initState, action) => {
       return {
         ...state,
         volume: {
-          ...state.count,
+          ...state.volume,
           loading: true,
           error: null
         }
@@ -73,7 +73,7 @@ const currentWeek = (state = initState, action) => {
       return {
         ...state,
         volume: {
-          ...state.count,
+          ...state.volume,
           loading: false,
           value: action.payload
         }
