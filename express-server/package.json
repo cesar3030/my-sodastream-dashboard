@@ -59,7 +59,7 @@
     "jsonwebtoken": "^8.1.0",
     "moment": "^2.22.2",
     "moment-timezone": "^0.5.23",
-    "mongoose": "^4.12.4",
+    "mongoose": "^5.7.5",
     "mongoose-create-unique": "^0.4.4",
     "mongoose-keywords": "^0.4.0",
     "morgan": "^1.7.0",
